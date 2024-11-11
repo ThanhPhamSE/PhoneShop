@@ -1,6 +1,13 @@
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using WebAPI.Data;
+using WebAPI.Repository.IRepository;
+using WebAPI.Repository;
+using WebAPI.Models;
 
 namespace WebAPI
 {
@@ -22,6 +29,39 @@ namespace WebAPI
                 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
             });
 
+            builder.Services.AddScoped<ITokenRepository, TokenRepository>();
+
+            builder.Services.AddIdentityCore<User>()
+            .AddRoles<Role>()
+            .AddTokenProvider<DataProtectorTokenProvider<User>>("")
+            .AddEntityFrameworkStores<AppDBContext>()
+            .AddDefaultTokenProviders();
+
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 0;
+                options.Password.RequiredUniqueChars = 1;
+            });
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        AuthenticationType = "Jwt",
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                        ValidAudience = builder.Configuration["Jwt:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                    };
+                });
 
 
             var app = builder.Build();
@@ -34,7 +74,9 @@ namespace WebAPI
             }
 
             app.UseHttpsRedirection();
+            app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
