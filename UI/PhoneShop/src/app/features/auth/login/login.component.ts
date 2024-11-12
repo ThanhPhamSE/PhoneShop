@@ -3,14 +3,15 @@ import { FormsModule } from '@angular/forms';
 import { LoginRequest } from './models/login-request.model';
 import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { User } from './models/user.model';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -44,7 +45,16 @@ constructor(private authService: AuthService,
 
         //Redirect home page
         this.router.navigateByUrl('/');
-      }
+      },
+      error: (err) => {
+        // Xử lý lỗi và hiển thị thông báo lỗi
+        if (err.status === 403) {
+          alert(err.error || 'Email not confirmed. Please check your email.');
+        } else {
+          alert('Login failed. Please check your credentials and try again.');
+        }
+        console.error('Login error:', err);
+      }     
     })
   }
 }

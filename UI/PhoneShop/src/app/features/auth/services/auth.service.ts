@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { LoginRequest } from '../login/models/login-request.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LoginResponse } from '../login/models/login-response.model';
-import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../login/models/user.model';
 import { CookieService } from 'ngx-cookie-service';
+import { RegisterRequest } from '../register/models/register-request.model';
+import { RegisterResponse } from '../register/models/register-response.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -53,5 +55,9 @@ export class AuthService {
     localStorage.clear();
     this.cookieService.delete('Authorization','/');
     this.$user.next(undefined);
+  }
+
+  register(request: RegisterRequest): Observable<RegisterResponse> {
+    return this.http.post<RegisterResponse>(`https://localhost:7026/api/Auth/register`, request);
   }
 }

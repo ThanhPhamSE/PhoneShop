@@ -8,6 +8,7 @@ using WebAPI.Data;
 using WebAPI.Repository.IRepository;
 using WebAPI.Repository;
 using WebAPI.Models;
+using WebAPI.Services;
 
 namespace WebAPI
 {
@@ -62,6 +63,16 @@ namespace WebAPI
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
                     };
                 });
+            //Add Config for required email
+            builder.Services.Configure<IdentityOptions>(
+                options => options.SignIn.RequireConfirmedEmail = true);
+
+            //Add Email Configs
+            var emailConfig = builder.Configuration.GetSection("EmailConfiguration")
+                                           .Get<EmailConfiguration>();
+            builder.Services.AddSingleton(emailConfig);
+
+            builder.Services.AddScoped<IEmailService, EmailService>();
 
 
             var app = builder.Build();

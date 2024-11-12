@@ -147,3 +147,7 @@ D:\CPL_NET03_NHOM5\PhoneShop\WebAPI\WebAPI\obj\Debug\net8.0\refint\WebAPI.dll
 D:\CPL_NET03_NHOM5\PhoneShop\WebAPI\WebAPI\obj\Debug\net8.0\WebAPI.pdb
 D:\CPL_NET03_NHOM5\PhoneShop\WebAPI\WebAPI\obj\Debug\net8.0\WebAPI.genruntimeconfig.cache
 D:\CPL_NET03_NHOM5\PhoneShop\WebAPI\WebAPI\obj\Debug\net8.0\ref\WebAPI.dll
+D:\CPL_NET03_NHOM5\PhoneShop\WebAPI\WebAPI\bin\Debug\net8.0\MailKit.dll
+D:\CPL_NET03_NHOM5\PhoneShop\WebAPI\WebAPI\bin\Debug\net8.0\MimeKit.dll
+D:\CPL_NET03_NHOM5\PhoneShop\WebAPI\WebAPI\bin\Debug\net8.0\NETCore.MailKit.dll
+D:\CPL_NET03_NHOM5\PhoneShop\WebAPI\WebAPI\bin\Debug\net8.0\BouncyCastle.Crypto.dll
