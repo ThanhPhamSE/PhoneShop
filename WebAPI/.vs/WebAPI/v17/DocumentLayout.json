@@ -1,7 +1,28 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\cpl_net03_nhom5\\phoneshop\\webapi\\webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\cpl_net03_nhom5\\phoneshop\\webapi\\webapi\\controllers\\authentication\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\authentication\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\cpl_net03_nhom5\\phoneshop\\webapi\\webapi\\repository\\irepository\\itokenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\repository\\irepository\\itokenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\cpl_net03_nhom5\\phoneshop\\webapi\\webapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\cpl_net03_nhom5\\phoneshop\\webapi\\webapi\\models\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\models\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +30,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\Authentication\\AuthController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\Authentication\\AuthController.cs",
+              "ToolTip": "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\Authentication\\AuthController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\Authentication\\AuthController.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAAADgAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T15:49:48.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ITokenRepository.cs",
+              "DocumentMoniker": "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\Repository\\IRepository\\ITokenRepository.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Repository\\IRepository\\ITokenRepository.cs",
+              "ToolTip": "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\Repository\\IRepository\\ITokenRepository.cs",
+              "RelativeToolTip": "WebAPI\\Repository\\IRepository\\ITokenRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T14:46:05.768Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppDBContext.cs",
+              "DocumentMoniker": "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\Data\\AppDBContext.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Data\\AppDBContext.cs",
+              "ToolTip": "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\Data\\AppDBContext.cs",
+              "RelativeToolTip": "WebAPI\\Data\\AppDBContext.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAIBJwAwAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T14:44:19.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Brand.cs",
+              "DocumentMoniker": "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\Models\\Brand.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Models\\Brand.cs",
+              "ToolTip": "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\Models\\Brand.cs",
+              "RelativeToolTip": "WebAPI\\Models\\Brand.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T14:42:11.717Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "WebAPI\\appsettings.json",
+              "ToolTip": "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\appsettings.json",
+              "RelativeToolTip": "WebAPI\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-11T14:04:45.888Z",
+              "EditorCaption": ""
             }
           ]
         }
