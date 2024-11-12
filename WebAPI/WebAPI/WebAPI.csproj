@@ -22,7 +22,6 @@
     <Folder Include="Controllers\Cart\" />
     <Folder Include="Controllers\Product\" />
     <Folder Include="ViewModel\Cart\" />
-    <Folder Include="ViewModel\Product\" />
   </ItemGroup>
 
 </Project>

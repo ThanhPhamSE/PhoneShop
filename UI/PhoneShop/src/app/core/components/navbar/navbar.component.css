@@ -1,97 +1,174 @@
 /* Navbar container */
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #ffffff;
-  }
-  
-  /* Brand logo and name */
-  .navbar-brand {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: #333;
-    font-weight: bold;
-    font-size: 1.2em;
-  }
-  
-  .logo-icon {
-    color: #ffc107;
-    font-size: 24px;
-  }
-  
-  .brand-name {
-    font-size: 1.2em;
-    color: #333;
-  }
-  
-  /* Search section */
-  .navbar-search {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  
-  .search-category {
-    background-color: #f3f3f3;
-    padding: 5px;
-    border-radius: 4px 0 0 4px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .category-select {
-    border: none;
-    background: none;
-    padding: 5px;
-    font-size: 0.9em;
-    color: #333;
-  }
-  
-  .search-input {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-left: none;
-    width: 200px;
-    font-size: 0.9em;
-    color: #333;
-  }
-  
-  .search-btn {
-    background-color: #ffc107;
-    padding: 8px 12px;
-    border: none;
-    cursor: pointer;
-    border-radius: 0 4px 4px 0;
-    color: white;
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Icons section */
-  .navbar-icons {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .icon, .cart-icon {
-    font-size: 20px;
-    color: #333;
-    cursor: pointer;
-  }
-  
-  .cart {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .cart-icon {
-    color: #ffc107;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #ffffff;
+}
+
+/* Brand logo and name */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.logo-icon {
+  color: #ffc107;
+  font-size: 24px;
+}
+
+.brand-name {
+  font-size: 1.2em;
+  color: #333;
+}
+
+/* Search section */
+.navbar-search {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.search-category {
+  background-color: #f3f3f3;
+  padding: 5px;
+  border-radius: 4px 0 0 4px;
+  display: flex;
+  align-items: center;
+}
+
+.category-select {
+  border: none;
+  background: none;
+  padding: 5px;
+  font-size: 0.9em;
+  color: #333;
+}
+
+.search-input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-left: none;
+  width: 200px;
+  font-size: 0.9em;
+  color: #333;
+}
+
+.search-btn {
+  background-color: #ffc107;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+/* Icons section */
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.icon,
+.cart-icon {
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.cart-icon {
+  color: #ffc107;
+}
+
+.product-overlay ul {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.product-overlay ul li {
+  margin-right: 10px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-body .product-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.card-body .product-actions li {
+  margin: 0 10px;
+}
+
+.card-body .product-actions li a {
+  background-color: #28a745;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+}
+
+.card-body .product-actions li a:hover {
+  background-color: #218838;
+}
+
+/* Tùy chỉnh cho tiêu đề category */
+.templatemo-accordion .h3 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Tùy chỉnh cho dấu mũi tên */
+.templatemo-accordion i {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Khi mục được mở, xoay dấu mũi tên */
+.templatemo-accordion .collapse.show i {
+  transform: rotate(180deg);
+}
+
+/* Tùy chỉnh khoảng cách giữa các mục */
+.templatemo-accordion li {
+  margin-bottom: 10px;
+}
+
+/* Tùy chỉnh cho các mục con */
+.templatemo-accordion .collapse {
+  padding-left: 20px;
+}
+
+.templatemo-accordion a {
+  color: #333;
+  font-size: 16px;
+}
+
+.templatemo-accordion a:hover {
+  color: #007bff;
+  text-decoration: none;
+}

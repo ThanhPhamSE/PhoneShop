@@ -1,60 +1,220 @@
-<nav class="navbar">
-    <!-- Brand Logo and Name -->
-    <div class="navbar-brand">
-      <i class="fa fa-shopping-basket logo-icon"></i>
-      <span class="brand-name">Phone Shop</span>
-    </div>
-  
-    <!-- Search Section -->
-    <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
-  
-    <!-- Icons Section -->
-    <div class="navbar-icons">
-      <div class="cart">
-        <i class="fa fa-shopping-bag cart-icon"></i>
-        <span>My Cart</span>
-      </div>
-    </div>
-  </nav>
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-  <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-center" id="navbarColor02">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Manager</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Manager User</a>
-              <a class="dropdown-item" href="#">Manager Product</a>
-              <a class="dropdown-item" href="#">Manager Category</a>
+<!-- jQuery (đảm bảo sử dụng phiên bản đầy đủ, không phải slim) -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<!-- Popper.js (tối cần thiết cho Bootstrap) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<nav class="navbar">
+  <!-- Brand Logo and Name -->
+  <div class="navbar-brand">
+    <i class="fa fa-shopping-basket logo-icon"></i>
+    <span class="brand-name">Phone Shop</span>
+  </div>
+
+  <!-- Search Section -->
+  <form class="d-flex">
+    <input class="form-control me-sm-2" type="search" placeholder="Search">
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+  </form>
+
+  <!-- Icons Section -->
+  <div class="navbar-icons">
+    <div class="cart">
+      <i class="fa fa-shopping-bag cart-icon"></i>
+      <span>My Cart</span>
+    </div>
+  </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+      aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarColor02">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false">Manager</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Manager User</a>
+            <a class="dropdown-item" href="#">Manager Product</a>
+            <a class="dropdown-item" href="#">Manager Category</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" [routerLink]="['/login']">
+            <i class="fa fa-sign-in-alt me-2"></i> Sign In
+          </a>
+        </li>
+        <li class="nav-item mx-3">|</li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="#">
+            <i class="fa fa-user me-2"></i> My Account
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Start Content -->
+<div class="container py-5">
+  <div class="row">
+    <!--Sider bar-->
+    <div class="col-lg-3">
+      <h1 class="h2 pb-4">Categories</h1>
+      <ul class="list-unstyled templatemo-accordion">
+        <!-- Bộ lọc Thương hiệu -->
+        <li class="pb-3">
+          <a class="collapsed d-flex justify-content-between h3 text-decoration-none"
+            (click)="toggleCollapse('categoryPhone')">
+            Category Phone
+            <i class="fa fa-fw"
+              [ngClass]="{'fa-chevron-circle-down': isCollapsed['categoryPhone'], 'fa-chevron-circle-up': !isCollapsed['categoryPhone']}"></i>
+          </a>
+          <ul *ngIf="!isCollapsed['categoryPhone']" class="list-unstyled pl-3">
+            <!-- Thêm tùy chọn "Tất cả sản phẩm" -->
+            <li>
+              <a class="text-decoration-none" style="font-size: 24px;" href="javascript:void(0)"
+                (click)="selectBrand('')">
+                All Products
+              </a>
+            </li>
+            <!-- Lặp qua các thương hiệu duy nhất -->
+            <li *ngFor="let brand of filteredBrands$ | async">
+              <a style="font-size: 20px;" class="text-decoration-none" href="javascript:void(0)"
+                (click)="selectBrand(brand.brandName)" [ngClass]="{'text-danger': selectedBrand === brand.brandName}">
+                {{ brand.brandName }}
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+
+        <!-- Bộ lọc Màu sắc -->
+        <!-- <li class="pb-3">
+          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" (click)="toggleCollapse('price')">
+            Color
+            <i class="fa fa-fw"
+              [ngClass]="{'fa-chevron-circle-down': isCollapsed['price'], 'fa-chevron-circle-up': !isCollapsed['price']}"></i>
+          </a>
+          <ul *ngIf="!isCollapsed['price']" class="list-unstyled pl-3">
+            <li *ngFor="let color of colors$ | async">
+              <a class="text-decoration-none" href="#" (click)="selectedColor = color; GetFilteredProducts()">{{ color
+                }}</a>
+            </li>
+          </ul>
+        </li> -->
+
+
+      </ul>
+    </div>
+
+    <!--End Sidebar-->
+
+    <div class="col-lg-9">
+
+      <div class="row">
+        <h1>All Products</h1>
+      </div>
+
+      <!-- Hiển thị sản phẩm (sử dụng *ngFor để lặp qua danh sách sản phẩm) -->
+      <div class="row">
+        <div class="col-md-4" *ngFor="let product of filteredProducts">
+          <div class="card mb-4 product-wap rounded-0">
+            <div class="card rounded-0">
+              <img class="card-img rounded-0 img-fluid" [src]="product.imageUrl" alt="Product Image">
             </div>
+            <div class="card-body">
+              <!-- Liên kết tới trang chi tiết sản phẩm dựa trên ProductId hoặc trang shop dựa trên BrandId -->
+              <a [routerLink]="['/shop', product.brandId]" class="h3 text-decoration-none">{{ product.productName }}</a>
+
+              <!-- Hiển thị các màu sắc của sản phẩm -->
+              <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                <li>
+                  <span *ngFor="let color of product.color.split(',')" class="product-color-dot"
+                    [ngClass]="'color-dot-' + color"></span>
+                </li>
+              </ul>
+
+              <!-- Hiển thị đánh giá sản phẩm (giả định hiển thị 3 sao vàng và 2 sao xám) -->
+              <ul class="list-unstyled d-flex justify-content-center mb-1">
+                <li>
+                  <i class="text-warning fa fa-star"></i>
+                  <i class="text-warning fa fa-star"></i>
+                  <i class="text-warning fa fa-star"></i>
+                  <i class="text-muted fa fa-star"></i>
+                  <i class="text-muted fa fa-star"></i>
+                </li>
+              </ul>
+
+              <!-- Hiển thị giá bán của sản phẩm -->
+              <p class="text-center mb-0">{{ product.sellPrice | currency }}</p>
+
+              <!-- Các hành động của người dùng (Yêu thích, Xem chi tiết, Thêm vào giỏ hàng) -->
+              <ul class="list-unstyled d-flex justify-content-center mb-0 product-actions">
+                <li><a class="btn btn-success text-white" href="#"><i class="far fa-heart"></i></a></li>
+                <li><a class="btn btn-success text-white" [routerLink]="['/product', product.productId]"><i
+                      class="far fa-eye"></i></a></li>
+                <li><a class="btn btn-success text-white" href="#"><i class="fas fa-cart-plus"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <!--Phan trang-->
+      <div class="row">
+        <ul class="pagination pagination-lg justify-content-end">
+          <li class="page-item disabled">
+            <a class="page-link active rounded-0" href="#">1</a>
           </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center" [routerLink]="['/login']">
-              <i class="fa fa-sign-in-alt me-2"></i> Sign In
-            </a>
+          <li class="page-item">
+            <a class="page-link rounded-0" href="#">2</a>
           </li>
-          <li class="nav-item mx-3">|</li>
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center" href="#">
-              <i class="fa fa-user me-2"></i> My Account
-            </a>
+          <li class="page-item">
+            <a class="page-link rounded-0" href="#">3</a>
           </li>
         </ul>
       </div>
+
     </div>
-  </nav>
-  
-  
-  
+
+  </div>
+</div>
+<!-- End Content -->
+
+<section class="bg-light py-5">
+  <div class="container my-4">
+    <div class="row text-center py-3">
+      <div class="col-lg-6 m-auto">
+        <h1 class="h1">Contact Us</h1>
+        <p>If you have any questions or need further assistance, feel free to reach out to us!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Add Bootstrap JS and jQuery before closing body tag -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> <!-- Đảm bảo dùng jQuery đầy đủ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
