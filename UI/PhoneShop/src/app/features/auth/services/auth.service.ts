@@ -60,4 +60,14 @@ export class AuthService {
   register(request: RegisterRequest): Observable<RegisterResponse> {
     return this.http.post<RegisterResponse>(`https://localhost:7026/api/Auth/register`, request);
   }
+
+  forgotPassword(email: string): Observable<any> {
+    const url = `https://localhost:7026/api/Auth/forgot-password?email=${encodeURIComponent(email)}`;
+    return this.http.post<any>(url, {});
+  }
+
+  resetPassword(email: string, token: string, password: string, confirmPassword: string) {
+    const body = { email, token, password, confirmPassword };
+    return this.http.post(`https://localhost:7026/api/Auth/reset-password`, body);
+  }
 }

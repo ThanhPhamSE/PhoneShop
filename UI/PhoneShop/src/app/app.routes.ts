@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './features/auth/login/login.component';
 import { authGuard } from './features/guards/auth.guard';
 import { RegisterComponent } from './features/auth/register/register.component';
+import { ResetPasswordComponent } from './features/auth/reset-password/reset-password.component';
 
 export const routes: Routes = [
     {
@@ -12,4 +13,5 @@ export const routes: Routes = [
         path: "register",
         component: RegisterComponent
     },
+    { path: 'reset-password', component: ResetPasswordComponent },
 ];

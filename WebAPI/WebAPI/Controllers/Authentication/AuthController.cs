@@ -1,6 +1,9 @@
 ﻿using Azure;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using WebAPI.Models;
 using WebAPI.Repository.IRepository;
 using WebAPI.Services;
@@ -53,7 +56,7 @@ namespace WebAPI.Controllers.Authentication
             await userManager.AddToRoleAsync(user, "User");
 
             //var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
-            //var confirmationLink = Url.Action(nameof(ConfirmEmail), "Authentication", new { token, email = user.Email }, Request.Scheme);
+            //var confirmationLink = Url.Action(nameof(ConfirmEmail), "Auth", new { token, email = user.Email }, Request.Scheme);
             //if (string.IsNullOrEmpty(confirmationLink))
             //{
             //    return StatusCode(StatusCodes.Status500InternalServerError, $"{token}, {user.Email},{Request.Scheme},{Request.Host},{confirmationLink} Failed to generate confirmation link.");
@@ -131,6 +134,55 @@ namespace WebAPI.Controllers.Authentication
             }
             ModelState.AddModelError("", "Email or Password Incorrect");
             return ValidationProblem(ModelState);
+        }
+        
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([Required] string email)
+        {
+            var user = await userManager.FindByEmailAsync(email);
+            if(user != null)
+            {
+                var token = await userManager.GeneratePasswordResetTokenAsync(user);
+                //var forgotPasswordLink = $"{Request.Scheme}://{Request.Host}/api/Auth/reset-password?token={Uri.EscapeDataString(token)}&email={Uri.EscapeDataString(user.Email)}";
+                var forgotPasswordLink = $"http://localhost:4200/reset-password?token={Uri.EscapeDataString(token)}&email={Uri.EscapeDataString(user.Email)}";
+                var message = new Message(new string[] { user.Email! }, "Confirmation email link", forgotPasswordLink);
+                emailService.SendEmail(message);
+                return Ok(new { message = $"Password Changed request is sent on Email  {user.Email}.Please Open your email & click the link!" });
+            }
+            return Ok(new { message = "Couldn't send link to email, please try again." });
+
+        }
+
+        [HttpGet("reset-password")]
+        public async Task<IActionResult> ResetPassword(string token, string email)
+        {
+            var model = new ResetPassword { Token = token, Email = email };
+            return Ok(new { model });
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPassword resetPassword)
+        {
+            var user = await userManager.FindByEmailAsync(resetPassword.Email);
+            if (user != null)
+            {
+                var resetPassResult = await userManager.ResetPasswordAsync(user, resetPassword.Token, resetPassword.Password);
+                if (!resetPassResult.Succeeded)
+                {
+                    foreach(var error in resetPassResult.Errors)
+                    {
+                        ModelState.AddModelError(error.Code, error.Description);
+                    }
+                    return Ok(ModelState);
+                }
+                return Ok(new { message = $"Password has been changed" });
+            }
+            return Ok(new { message = "Couldn't send link to email, please try again." });
+
         }
     }
 }

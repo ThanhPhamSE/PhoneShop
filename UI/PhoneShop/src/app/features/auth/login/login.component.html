@@ -15,11 +15,19 @@
                 </div>
 
                 <div class="mt-3 text-center">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary me-3">Login</button>
+                    <button class="btn btn-secondary" [routerLink]="['/register']">
+                        <i class=""></i> Register
+                    </button>
                 </div>
                 <div class="mt-3 text-center">
-                    <a class="nav-link d-flex align-items-center justify-content-center" [routerLink]="['/register']">
-                        <i class="fa fa-sign-in-alt me-2"></i> Already have an account? Register
+                    <a class="nav-link d-flex align-items-center justify-content-center" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#forgotPasswordModal"
+                    role="button"
+                    onmouseout="this.style.color='white';"
+                    onmouseover="this.style.color='#0056b3';">
+                        <i class="fa fa-sign-in-alt me-2"></i> Forgot password
                     </a>
                 </div>
             </form>
@@ -27,3 +35,25 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #forgotPasswordForm="ngForm" (ngSubmit)="onForgotPasswordSubmit()">
+                    <div class="mb-3">
+                        <label for="forgotPasswordEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="forgotPasswordEmail" name="email" [(ngModel)]="forgotPasswordModel.email" required />
+                    </div>
+                    <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

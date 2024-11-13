@@ -57,4 +57,19 @@ constructor(private authService: AuthService,
       }     
     })
   }
+
+
+  forgotPasswordModel = { email: '' };
+  //forgot password
+  onForgotPasswordSubmit(){
+    this.authService.forgotPassword(this.forgotPasswordModel.email).subscribe(
+      (response) => {
+        alert(response.message); // Display success message
+      },
+      (error) => {
+        alert('Failed to send reset link. Please try again.');
+        console.error('Forgot password error:', error);
+      }
+    );
+  }
 }

@@ -87,7 +87,9 @@
                 
                 <!-- Link to Login -->
                 <div class="mt-3 text-center">
-                    <a class="nav-link d-flex align-items-center justify-content-center" [routerLink]="['/login']">
+                    <a class="nav-link d-flex align-items-center justify-content-center" [routerLink]="['/login']"
+                    onmouseout="this.style.color='white';"
+                    onmouseover="this.style.color='#0056b3';">
                         <i class="fa fa-sign-in-alt me-2"></i> Already have an account? Log In
                     </a>
                 </div>
