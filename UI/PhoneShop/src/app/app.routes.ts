@@ -10,5 +10,9 @@ export const routes: Routes = [
     {
         path: "products",
         component: NavbarComponent
+    },
+    {
+        path: "",
+        component: NavbarComponent
     }
 ];
