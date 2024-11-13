@@ -1,0 +1,126 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vanthang\\Downloads\\PhoneShop-ver1\\PhoneShop\\WebAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|c:\\users\\vanthang\\downloads\\phoneshop-ver1\\phoneshop\\webapi\\webapi\\controllers\\productmanage\\productmanagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\productmanage\\productmanagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|c:\\users\\vanthang\\downloads\\phoneshop-ver1\\phoneshop\\webapi\\webapi\\viewmodel\\productmanager\\productviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\viewmodel\\productmanager\\productviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|c:\\users\\vanthang\\downloads\\phoneshop-ver1\\phoneshop\\webapi\\webapi\\repository\\irepository\\iproductmanagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\repository\\irepository\\iproductmanagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|c:\\users\\vanthang\\downloads\\phoneshop-ver1\\phoneshop\\webapi\\webapi\\repository\\productmanagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\repository\\productmanagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|c:\\users\\vanthang\\downloads\\phoneshop-ver1\\phoneshop\\webapi\\webapi\\viewmodel\\productmanager\\brandpmviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\viewmodel\\productmanager\\brandpmviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|c:\\users\\vanthang\\downloads\\phoneshop-ver1\\phoneshop\\webapi\\webapi\\models\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\models\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductManageController.cs",
+              "DocumentMoniker": "C:\\Users\\vanthang\\Downloads\\PhoneShop-ver1\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\ProductManage\\ProductManageController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\ProductManage\\ProductManageController.cs",
+              "ToolTip": "C:\\Users\\vanthang\\Downloads\\PhoneShop-ver1\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\ProductManage\\ProductManageController.cs*",
+              "RelativeToolTip": "WebAPI\\Controllers\\ProductManage\\ProductManageController.cs*",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAAAE8AAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T09:21:37.408Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BrandPMViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\vanthang\\Downloads\\PhoneShop-ver1\\PhoneShop\\WebAPI\\WebAPI\\ViewModel\\ProductManager\\BrandPMViewModel.cs",
+              "RelativeDocumentMoniker": "WebAPI\\ViewModel\\ProductManager\\BrandPMViewModel.cs",
+              "ToolTip": "C:\\Users\\vanthang\\Downloads\\PhoneShop-ver1\\PhoneShop\\WebAPI\\WebAPI\\ViewModel\\ProductManager\\BrandPMViewModel.cs",
+              "RelativeToolTip": "WebAPI\\ViewModel\\ProductManager\\BrandPMViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T09:19:16.256Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Brand.cs",
+              "DocumentMoniker": "C:\\Users\\vanthang\\Downloads\\PhoneShop-ver1\\PhoneShop\\WebAPI\\WebAPI\\Models\\Brand.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Models\\Brand.cs",
+              "ToolTip": "C:\\Users\\vanthang\\Downloads\\PhoneShop-ver1\\PhoneShop\\WebAPI\\WebAPI\\Models\\Brand.cs",
+              "RelativeToolTip": "WebAPI\\Models\\Brand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T09:18:38.583Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IProductManageRepository.cs",
+              "DocumentMoniker": "C:\\Users\\vanthang\\Downloads\\PhoneShop-ver1\\PhoneShop\\WebAPI\\WebAPI\\Repository\\IRepository\\IProductManageRepository.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Repository\\IRepository\\IProductManageRepository.cs",
+              "ToolTip": "C:\\Users\\vanthang\\Downloads\\PhoneShop-ver1\\PhoneShop\\WebAPI\\WebAPI\\Repository\\IRepository\\IProductManageRepository.cs",
+              "RelativeToolTip": "WebAPI\\Repository\\IRepository\\IProductManageRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T08:35:51.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\vanthang\\Downloads\\PhoneShop-ver1\\PhoneShop\\WebAPI\\WebAPI\\ViewModel\\ProductManager\\ProductViewModel.cs",
+              "RelativeDocumentMoniker": "WebAPI\\ViewModel\\ProductManager\\ProductViewModel.cs",
+              "ToolTip": "C:\\Users\\vanthang\\Downloads\\PhoneShop-ver1\\PhoneShop\\WebAPI\\WebAPI\\ViewModel\\ProductManager\\ProductViewModel.cs",
+              "RelativeToolTip": "WebAPI\\ViewModel\\ProductManager\\ProductViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T08:26:50.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductManageRepository.cs",
+              "DocumentMoniker": "C:\\Users\\vanthang\\Downloads\\PhoneShop-ver1\\PhoneShop\\WebAPI\\WebAPI\\Repository\\ProductManageRepository.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Repository\\ProductManageRepository.cs",
+              "ToolTip": "C:\\Users\\vanthang\\Downloads\\PhoneShop-ver1\\PhoneShop\\WebAPI\\WebAPI\\Repository\\ProductManageRepository.cs",
+              "RelativeToolTip": "WebAPI\\Repository\\ProductManageRepository.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAmwAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T08:02:31.485Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

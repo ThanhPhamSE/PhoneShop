@@ -63,7 +63,7 @@ namespace WebAPI
                     };
                 });
 
-
+            builder.Services.AddScoped<IProductManageRepository, ProductManageRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

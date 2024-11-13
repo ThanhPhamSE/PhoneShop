@@ -1,0 +1,222 @@
+<div class="container-fluid">
+  <div class="row p-2 bg-info">
+    <div class="col-6">
+      <h3>Product List</h3>
+    </div>
+    <div class="col-6 text-end">
+      <button class="btn btn-warning" (click)="openModal()">Add Product</button>
+    </div>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Title</th>
+        <th>Color</th>
+        <th>Description</th>
+        <th>CostPrice</th>
+        <th>SellPrice</th>
+        <th>Stock</th>
+        <th>Image</th>
+        <th class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of productManages; track $index) {
+      <tr>
+        <td>{{ item.productName }}</td>
+        <td>{{ brandNames[item.brandId] }}</td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.color }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.costPrice }}</td>
+        <td>{{ item.sellPrice }}</td>
+        <td>{{ item.stock }}</td>
+        <td>
+          <img [src]="item.imageUrl" alt="Loading" class="fixed-size-img" />
+        </td>
+        <td class="text-center">
+          <button class="btn btn-primary" (click)="onEdit(item)">Edit</button>
+          ||
+          <button class="btn btn-danger" (click)="onDelete(item)">
+            Delete
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal" #myModal>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header bg-info">
+        @if(this.productForm.value.productId != '') {
+        <h4 class="modal-title">Edit Product</h4>
+        }@else {
+        <h4 class="modal-title">Add Product</h4>
+        }
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              <input
+                type="text"
+                name="productName"
+                formControlName="productName"
+                class="form-control"
+                placeholder="Name"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-12">
+              <select
+                name="brandId"
+                formControlName="brandId"
+                class="form-control"
+              >
+                <option value="" disabled selected>Select Brand</option>
+                <option
+                  *ngFor="let brand of brandManages"
+                  [value]="brand.brandId"
+                >
+                  {{ brand.brandName }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-12">
+              <input
+                type="text"
+                name="title"
+                formControlName="title"
+                class="form-control"
+                placeholder="Title"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-12">
+              <input
+                type="text"
+                name="description"
+                formControlName="description"
+                class="form-control"
+                placeholder="Description"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-12">
+              <input
+                type="text"
+                name="color"
+                formControlName="color"
+                class="form-control"
+                placeholder="Color"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-12">
+              <input
+                type="number"
+                name="costPrice"
+                formControlName="costPrice"
+                class="form-control"
+                placeholder="CostPrice"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-12">
+              <input
+                type="number"
+                name="sellPrice"
+                formControlName="sellPrice"
+                class="form-control"
+                placeholder="SellPrice"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-12">
+              <input
+                type="number"
+                name="stock"
+                formControlName="stock"
+                class="form-control"
+                placeholder="Stock"
+              />
+            </div>
+          </div>
+
+          <br />
+          <div class="row">
+            <div class="col-12">
+              <input
+                type="text"
+                name="iamgeUrl"
+                formControlName="imageUrl"
+                class="form-control"
+                placeholder="IamgeUrl"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          @if (this.productForm.value.productId != '') {
+          <button
+            type="submit"
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+            [disabled]="this.productForm.invalid"
+          >
+            Update
+          </button>
+          }@else {
+          <button
+            type="submit"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            [disabled]="this.productForm.invalid"
+          >
+            Save
+          </button>
+          }
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-dismiss="modal"
+            (click)="closeModal()"
+          >
+            Close
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
