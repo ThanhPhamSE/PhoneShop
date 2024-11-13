@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\WebAPI.csproj": {}
+    "D:\\NEWWW\\PhoneShop\\WebAPI\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\WebAPI.csproj": {
+    "D:\\NEWWW\\PhoneShop\\WebAPI\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "D:\\NEWWW\\PhoneShop\\WebAPI\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\WebAPI.csproj",
+        "projectPath": "D:\\NEWWW\\PhoneShop\\WebAPI\\WebAPI\\WebAPI.csproj",
         "packagesPath": "C:\\Users\\Nhat Anh\\.nuget\\packages\\",
-        "outputPath": "D:\\CPL_NET03_NHOM5\\PhoneShop\\WebAPI\\WebAPI\\obj\\",
+        "outputPath": "D:\\NEWWW\\PhoneShop\\WebAPI\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nhat Anh\\AppData\\Roaming\\NuGet\\NuGet.Config",
