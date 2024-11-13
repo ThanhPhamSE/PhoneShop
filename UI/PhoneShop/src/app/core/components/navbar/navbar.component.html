@@ -42,7 +42,7 @@
     <div class="collapse navbar-collapse justify-content-center" id="navbarColor02">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="api/Home/products">Home</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -89,8 +89,7 @@
           <ul *ngIf="!isCollapsed['categoryPhone']" class="list-unstyled pl-3">
             <!-- Thêm tùy chọn "Tất cả sản phẩm" -->
             <li>
-              <a class="text-decoration-none" style="font-size: 24px;" href="javascript:void(0)"
-                (click)="selectBrand('')">
+              <a class="text-decoration-none" style="font-size: 22px;" href="api/Home/products">
                 All Products
               </a>
             </li>
@@ -158,8 +157,8 @@
                   <i class="text-warning fa fa-star"></i>
                   <i class="text-warning fa fa-star"></i>
                   <i class="text-warning fa fa-star"></i>
-                  <i class="text-muted fa fa-star"></i>
-                  <i class="text-muted fa fa-star"></i>
+                  <i class="text-warning fa fa-star"></i>
+                  <i class="text-muted fa fa-star-half-o"></i>
                 </li>
               </ul>
 
@@ -176,28 +175,26 @@
             </div>
           </div>
         </div>
-
-
       </div>
 
 
       <!--Phan trang-->
-      <div class="row">
-        <ul class="pagination pagination-lg justify-content-end">
-          <li class="page-item disabled">
-            <a class="page-link active rounded-0" href="#">1</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link rounded-0" href="#">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link rounded-0" href="#">3</a>
-          </li>
-        </ul>
+      <div class="pagination">
+        <button (click)="prevPage()" [disabled]="currentPage === 1" class="page-btn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <!-- Danh sách các số trang -->
+        <span *ngFor="let page of pages" (click)="goToPage(page)" [class.active]="page === currentPage"
+          class="page-number">
+          {{ page }}
+        </span>
+
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="page-btn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
       </div>
-
     </div>
-
   </div>
 </div>
 <!-- End Content -->

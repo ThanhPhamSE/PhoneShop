@@ -18,7 +18,7 @@ namespace WebAPI.Repository
         // Lấy tất cả các thương hiệu
         public async Task<List<Brand>> GetAllBrandsAsync()
         {
-            return await _context.Brands
+            var brands = await _context.Brands
                 .Select(b => new Brand
                 {
                     BrandId = b.BrandId,
@@ -26,7 +26,13 @@ namespace WebAPI.Repository
                     Description = b.Description
                 })
                 .ToListAsync();
+
+            // Log thông tin các thương hiệu đã lấy
+            Console.WriteLine($"Total brands found: {brands.Count}");
+
+            return brands;
         }
+
 
         // Lấy tất cả sản phẩm (không có bộ lọc), trả về ProductViewModels
         public async Task<List<ProductViewModels>> GetAllProductsAsync()
@@ -46,12 +52,11 @@ namespace WebAPI.Repository
                     ImageUrl = p.ImageUrl,
                     BrandName = p.Brand.BrandName,  // Lấy tên thương hiệu
                     BrandId = p.BrandId
-                })
-                .ToListAsync();
+                }).ToListAsync();
         }
 
         // Lấy tất cả sản phẩm có thể lọc theo thương hiệu, màu sắc và mức giá, trả về ProductViewModels
-        public async Task<List<ProductViewModels>> GetAllProductsAsync(string brandName, string color)
+        public async Task<List<ProductViewModels>> GetAllProductsAsync(string brandName, string color, int pageNumber, int pageSize)
         {
             // Bắt đầu với truy vấn cơ bản để lấy tất cả sản phẩm cùng với thương hiệu
             var query = _context.Products.Include(p => p.Brand).AsQueryable();
@@ -68,7 +73,7 @@ namespace WebAPI.Repository
                 query = query.Where(p => EF.Functions.Like(p.Color, $"%{color}%"));
             }
 
-            // Thực hiện truy vấn và trả về danh sách sản phẩm
+            // Thực hiện truy vấn với phân trang và trả về danh sách sản phẩm
             return await query.Select(p => new ProductViewModels
             {
                 ProductId = p.ProductId,
@@ -82,10 +87,11 @@ namespace WebAPI.Repository
                 ImageUrl = p.ImageUrl,
                 BrandName = p.Brand.BrandName,
                 BrandId = p.BrandId
-            }).ToListAsync();
+            })
+            .Skip((pageNumber - 1) * pageSize) // Bỏ qua các sản phẩm của các trang trước
+            .Take(pageSize)                    // Giới hạn số lượng sản phẩm trên trang
+            .ToListAsync();
         }
-
-
 
     }
 }

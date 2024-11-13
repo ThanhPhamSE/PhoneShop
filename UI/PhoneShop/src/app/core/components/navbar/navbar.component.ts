@@ -15,7 +15,6 @@ import { ProductService } from './services/product.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
   isCollapsed: Record<string, boolean> = {
     categoryPhone: true,
     price: true,
@@ -27,14 +26,19 @@ export class NavbarComponent implements OnInit {
   }
 
   products$?: Observable<Product[]>;   // Các sản phẩm ban đầu
-  brands$?: Observable<Brands[]>;      // Các thương hiệu
+  brands$?: Observable<Brands[]>;       // Các thương hiệu
   filteredBrands$: Observable<Brands[]> = new Observable<Brands[]>();
-  filteredProducts: Product[] = [];   // Biến lưu trữ sản phẩm đã lọc
+  allProducts: Product[] = [];          // Danh sách tất cả sản phẩm
+  filteredProducts: Product[] = [];     // Sản phẩm sau khi áp dụng phân trang
   colors$: Observable<string[]> = new Observable<string[]>();
-  selectedBrand: string = '';  // Biến để lưu thương hiệu đã chọn
-  selectedColor: string = '';  // Biến để lưu màu sắc đã chọn
+  selectedBrand: string = '';           // Biến để lưu thương hiệu đã chọn
+  selectedColor: string = '';           // Biến để lưu màu sắc đã chọn
+  pageSize: number = 12;                // Chỉ 12 sản phẩm mỗi trang
+  currentPage: number = 1;              // Trang hiện tại
+  totalPages: number = 1;               // Tổng số trang
 
   constructor(private productService: ProductService) { }
+  pages: number[] = []; // Mảng số trang
 
   ngOnInit(): void {
     this.loadBrands();
@@ -44,7 +48,8 @@ export class NavbarComponent implements OnInit {
   // Lấy tất cả sản phẩm
   loadProducts(): void {
     this.productService.GetAllProductsAsyncs().subscribe(products => {
-      this.filteredProducts = products;  // Lưu tất cả sản phẩm vào filteredProducts
+      this.allProducts = products;               // Lưu tất cả sản phẩm
+      this.updateFilteredProducts();             // Cập nhật sản phẩm cho trang đầu tiên
     });
   }
 
@@ -68,13 +73,50 @@ export class NavbarComponent implements OnInit {
 
   // Lọc sản phẩm theo thương hiệu và màu sắc
   GetFilteredProducts(): void {
-    this.productService.GetFilteredProducts(this.selectedBrand, this.selectedColor).subscribe(products => {
-      this.filteredProducts = products; // Cập nhật danh sách sản phẩm đã lọc
+    this.productService.GetFilteredProducts(this.selectedBrand, this.selectedColor, this.currentPage, this.pageSize).subscribe(products => {
+      this.allProducts = products;                // Cập nhật tất cả sản phẩm đã lọc
+      this.updateFilteredProducts();              // Cập nhật sản phẩm phân trang
     });
   }
 
+  // Cập nhật danh sách sản phẩm hiển thị theo trang hiện tại
+  updateFilteredProducts(): void {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.filteredProducts = this.allProducts.slice(startIndex, endIndex);
+
+    // Cập nhật tổng số trang và mảng số trang
+    this.totalPages = Math.ceil(this.allProducts.length / this.pageSize);
+    this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1); // Tạo danh sách số trang
+  }
+  // Chọn thương hiệu và gọi lọc sản phẩm
   selectBrand(brandName: string): void {
     this.selectedBrand = brandName;
-    this.GetFilteredProducts(); // Gọi hàm lọc sản phẩm khi chọn thương hiệu
+    console.log('Selected Brand:', this.selectedBrand); // Kiểm tra thương hiệu đã chọn
+    this.GetFilteredProducts();
+  }
+
+
+  // Điều hướng qua lại giữa các trang
+  goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.updateFilteredProducts();
+    }
+  }
+
+  // Các hàm để điều hướng trang trước và sau
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.updateFilteredProducts();
+    }
+  }
+
+  prevPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updateFilteredProducts();
+    }
   }
 }

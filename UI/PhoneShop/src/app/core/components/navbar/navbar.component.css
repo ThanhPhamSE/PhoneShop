@@ -172,3 +172,52 @@
   color: #007bff;
   text-decoration: none;
 }
+
+/* CSS cho điều hướng phân trang */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+.page-btn {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.page-btn i {
+  font-size: 18px;
+}
+
+.page-number {
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.page-number.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.page-number:hover {
+  background-color: #0056b3;
+  color: white;
+}

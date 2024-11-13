@@ -24,10 +24,16 @@ namespace WebAPI.Controllers
         {
             try
             {
-                // Lấy tất cả sản phẩm từ cơ sở dữ liệu
+                // Lấy tất cả sản phẩm từ repository
                 var products = await _homeRepository.GetAllProductsAsync();
 
-                // Trả về danh sách sản phẩm
+                // Phân trang trong bộ nhớ
+                //var pagedProducts = products
+                //    .Skip((pageNumber - 1) * pageSize)
+                //    .Take(pageSize)
+                //    .ToList();
+
+                // Trả về sản phẩm đã phân trang
                 return Ok(products);
             }
             catch (Exception ex)
@@ -37,13 +43,15 @@ namespace WebAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing your request.");
             }
         }
+
+
         [HttpGet("products/filter")]
-        public async Task<IActionResult> GetFilteredProducts([FromQuery] string? brandName, [FromQuery] string? color)
+        public async Task<IActionResult> GetFilteredProducts([FromQuery] string? brandName, [FromQuery] string? color, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 18)
         {
             try
             {
                 // Lấy danh sách sản phẩm đã lọc theo các tham số truyền vào
-                var products = await _homeRepository.GetAllProductsAsync(brandName, color);
+                var products = await _homeRepository.GetAllProductsAsync(brandName, color,pageNumber,pageSize);
 
                 // Trả về danh sách sản phẩm đã lọc
                 return Ok(products);
