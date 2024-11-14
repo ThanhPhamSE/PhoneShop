@@ -1,81 +1,100 @@
 <nav class="navbar">
-    <!-- Brand Logo and Name -->
-    <div class="navbar-brand">
-      <i class="fa fa-shopping-basket logo-icon"></i>
-      <span class="brand-name">Phone Shop</span>
-    </div>
-  
-    <!-- Search Section -->
-    <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
-  
-    <!-- Icons Section -->
-    <div class="navbar-icons">
-      <div class="cart">
-        <i class="fa fa-shopping-bag cart-icon"></i>
-        <span>My Cart</span>
-      </div>
-    </div>
-  </nav>
+  <!-- Brand Logo and Name -->
+  <div class="navbar-brand">
+    <i class="fa fa-shopping-basket logo-icon"></i>
+    <span class="brand-name">Phone Shop</span>
+  </div>
 
-  <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-center" id="navbarColor02">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+  <!-- Search Section -->
+  <form class="d-flex">
+    <input class="form-control me-sm-2" type="search" placeholder="Search" />
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+  </form>
+
+  <!-- Icons Section -->
+  <div class="navbar-icons">
+    <div class="cart">
+      <i class="fa fa-shopping-bag cart-icon"></i>
+      <span>My Cart</span>
+    </div>
+  </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarColor02"
+      aria-controls="navbarColor02"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse justify-content-center"
+      id="navbarColor02"
+    >
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="manager/category">Home</a>
+        </li>
+
+        <ng-container
+          *ngIf="user !== undefined && user?.roles?.includes('Admin')"
+        >
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              href="#"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+              >Manager</a
+            >
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Manager User</a>
+              <a class="dropdown-item" href="#">Manager Product</a>
+              <a class="dropdown-item" href="#">Manager Category</a>
+            </div>
           </li>
-
-          <ng-container *ngIf="user !== undefined && user?.roles?.includes('Admin')">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Manager</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Manager User</a>
-                <a class="dropdown-item" href="#">Manager Product</a>
-                <a class="dropdown-item" href="#">Manager Category</a>
-              </div>
-            </li>
-          </ng-container>
-        </ul>
-        <ul class="navbar-nav">
-
-          <ng-container *ngIf="user === undefined;else showLogout">
-            <!-- Show login button -->
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center" [routerLink]="['/login']">
-                <i class="fa fa-sign-in-alt me-2"></i> Sign In
-              </a>
-            </li>
-            <li class="nav-item mx-3">|</li>
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center" href="#">
-                <i class="fa fa-user me-2"></i> My Account
-              </a>
-            </li>
-          </ng-container>
-          <ng-template #showLogout>
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center" (click)="onLogout()">
-                <i class="fa fa-sign-in-alt me-2"></i> Logout
-              </a>
-            </li>
-            <li class="nav-item mx-3">|</li>
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center" href="#">
-                <i class="fa fa-user me-2"></i> {{user?.email}}
-              </a>
-            </li>
-
-          </ng-template>
-        </ul>
-      </div>
+        </ng-container>
+      </ul>
+      <ul class="navbar-nav">
+        <ng-container *ngIf="user === undefined; else showLogout">
+          <!-- Show login button -->
+          <li class="nav-item">
+            <a
+              class="nav-link d-flex align-items-center"
+              [routerLink]="['/login']"
+            >
+              <i class="fa fa-sign-in-alt me-2"></i> Sign In
+            </a>
+          </li>
+          <li class="nav-item mx-3">|</li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="#">
+              <i class="fa fa-user me-2"></i> My Account
+            </a>
+          </li>
+        </ng-container>
+        <ng-template #showLogout>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" (click)="onLogout()">
+              <i class="fa fa-sign-in-alt me-2"></i> Logout
+            </a>
+          </li>
+          <li class="nav-item mx-3">|</li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="#">
+              <i class="fa fa-user me-2"></i> {{ user?.email }}
+            </a>
+          </li>
+        </ng-template>
+      </ul>
     </div>
-  </nav>
-  
-  
-  
+  </div>
+</nav>

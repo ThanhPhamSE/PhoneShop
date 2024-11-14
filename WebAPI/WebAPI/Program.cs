@@ -9,6 +9,7 @@ using WebAPI.Repository.IRepository;
 using WebAPI.Repository;
 using WebAPI.Models;
 using WebAPI.Services;
+using static WebAPI.Repository.BrandRespository;
 
 namespace WebAPI
 {
@@ -75,8 +76,8 @@ namespace WebAPI
             builder.Services.AddSingleton(emailConfig);
 
             builder.Services.AddScoped<IEmailService, EmailService>();
-
-
+            builder.Services.AddScoped<IProductManageRepository, ProductManagerRepository>();
+            builder.Services.AddScoped<IBrandRepository, BrandRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
