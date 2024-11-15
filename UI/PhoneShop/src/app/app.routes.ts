@@ -5,6 +5,7 @@ import { RegisterComponent } from './features/auth/register/register.component';
 import { ResetPasswordComponent } from './features/auth/reset-password/reset-password.component';
 import { ProductManageComponent } from './core/components/product-manage/component/product-manage/product-manage.component';
 import { CategoryComponent } from './features/category/category.component';
+import { HomePageComponent } from './core/components/home-page/home-page.component';
 export const routes: Routes = [
   {
     path: 'login',
@@ -22,5 +23,9 @@ export const routes: Routes = [
   {
     path: 'manager/category',
     component: CategoryComponent,
+  },
+  {
+    path: '',
+    component: HomePageComponent,
   },
 ];
