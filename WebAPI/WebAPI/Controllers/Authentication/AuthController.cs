@@ -29,7 +29,6 @@ namespace WebAPI.Controllers.Authentication
         //identityResult = await userManager.AddToRoleAsync(user, "User");
 
 
-
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequestViewModel registerUser)
@@ -135,7 +134,34 @@ namespace WebAPI.Controllers.Authentication
             ModelState.AddModelError("", "Email or Password Incorrect");
             return ValidationProblem(ModelState);
         }
-        
+
+        [HttpGet("info")]
+        [Authorize]
+        public async Task<IActionResult> GetUserInfo()
+        {
+            var emailClaim = User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress");
+            if (emailClaim == null)
+            {
+                return Unauthorized();
+            }
+
+            var identityUser = await userManager.FindByEmailAsync(emailClaim.Value);
+            if (identityUser == null)
+            {
+                return NotFound("User not found");
+            }
+
+            var roles = await userManager.GetRolesAsync(identityUser);
+
+            var userInfo = new
+            {
+                Email = identityUser.Email,
+                Roles = roles.ToList()
+            };
+
+            return Ok(userInfo);
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [Route("forgot-password")]

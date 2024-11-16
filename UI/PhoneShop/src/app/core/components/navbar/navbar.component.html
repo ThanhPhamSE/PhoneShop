@@ -15,7 +15,11 @@
   <div class="navbar-icons">
     <div class="cart">
       <i class="fa fa-shopping-bag cart-icon"></i>
-      <span>My Cart</span>
+      <span
+        ><a href="cart" style="color: black; text-decoration: none"
+          >My Cart</a
+        ></span
+      >
     </div>
   </div>
 </nav>
@@ -39,7 +43,7 @@
     >
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="manager/category">Home</a>
+          <a class="nav-link" href="home">Home</a>
         </li>
 
         <ng-container
@@ -57,8 +61,12 @@
             >
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">Manager User</a>
-              <a class="dropdown-item" href="admin/manage/product">Manager Product</a>
-              <a class="dropdown-item" href="manager/category">Manager Category</a>
+              <a class="dropdown-item" href="manager/product"
+                >Manager Product</a
+              >
+              <a class="dropdown-item" href="manager/category"
+                >Manager Category</a
+              >
             </div>
           </li>
         </ng-container>

@@ -40,4 +40,9 @@ export class ProductManageService {
       `${this.apiUrl}/get-brand-by-id/${brandId}`
     );
   }
+
+  getProductById(productId: string) {
+    const url = `${this.apiUrl}/get-product-by-id/${productId}`;
+    return this.http.get<ProductManage>(url);
+  }
 }
