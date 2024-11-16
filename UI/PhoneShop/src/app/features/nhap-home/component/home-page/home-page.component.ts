@@ -37,14 +37,14 @@ export class HomePageComponent implements OnInit {
       );
       this.cartservice.addCartItem(productId, userEmail, quantity).subscribe(
         () => {
-          console.log('Item added to cart successfully');
+          alert('Item added to cart successfully');
         },
         (error) => {
-          console.error('Error adding item to cart:', error);
+          alert('Error adding item to cart:' + error);
         }
       );
     } else {
-      console.error('User email is not available');
+      alert('User email is not available');
     }
   }
 }

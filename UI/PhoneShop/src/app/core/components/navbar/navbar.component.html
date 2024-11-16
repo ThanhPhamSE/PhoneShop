@@ -70,6 +70,15 @@
             </div>
           </li>
         </ng-container>
+        <ng-container
+          *ngIf="user !== undefined && user?.roles?.includes('User')"
+        >
+          <li class="nav-item">
+            <a class="nav-link" href="/order">
+              &nbsp; || &nbsp;&nbsp;&nbsp;&nbsp; My Order</a
+            >
+          </li>
+        </ng-container>
       </ul>
       <ul class="navbar-nav">
         <ng-container *ngIf="user === undefined; else showLogout">

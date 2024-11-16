@@ -4,7 +4,7 @@
       <h3>My Cart</h3>
     </div>
     <div class="col-6 text-end">
-      <button class="btn btn-warning">Place Order</button>
+      <a href="/order" class="btn btn-warning">Place Order</a>
     </div>
   </div>
   <!-- Bảng hiển thị thông tin chi tiết của sản phẩm trong giỏ hàng -->
@@ -34,11 +34,22 @@
         <td>{{ products[i].color }}</td>
         <td>{{ products[i].sellPrice }}</td>
         <td class="text-center">
-          <button style="margin-right: 10px" (click)="updateQuantity(cart, -1)">
+          <button
+            style="margin-right: 10px"
+            (click)="
+              cart.quantity > 1
+                ? updateQuantity(cart, -1)
+                : deleteCartItem(cart)
+            "
+          >
             -
           </button>
           {{ cart.quantity }}
-          <button style="margin-left: 10px" (click)="updateQuantity(cart, 1)">
+          <button
+            style="margin-left: 10px"
+            (click)="updateQuantity(cart, 1)"
+            [disabled]="cart.quantity >= products[i].stock"
+          >
             +
           </button>
         </td>

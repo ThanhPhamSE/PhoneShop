@@ -7,6 +7,7 @@ import { ProductManageComponent } from './core/components/product-manage/compone
 import { CategoryComponent } from './features/category/category.component';
 import { HomePageComponent } from './features/nhap-home/component/home-page/home-page.component';
 import { CartComponent } from './features/nhap-home/component/cart/cart.component';
+import { PlaceOrderComponent } from './features/order/component/place-order/place-order.component';
 export const routes: Routes = [
   {
     path: 'login',
@@ -32,5 +33,9 @@ export const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+  },
+  {
+    path: 'order',
+    component: PlaceOrderComponent,
   },
 ];

@@ -77,9 +77,12 @@ export class ProductManageComponent implements OnInit {
       title: ['', [Validators.required]],
       description: ['', [Validators.required]],
       color: ['', [Validators.required]],
-      costPrice: ['', [Validators.required]],
-      sellPrice: ['', [Validators.required]],
-      stock: ['', [Validators.required]],
+      // costPrice: ['', [Validators.required]],
+      // sellPrice: ['', [Validators.required]],
+      // stock: ['', [Validators.required]],
+      costPrice: [0, [Validators.required, Validators.min(0)]],
+      sellPrice: [0, [Validators.required, Validators.min(0)]],
+      stock: [0, [Validators.required, Validators.min(0)]],
       imageUrl: ['', [Validators.required]],
     });
   }
