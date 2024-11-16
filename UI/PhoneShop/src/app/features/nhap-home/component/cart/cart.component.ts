@@ -1,25 +1,28 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { Cart } from '../../model/cart';
-import { forkJoin, Observable } from 'rxjs';
+import { Component, OnInit, inject } from '@angular/core';
 import { CartService } from '../../service/cart.service';
-import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../auth/services/auth.service';
-import { User } from '../../../auth/login/models/user.model';
-import { ProductManage } from '../../../../core/components/product-manage/model/product-manage';
 import { ProductManageService } from '../../../../core/components/product-manage/service/product-manage.service';
+import { Cart } from '../../model/cart';
+import { ProductManage } from '../../../../core/components/product-manage/model/product-manage';
+import { User } from '../../../auth/login/models/user.model';
+import { forkJoin, Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-cart',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css',
+  styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
   products: ProductManage[] = [];
-  productService = inject(ProductManageService);
   carts: Cart[] = [];
   userInfo: User | undefined;
-  constructor(private auth: AuthService, private cartservice: CartService) {}
+
+  auth = inject(AuthService);
+  cartservice = inject(CartService);
+  productService = inject(ProductManageService);
 
   ngOnInit(): void {
     this.userInfo = this.auth.getUser();
@@ -27,7 +30,18 @@ export class CartComponent implements OnInit {
       .getAllCarts(this.userInfo?.email ?? '')
       .subscribe((data) => {
         this.carts = data;
+        this.getProductsInCart();
       });
+  }
+
+  getProductsInCart(): void {
+    const productObservables: Observable<ProductManage>[] = this.carts.map(
+      (cart) => this.productService.getProductById(cart.productId)
+    );
+
+    forkJoin(productObservables).subscribe((products) => {
+      this.products = products;
+    });
   }
 
   updateQuantity(cart: Cart, one: number): void {
@@ -36,11 +50,9 @@ export class CartComponent implements OnInit {
 
     this.cartservice.updateQuantity(cart.cartItemId, one).subscribe({
       error: () => {
-        // Hoàn tác thay đổi nếu có lỗi
         cart.quantity = originalQuantity;
       },
       complete: () => {
-        // Làm mới danh sách giỏ hàng nếu cần thiết
         this.refreshCarts();
       },
     });
@@ -51,6 +63,7 @@ export class CartComponent implements OnInit {
       .getAllCarts(this.userInfo?.email ?? '')
       .subscribe((data) => {
         this.carts = data;
+        this.getProductsInCart();
       });
   }
 
@@ -60,5 +73,12 @@ export class CartComponent implements OnInit {
         this.refreshCarts();
       },
     });
+  }
+
+  getTotalPrice(): number {
+    return this.carts.reduce((total, cart, index) => {
+      const product = this.products[index];
+      return total + (product ? product.sellPrice * cart.quantity : 0);
+    }, 0);
   }
 }

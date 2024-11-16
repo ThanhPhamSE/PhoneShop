@@ -1,27 +1,38 @@
 <div class="container-fluid">
   <div class="row p-2 bg-info">
     <div class="col-6">
-      <h3>Product List</h3>
+      <h3>My Cart</h3>
+    </div>
+    <div class="col-6 text-end">
+      <button class="btn btn-warning">Place Order</button>
     </div>
   </div>
+  <!-- Bảng hiển thị thông tin chi tiết của sản phẩm trong giỏ hàng -->
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
-        <th>CartId</th>
-        <th>UserId</th>
-        <th>ProductId</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Color</th>
+        <th>Price</th>
         <th class="text-center">Quantity</th>
         <th class="text-center">Action</th>
       </tr>
     </thead>
     <tbody>
-      <!-- <tr>
-        <td>{{ userInfo?.email }}</td>
-      </tr> -->
-      <tr *ngFor="let cart of carts">
-        <td>{{ cart.cartItemId }}</td>
-        <td>{{ cart.userId }}</td>
-        <td>{{ cart.productId }}</td>
+      <tr *ngFor="let cart of carts; let i = index">
+        <td>{{ products[i].productName }}</td>
+        <td>
+          <img
+            [src]="products[i].imageUrl"
+            alt="Product Image"
+            style="width: 50px; height: auto"
+          />
+        </td>
+        <td>{{ products[i].title }}</td>
+        <td>{{ products[i].color }}</td>
+        <td>{{ products[i].sellPrice }}</td>
         <td class="text-center">
           <button style="margin-right: 10px" (click)="updateQuantity(cart, -1)">
             -
@@ -39,24 +50,7 @@
       </tr>
     </tbody>
   </table>
-  <!--Tesst Form chuan-->
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Brand</th>
-        <th>Title</th>
-        <th>Color</th>
-        <th>Price</th>
-        <th class="text-center">Quantity</th>
-        <th class="text-center">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- <tr>
-        <td>{{ userInfo?.email }}</td>
-      </tr> -->
-    </tbody>
-  </table>
 </div>
+<h4 class="text-end" style="margin-right: 5%">
+  Total Price: {{ getTotalPrice() | currency }}
+</h4>
