@@ -8,28 +8,32 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ApiResponse } from './models/apiResponse';
 import { catchError, map } from 'rxjs/operators';
-
+import { User } from '../../../features/auth/login/models/user.model';
+import { AuthService } from '../../../features/auth/services/auth.service';
+import { Cart } from '../Cart/model/cart';
+import { CartService } from '../Cart/service/cart.service';
 @Component({
   selector: 'app-home-page',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
+  userInfo: User | undefined;
   // Các observable cho sản phẩm và thương hiệu
   products$: Observable<Product[]> = new Observable<Product[]>();
   brands$: Observable<Brand[]> = new Observable<Brand[]>();
 
   // Biến để lưu các tham số filter, search, sort
-  searchQuery: string = '';   // Từ khóa tìm kiếm
+  searchQuery: string = ''; // Từ khóa tìm kiếm
   selectedBrand: string = ''; // Thương hiệu được chọn
   fromPrice: number | null = null; // Giá từ
-  toPrice: number | null = null;   // Giá đến
-  sortOption: string = '';   // Sắp xếp theo (ví dụ: "gia_esc" hoặc "gia_desc")
+  toPrice: number | null = null; // Giá đến
+  sortOption: string = ''; // Sắp xếp theo (ví dụ: "gia_esc" hoặc "gia_desc")
 
   // Tổng số trang
-  productsPerPage: number = 6;  // Số sản phẩm mỗi trang
+  productsPerPage: number = 6; // Số sản phẩm mỗi trang
   currentPage = 1;
   totalPages = 0; // Tổng số trang (được tính từ backend, không tính lại nữa)
   totalCount = 0; // Tổng số sản phẩm (để tính toán tổng số trang nếu cần thiết)
@@ -37,48 +41,76 @@ export class HomePageComponent implements OnInit {
   filteredProducts: Product[] = []; // Sản phẩm hiện tại sau khi phân trang
 
   // Thuộc tính điều khiển trạng thái gập/đổ cho các danh mục
-  isCollapsed: { [key: string]: boolean } = {};  // Track collapse state for each category
+  isCollapsed: { [key: string]: boolean } = {}; // Track collapse state for each category
 
-  constructor(private homeService: HomePageService) { }
+  constructor(
+    private homeService: HomePageService,
+    private auth: AuthService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
+    this.userInfo = this.auth.getUser();
     this.loadBrands();
-    this.loadProducts();  // Kiểm tra dữ liệu ngay khi component khởi tạo
+    this.loadProducts(); // Kiểm tra dữ liệu ngay khi component khởi tạo
+  }
+
+  addToCart(userEmail: string, productId: string, quantity: number): void {
+    if (userEmail) {
+      console.log(
+        `Adding to cart: ${productId}, Quantity: ${quantity}, User: ${userEmail}`
+      );
+      this.cartService.addCartItem(productId, userEmail, quantity).subscribe(
+        () => {
+          alert('Item added to cart successfully');
+        },
+        (error) => {
+          alert('Error adding item to cart:' + error);
+        }
+      );
+    } else {
+      alert('User email is not available');
+    }
   }
 
   loadProducts(): void {
     console.log('Sending request for page', this.currentPage);
 
-    this.products$ = this.homeService.getProducts(
-      this.searchQuery,
-      this.fromPrice,
-      this.toPrice,
-      this.sortOption,
-      this.currentPage,
-      this.selectedBrand,
-      this.productsPerPage
-    ).pipe(
-      map((response: ApiResponse) => {
-        console.log('API response:', response);
+    this.products$ = this.homeService
+      .getProducts(
+        this.searchQuery,
+        this.fromPrice,
+        this.toPrice,
+        this.sortOption,
+        this.currentPage,
+        this.selectedBrand,
+        this.productsPerPage
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          console.log('API response:', response);
 
-        if (response && response.products && response.products.length > 0) {
-          // Cập nhật các giá trị từ API
-          this.totalCount = response.totalCount;
-          this.totalPages = response.totalPages;  // Lấy totalPages trực tiếp từ API
-          this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1); // Mảng các trang
+          if (response && response.products && response.products.length > 0) {
+            // Cập nhật các giá trị từ API
+            this.totalCount = response.totalCount;
+            this.totalPages = response.totalPages; // Lấy totalPages trực tiếp từ API
+            this.pages = Array.from(
+              { length: this.totalPages },
+              (_, i) => i + 1
+            ); // Mảng các trang
 
-          this.filteredProducts = response.products;  // Lưu danh sách sản phẩm đã phân trang
+            this.filteredProducts = response.products; // Lưu danh sách sản phẩm đã phân trang
 
-          return response.products;
-        }
+            return response.products;
+          }
 
-        return [];  // Trả về mảng rỗng nếu không có sản phẩm
-      }),
-      catchError((error) => {
-        console.error('Error fetching products:', error);
-        return of([]);  // Trả về mảng rỗng khi có lỗi
-      })
-    );
+          return []; // Trả về mảng rỗng nếu không có sản phẩm
+        }),
+        catchError((error) => {
+          console.error('Error fetching products:', error);
+          return of([]); // Trả về mảng rỗng khi có lỗi
+        })
+      );
   }
 
   // Tải danh sách thương hiệu
@@ -88,7 +120,7 @@ export class HomePageComponent implements OnInit {
 
   // Thực hiện tìm kiếm sản phẩm theo từ khóa
   onSearchChange(): void {
-    this.currentPage = 1;  // Quay lại trang đầu tiên khi thay đổi từ khóa tìm kiếm
+    this.currentPage = 1; // Quay lại trang đầu tiên khi thay đổi từ khóa tìm kiếm
     this.loadProducts();
   }
 
@@ -96,28 +128,28 @@ export class HomePageComponent implements OnInit {
   selectBrand(brandName: string): void {
     console.log('Selected brand:', brandName);
     this.selectedBrand = brandName;
-    this.currentPage = 1;  // Quay lại trang đầu tiên khi thay đổi thương hiệu
+    this.currentPage = 1; // Quay lại trang đầu tiên khi thay đổi thương hiệu
     console.log('Loading products with:', this.selectedBrand);
     this.loadProducts();
   }
 
   // Thay đổi giá lọc và tải lại sản phẩm
   onPriceChange(): void {
-    this.currentPage = 1;  // Quay lại trang đầu tiên khi thay đổi giá
+    this.currentPage = 1; // Quay lại trang đầu tiên khi thay đổi giá
     this.loadProducts();
   }
 
   // Thay đổi sắp xếp và tải lại sản phẩm
   onSortChange(): void {
-    this.currentPage = 1;  // Quay lại trang đầu tiên khi thay đổi sắp xếp
+    this.currentPage = 1; // Quay lại trang đầu tiên khi thay đổi sắp xếp
     this.loadProducts();
   }
 
   // Điều hướng qua lại giữa các trang
   goToPage(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;  // Cập nhật trang hiện tại
-      this.loadProducts();  // Gọi lại loadProducts để tải dữ liệu cho trang mới
+      this.currentPage = page; // Cập nhật trang hiện tại
+      this.loadProducts(); // Gọi lại loadProducts để tải dữ liệu cho trang mới
     }
   }
 
@@ -164,5 +196,4 @@ export class HomePageComponent implements OnInit {
 
     return pagesToShow;
   }
-
 }

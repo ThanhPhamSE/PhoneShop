@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="row p-2 bg-info">
+    <div class="col-6">
+      <h3>My Cart</h3>
+    </div>
+    <div class="col-6 text-end">
+      <a href="/order" class="btn btn-warning">Place Order</a>
+    </div>
+  </div>
+  <!-- Bảng hiển thị thông tin chi tiết của sản phẩm trong giỏ hàng -->
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Color</th>
+        <th>Price</th>
+        <th class="text-center">Quantity</th>
+        <th class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cart of carts; let i = index">
+        <td>{{ products[i].productName }}</td>
+        <td>
+          <img
+            [src]="products[i].imageUrl"
+            alt="Product Image"
+            style="width: 50px; height: auto"
+          />
+        </td>
+        <td>{{ products[i].title }}</td>
+        <td>{{ products[i].color }}</td>
+        <td>{{ products[i].sellPrice }}</td>
+        <td class="text-center">
+          <button
+            style="margin-right: 10px"
+            (click)="
+              cart.quantity > 1
+                ? updateQuantity(cart, -1)
+                : deleteCartItem(cart)
+            "
+          >
+            -
+          </button>
+          {{ cart.quantity }}
+          <button
+            style="margin-left: 10px"
+            (click)="updateQuantity(cart, 1)"
+            [disabled]="cart.quantity >= products[i].stock"
+          >
+            +
+          </button>
+        </td>
+        <td class="text-center">
+          <button class="btn btn-danger" (click)="deleteCartItem(cart)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h4 class="text-end" style="margin-right: 5%">
+  Total Price: {{ getTotalPrice() | currency }}
+</h4>
