@@ -3,20 +3,48 @@
   "WorkspaceRootPath": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\controllers\\home\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\home\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\viewmodel\\productmanager\\productpmviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\viewmodel\\productmanager\\productpmviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\controllers\\productdetail\\productdetailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\productdetail\\productdetailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\controllers\\productmanager\\productmanagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\productmanager\\productmanagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\repository\\productdetailrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\repository\\productdetailrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\repository\\productmanagerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\repository\\productmanagerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\repository\\irepository\\iproductdetailrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\repository\\irepository\\iproductdetailrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\repository\\irepository\\ihomerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\repository\\irepository\\ihomerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\repository\\homerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\repository\\homerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\controllers\\home\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\home\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\viewmodel\\productmanager\\productpmviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\viewmodel\\productmanager\\productpmviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\repository\\homerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\repository\\homerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\viewmodel\\productmanager\\paginatedlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,7 +70,98 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Review.cs",
+              "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Models\\Review.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Models\\Review.cs",
+              "ToolTip": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Models\\Review.cs",
+              "RelativeToolTip": "WebAPI\\Models\\Review.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T04:47:46.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Program.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Program.cs",
+              "ToolTip": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Program.cs",
+              "RelativeToolTip": "WebAPI\\Program.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAQwCMAAABcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T04:30:42.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductManageController.cs",
+              "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\ProductManager\\ProductManageController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\ProductManager\\ProductManageController.cs",
+              "ToolTip": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\ProductManager\\ProductManageController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\ProductManager\\ProductManageController.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAQwBwAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T04:27:06.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductDetailController.cs",
+              "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\ProductDetail\\ProductDetailController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\ProductDetail\\ProductDetailController.cs",
+              "ToolTip": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\ProductDetail\\ProductDetailController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\ProductDetail\\ProductDetailController.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAuwBIAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T04:27:02.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ProductManagerRepository.cs",
+              "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Repository\\ProductManagerRepository.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Repository\\ProductManagerRepository.cs",
+              "ToolTip": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Repository\\ProductManagerRepository.cs",
+              "RelativeToolTip": "WebAPI\\Repository\\ProductManagerRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T04:25:18.289Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "ProductDetailRepository.cs",
+              "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Repository\\ProductDetailRepository.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Repository\\ProductDetailRepository.cs",
+              "ToolTip": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Repository\\ProductDetailRepository.cs",
+              "RelativeToolTip": "WebAPI\\Repository\\ProductDetailRepository.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABAAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T04:23:33.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IProductDetailRepository.cs",
+              "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Repository\\IRepository\\IProductDetailRepository.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Repository\\IRepository\\IProductDetailRepository.cs",
+              "ToolTip": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Repository\\IRepository\\IProductDetailRepository.cs",
+              "RelativeToolTip": "WebAPI\\Repository\\IRepository\\IProductDetailRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T04:23:10.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "BrandPMViewModel.cs",
               "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\ViewModel\\ProductManager\\BrandPMViewModel.cs",
               "RelativeDocumentMoniker": "WebAPI\\ViewModel\\ProductManager\\BrandPMViewModel.cs",
@@ -54,7 +173,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "ProductPMViewModel.cs",
               "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\ViewModel\\ProductManager\\ProductPMViewModel.cs",
               "RelativeDocumentMoniker": "WebAPI\\ViewModel\\ProductManager\\ProductPMViewModel.cs",
@@ -62,11 +181,12 @@
               "RelativeToolTip": "WebAPI\\ViewModel\\ProductManager\\ProductPMViewModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T09:52:04.105Z"
+              "WhenOpened": "2024-11-15T09:52:04.105Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "PaginatedList.cs",
               "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\ViewModel\\ProductManager\\PaginatedList.cs",
               "RelativeDocumentMoniker": "WebAPI\\ViewModel\\ProductManager\\PaginatedList.cs",
@@ -78,7 +198,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\Home\\HomeController.cs",
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\Home\\HomeController.cs",
@@ -91,19 +211,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
               "Title": "IHomeRepository.cs",
               "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Repository\\IRepository\\IHomeRepository.cs",
               "RelativeDocumentMoniker": "WebAPI\\Repository\\IRepository\\IHomeRepository.cs",
               "ToolTip": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Repository\\IRepository\\IHomeRepository.cs",
               "RelativeToolTip": "WebAPI\\Repository\\IRepository\\IHomeRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwA4AAABmAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T03:58:24.508Z"
+              "WhenOpened": "2024-11-15T03:58:24.508Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "HomeRepository.cs",
               "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Repository\\HomeRepository.cs",
               "RelativeDocumentMoniker": "WebAPI\\Repository\\HomeRepository.cs",
