@@ -37,6 +37,10 @@
           "SelectedChildIndex": 4,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "BrandPMViewModel.cs",
@@ -46,8 +50,7 @@
               "RelativeToolTip": "WebAPI\\ViewModel\\ProductManager\\BrandPMViewModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T09:52:05.68Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-15T09:52:05.68Z"
             },
             {
               "$type": "Document",
@@ -59,8 +62,7 @@
               "RelativeToolTip": "WebAPI\\ViewModel\\ProductManager\\ProductPMViewModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T09:52:04.105Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-15T09:52:04.105Z"
             },
             {
               "$type": "Document",
@@ -72,12 +74,7 @@
               "RelativeToolTip": "WebAPI\\ViewModel\\ProductManager\\PaginatedList.cs",
               "ViewState": "AQIAAAEAAAAAAAAAAAAswBoAAABFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T07:51:54.223Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+              "WhenOpened": "2024-11-15T07:51:54.223Z"
             },
             {
               "$type": "Document",
@@ -87,7 +84,7 @@
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\Home\\HomeController.cs",
               "ToolTip": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\Home\\HomeController.cs",
               "RelativeToolTip": "WebAPI\\Controllers\\Home\\HomeController.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAmwDkAAAAAAAAA",
+              "ViewState": "AQIAACYAAAAAAAAAAAAswDkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-15T04:13:41.223Z",
               "EditorCaption": ""
@@ -102,8 +99,7 @@
               "RelativeToolTip": "WebAPI\\Repository\\IRepository\\IHomeRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAuwA4AAABmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T03:58:24.508Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-15T03:58:24.508Z"
             },
             {
               "$type": "Document",
@@ -115,8 +111,7 @@
               "RelativeToolTip": "WebAPI\\Repository\\HomeRepository.cs",
               "ViewState": "AQIAAPcAAAAAAAAAAAAqwPwAAAByAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T03:43:06.91Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-15T03:43:06.91Z"
             }
           ]
         },
