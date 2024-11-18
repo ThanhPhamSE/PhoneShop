@@ -1,131 +1,173 @@
 <!-- Bootstrap CSS -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Start Content -->
 <div class="container py-5">
-    <div class="row">
-        <!-- Sidebar -->
-        <div class="col-lg-3">
-            <h1 class="h2 pb-4">Categories</h1>
-            <ul class="list-unstyled templatemo-accordion">
-                <!-- Filter by Categories -->
-                <li class="pb-3">
-                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none"
-                        (click)="toggleCollapse('categoryPhone')">
-                        Category Phone
-                        <i class="fa fa-fw"
-                            [ngClass]="{'fa-chevron-circle-down': isCollapsed['categoryPhone'], 'fa-chevron-circle-up': !isCollapsed['categoryPhone']}"></i>
-                    </a>
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-lg-3">
+      <h1 class="h2 pb-4">Categories</h1>
+      <ul class="list-unstyled templatemo-accordion">
+        <!-- Filter by Categories -->
+        <li class="pb-3">
+          <a class="collapsed d-flex justify-content-between h3 text-decoration-none"
+            (click)="toggleCollapse('categoryPhone')">
+            Category Phone
+            <i class="fa fa-fw" [ngClass]="{
+                'fa-chevron-circle-down': isCollapsed['categoryPhone'],
+                'fa-chevron-circle-up': !isCollapsed['categoryPhone']
+              }"></i>
+          </a>
 
-                    <ul *ngIf="!isCollapsed['categoryPhone']" class="list-unstyled pl-3">
-                        <!-- All Products Option -->
-                        <li>
-                            <a class="text-decoration-none" style="font-size: 22px;" href="javascript:void(0)"
-                                (click)="clearFilters()">All Products</a>
-                        </li>
+          <ul *ngIf="!isCollapsed['categoryPhone']" class="list-unstyled pl-3">
+            <!-- All Products Option -->
+            <li>
+              <a class="text-decoration-none" style="font-size: 22px" href="javascript:void(0)"
+                (click)="clearFilters()">All Products</a>
+            </li>
 
-                        <!-- Loop through brands -->
-                        <li *ngFor="let brand of (brands$ | async)">
-                            <a style="font-size: 20px;" class="text-decoration-none" href="javascript:void(0)"
-                                (click)="selectBrand(brand.brandName)"
-                                [ngClass]="{'text-danger': selectedBrand === brand.brandName}">
-                                {{ brand.brandName }}
-                            </a>
-                        </li>
-                    </ul>
+            <!-- Loop through brands -->
+            <li *ngFor="let brand of brands$ | async">
+              <a style="font-size: 20px" class="text-decoration-none" href="javascript:void(0)"
+                (click)="selectBrand(brand.brandName)" [ngClass]="{ 'text-danger': selectedBrand === brand.brandName }">
+                {{ brand.brandName }}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Filter by Price Range -->
+      <div class="pb-3">
+        <label for="fromPrice">Price Range:</label>
+        <div class="d-flex">
+          <input type="number" id="fromPrice" [(ngModel)]="fromPrice" (change)="onPriceChange()"
+            class="form-control mr-2" placeholder="From Price" />
+          <input type="number" id="toPrice" [(ngModel)]="toPrice" (change)="onPriceChange()" class="form-control"
+            placeholder="To Price" />
+        </div>
+      </div>
+
+      <!-- Sort Option -->
+      <div class="pb-3">
+        <label for="sortOption">Sort by:</label>
+        <select id="sortOption" [(ngModel)]="sortOption" (change)="onSortChange()" class="form-control">
+          <option value="gia_esc">Price (Low to High)</option>
+          <option value="gia_desc">Price (High to Low)</option>
+          <option value="ten_asc">Name (A-Z)</option>
+        </select>
+      </div>
+      <!-- Display Products -->
+      <div class="row">
+        <div class="col-md-4" *ngFor="let product of (products$ | async)">
+          <div class="card mb-4 product-wap rounded-0">
+            <div class="card rounded-0">
+              <img class="card-img rounded-0 img-fluid " [src]="product.imageUrl" alt="{{ product.productName }} Image">
+            </div>
+            <div class="card-body">
+              <a [routerLink]="['/product-detail', product.productId]" class="h3 text-decoration-none">
+                {{ product.productName }}
+              </a>
+              <p class="text-center mb-0">{{ product.sellPrice | currency }}</p>
+
+
+              <!-- Các hành động của người dùng (Yêu thích, Xem chi tiết, Thêm vào giỏ hàng) -->
+              <ul class="list-unstyled d-flex justify-content-center mb-0 product-actions">
+                <li><a class="btn btn-success text-white" href="#"><i class="far fa-heart"></i></a></li>
+                <li><a class="btn btn-success text-white" [routerLink]="['/product-detail', product.productId]">
+                    <i class="far fa-eye"></i></a>
                 </li>
-            </ul>
-
-            <!-- Filter by Price Range -->
-            <div class="pb-3">
-                <label for="fromPrice">Price Range:</label>
-                <div class="d-flex">
-                    <input type="number" id="fromPrice" [(ngModel)]="fromPrice" (change)="onPriceChange()"
-                        class="form-control mr-2" placeholder="From Price">
-                    <input type="number" id="toPrice" [(ngModel)]="toPrice" (change)="onPriceChange()"
-                        class="form-control" placeholder="To Price">
-                </div>
+                <li><a class="btn btn-success text-white" href="#"><i class="fas fa-cart-plus"></i></a>
+                </li>
+              </ul>
             </div>
-
-            <!-- Sort Option -->
-            <div class="pb-3">
-                <label for="sortOption">Sort by:</label>
-                <select id="sortOption" [(ngModel)]="sortOption" (change)="onSortChange()" class="form-control">
-                    <option value="gia_esc">Price (Low to High)</option>
-                    <option value="gia_desc">Price (High to Low)</option>
-                    <option value="ten_asc">Name (A-Z)</option>
-                </select>
-            </div>
-
-            <button>
-                <a class="text-decoration-none" href="javascript:void(0)" (click)="clearFilters()">
-                    Clear</a>
-            </button>
-        </div>
-        <!-- End Sidebar -->
-
-        <div class="col-lg-9">
-            <!-- Search -->
-            <div class="mb-4">
-                <input type="text" class="form-control" [(ngModel)]="searchQuery" (ngModelChange)="onSearchChange()"
-                    placeholder="Search products..." />
-            </div>
-
-            <!-- Display Products -->
-            <div class="row">
-                <div class="col-md-4" *ngFor="let product of (products$ | async)">
-                    <div class="card mb-4 product-wap rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid " [src]="product.imageUrl"
-                                alt="{{ product.productName }} Image">
-                        </div>
-                        <div class="card-body">
-                            <a [routerLink]="['/product-detail', product.productId]" class="h3 text-decoration-none">
-                                {{ product.productName }}
-                            </a>
-                            <p class="text-center mb-0">{{ product.sellPrice | currency }}</p>
-
-
-                            <!-- Các hành động của người dùng (Yêu thích, Xem chi tiết, Thêm vào giỏ hàng) -->
-                            <ul class="list-unstyled d-flex justify-content-center mb-0 product-actions">
-                                <li><a class="btn btn-success text-white" href="#"><i class="far fa-heart"></i></a></li>
-                                <li><a class="btn btn-success text-white"
-                                        [routerLink]="['/product-detail', product.productId]">
-                                        <i class="far fa-eye"></i></a>
-                                </li>
-                                <li><a class="btn btn-success text-white" href="#"><i class="fas fa-cart-plus"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-
-            <!-- Pagination -->
-            <!--Phan trang-->
-            <div class="pagination">
-                <button (click)="prevPage()" [disabled]="currentPage === 1" class="page-btn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-
-                <span *ngFor="let page of pages" (click)="goToPage(page)" [class.active]="page === currentPage"
-                    class="page-number">
-                    {{ page }}
-                </span>
-
-                <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="page-btn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-
-            </div>
-
-
-
+          </div>
 
         </div>
+      </div>
+
+
+      <!-- Pagination -->
+      <!--Phan trang-->
+      <div class="pagination">
+        <button (click)="prevPage()" [disabled]="currentPage === 1" class="page-btn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <span *ngFor="let page of pages" (click)="goToPage(page)" [class.active]="page === currentPage"
+          class="page-number">
+          {{ page }}
+        </span>
+
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="page-btn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+      </div>
     </div>
+    <button>
+      <a class="text-decoration-none" href="javascript:void(0)" (click)="clearFilters()">
+        Clear</a>
+    </button>
+  </div>
+  <!-- End Sidebar -->
+
+  <div class="col-lg-9">
+    <!-- Search -->
+    <div class="mb-4">
+      <input type="text" class="form-control" [(ngModel)]="searchQuery" (ngModelChange)="onSearchChange()"
+        placeholder="Search products..." />
+    </div>
+
+    <!-- Display Products -->
+    <div class="row">
+      <div class="col-md-4" *ngFor="let product of products$ | async">
+        <div class="card mb-4 product-wap rounded-0">
+          <div class="card rounded-0">
+            <img class="card-img rounded-0 img-fluid" [src]="product.imageUrl" alt="{{ product.productName }} Image" />
+          </div>
+          <div class="card-body">
+            <a [routerLink]="['/shop', product.brandId]" class="h3 text-decoration-none">
+              {{ product.productName }}
+            </a>
+            <p class="text-center mb-0">{{ product.sellPrice | currency }}</p>
+
+            <!-- Các hành động của người dùng (Yêu thích, Xem chi tiết, Thêm vào giỏ hàng) -->
+            <ul class="list-unstyled d-flex justify-content-center mb-0 product-actions">
+              <li>
+                <a class="btn btn-success text-white" href="#"><i class="far fa-heart"></i></a>
+              </li>
+              <li>
+                <a class="btn btn-success text-white" [routerLink]="['/product', product.productId]"><i
+                    class="far fa-eye"></i></a>
+              </li>
+              <li>
+                <a class="btn btn-success text-white" href="#"><i class="fas fa-cart-plus" *ngIf="userInfo?.email"
+                    (click)="addToCart(userInfo!.email, product.productId, 1)"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <!--Phan trang-->
+    <div class="pagination">
+      <button (click)="prevPage()" [disabled]="currentPage === 1" class="page-btn">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <span *ngFor="let page of pages" (click)="goToPage(page)" [class.active]="page === currentPage"
+        class="page-number">
+        {{ page }}
+      </span>
+
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="page-btn">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
 </div>
 <!-- End Content -->
 

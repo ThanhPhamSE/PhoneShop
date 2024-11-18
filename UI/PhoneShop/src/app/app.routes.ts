@@ -6,7 +6,12 @@ import { ResetPasswordComponent } from './features/auth/reset-password/reset-pas
 import { ProductManageComponent } from './core/components/product-manage/component/product-manage/product-manage.component';
 import { CategoryComponent } from './features/category/category.component';
 import { HomePageComponent } from './core/components/home-page/home-page.component';
+<<<<<<< HEAD
 import { ProductDetailComponent } from './core/components/product-detail/product-detail.component';
+import { CartComponent } from './core/components/Cart/component/cart/cart.component';
+=======
+import { CartComponent } from './core/components/Cart/component/cart/cart.component';
+>>>>>>> main
 export const routes: Routes = [
   {
     path: 'login',
@@ -30,12 +35,13 @@ export const routes: Routes = [
     component: HomePageComponent,
   },
   {
+
     path: 'product-detail/:productId',
     component: ProductDetailComponent
-  }
-  // ,
-  // {
-  //   path: 'get-reviews-by-product-id/:productId',
-  //   component: ProductDetailComponent,
-  // }
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+  },
+
 ];
