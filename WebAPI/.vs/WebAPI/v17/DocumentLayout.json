@@ -71,8 +71,7 @@
               "RelativeToolTip": "WebAPI\\Models\\Review.cs",
               "ViewState": "AQIAAAIAAAAAAAAAAAAxwAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T06:14:57.222Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-18T06:14:57.222Z"
             },
             {
               "$type": "Document",
@@ -84,8 +83,7 @@
               "RelativeToolTip": "WebAPI\\ViewModel\\BrandManager\\BrandViewModels.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T05:54:19.01Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-18T05:54:19.01Z"
             },
             {
               "$type": "Document",
@@ -97,8 +95,7 @@
               "RelativeToolTip": "WebAPI\\Repository\\IRepository\\IReviewRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAABWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T05:18:54.844Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-18T05:18:54.844Z"
             },
             {
               "$type": "Document",
@@ -110,8 +107,7 @@
               "RelativeToolTip": "WebAPI\\Repository\\ProductDetailRepository.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAAAwBsAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T03:25:04.98Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-18T03:25:04.98Z"
             },
             {
               "$type": "Document",
@@ -123,8 +119,7 @@
               "RelativeToolTip": "WebAPI\\Repository\\ReviewRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T03:24:00.295Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-18T03:24:00.295Z"
             },
             {
               "$type": "Document",
@@ -136,8 +131,7 @@
               "RelativeToolTip": "WebAPI\\ViewModel\\ProductDetail\\ReviewViewModel.cs",
               "ViewState": "AQIAAAcAAAAAAAAAAAAywBEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T03:21:36.61Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-18T03:21:36.61Z"
             },
             {
               "$type": "Document",
@@ -149,8 +143,7 @@
               "RelativeToolTip": "WebAPI\\Controllers\\ProductDetail\\ProductDetailController.cs",
               "ViewState": "AQIAABkAAAAAAAAAAAAowCIAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T02:39:59.769Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-18T02:39:59.769Z"
             }
           ]
         },

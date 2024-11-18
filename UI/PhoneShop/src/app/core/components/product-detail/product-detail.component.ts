@@ -6,6 +6,8 @@ import { ProductDetailService } from '../product-detail/service/product-detail.s
 import { Product } from './models/product';
 import { Review } from './models/review';
 import { RouterModule } from '@angular/router';  // Import RouterModule
+import { CartService } from '../Cart/service/cart.service';
+import { User } from '../../../features/auth/login/models/user.model';
 
 @Component({
   selector: 'app-product-detail',
@@ -25,7 +27,8 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private productDetailService: ProductDetailService
+    private productDetailService: ProductDetailService,
+    private cartService: CartService,
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.previousUrl = this.router.getCurrentNavigation()?.extras.state?.['previousUrl'] || null;
@@ -87,4 +90,5 @@ export class ProductDetailComponent implements OnInit {
       this.router.navigate(['/']); // Nếu không có trang trước, về Home
     }
   }
+
 }

@@ -7,16 +7,6 @@
     background-color: #ffffff;
 }
 
-.product-name {
-    font-size: 1.5rem;
-    /* Điều chỉnh kích thước chữ */
-    font-weight: bold;
-    /* Đậm chữ */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    /* Thêm bóng cho chữ */
-}
-
-
 /* Brand logo and name */
 .navbar-brand {
     display: flex;
