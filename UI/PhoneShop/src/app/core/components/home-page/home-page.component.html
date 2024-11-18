@@ -76,27 +76,22 @@
                 <div class="col-md-4" *ngFor="let product of (products$ | async)">
                     <div class="card mb-4 product-wap rounded-0">
                         <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" [src]="product.imageUrl"
+                            <img class="card-img rounded-0 img-fluid " [src]="product.imageUrl"
                                 alt="{{ product.productName }} Image">
                         </div>
                         <div class="card-body">
-                            <a [routerLink]="['/shop', product.brandId]" class="h3 text-decoration-none">
+                            <a [routerLink]="['/product-detail', product.productId]" class="h3 text-decoration-none">
                                 {{ product.productName }}
                             </a>
                             <p class="text-center mb-0">{{ product.sellPrice | currency }}</p>
-                            <div class="rating d-flex justify-content-center mb-2">
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                            </div>
+
 
                             <!-- Các hành động của người dùng (Yêu thích, Xem chi tiết, Thêm vào giỏ hàng) -->
                             <ul class="list-unstyled d-flex justify-content-center mb-0 product-actions">
                                 <li><a class="btn btn-success text-white" href="#"><i class="far fa-heart"></i></a></li>
                                 <li><a class="btn btn-success text-white"
-                                        [routerLink]="['/product', product.productId]"><i class="far fa-eye"></i></a>
+                                        [routerLink]="['/product-detail', product.productId]">
+                                        <i class="far fa-eye"></i></a>
                                 </li>
                                 <li><a class="btn btn-success text-white" href="#"><i class="fas fa-cart-plus"></i></a>
                                 </li>

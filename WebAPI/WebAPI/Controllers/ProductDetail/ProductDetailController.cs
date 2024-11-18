@@ -10,9 +10,11 @@ namespace WebAPI.Controllers.ProductDetail
     public class ProductDetailController : ControllerBase
     {
         private readonly IProductDetailRepository _productDetailRepository;
-        public ProductDetailController(IProductDetailRepository productDetailRepository)
+        private readonly IReviewRepository _reviewRepository;
+        public ProductDetailController(IProductDetailRepository productDetailRepository, IReviewRepository reviewRepository)
         {
             _productDetailRepository = productDetailRepository;
+            _reviewRepository = reviewRepository;
         }
 
         [HttpGet("get-product-by-id/{id}")]
@@ -25,6 +27,19 @@ namespace WebAPI.Controllers.ProductDetail
             }
             return Ok(product);
         }
+
+        [HttpGet("get-reviews-by-product-id/{productId}")]
+        public async Task<IActionResult> GetReviewsByProductId(Guid productId)
+        {
+            var reviews = await _reviewRepository.GetReviewsByProductIdAsync(productId);
+            if (reviews == null)
+            {
+                return NotFound(new { message = "Không tìm thấy đánh giá cho sản phẩm này." });
+            }
+
+            return Ok(reviews);
+        }
+
 
     }
 }

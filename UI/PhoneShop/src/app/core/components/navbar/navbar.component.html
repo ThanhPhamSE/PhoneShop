@@ -22,39 +22,20 @@
 
 <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
   <div class="container-fluid">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarColor02"
-      aria-controls="navbarColor02"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+      aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div
-      class="collapse navbar-collapse justify-content-center"
-      id="navbarColor02"
-    >
+    <div class="collapse navbar-collapse justify-content-center" id="navbarColor02">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="manager/category">Home</a>
+          <a class="nav-link" href="">Home</a>
         </li>
 
-        <ng-container
-          *ngIf="user !== undefined && user?.roles?.includes('Admin')"
-        >
+        <ng-container *ngIf="user !== undefined && user?.roles?.includes('Admin')">
           <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              data-bs-toggle="dropdown"
-              href="#"
-              role="button"
-              aria-haspopup="true"
-              aria-expanded="false"
-              >Manager</a
-            >
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+              aria-expanded="false">Manager</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">Manager User</a>
               <a class="dropdown-item" href="admin/manage/product">Manager Product</a>
@@ -67,10 +48,7 @@
         <ng-container *ngIf="user === undefined; else showLogout">
           <!-- Show login button -->
           <li class="nav-item">
-            <a
-              class="nav-link d-flex align-items-center"
-              [routerLink]="['/login']"
-            >
+            <a class="nav-link d-flex align-items-center" [routerLink]="['/login']">
               <i class="fa fa-sign-in-alt me-2"></i> Sign In
             </a>
           </li>
