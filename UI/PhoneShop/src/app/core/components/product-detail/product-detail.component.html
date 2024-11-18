@@ -1,107 +1,157 @@
 <section class="bg-light">
-
-    <div class="container pb-5" *ngIf="product">
-        <div class="row">
-            <div class="reviews">
-                <button class="btn btn-primary back-to-home" (click)="goBack()">Back to Home</button>
-            </div>
-            <!-- Product Image and Gallery -->
-            <div class="col-lg-5 mt-5">
-                <div class="card mb-3">
-                    <!-- Hiển thị hình ảnh sản phẩm -->
-                    <img class="card-img img-fluid" [src]="product.imageUrl" alt="Product image" id="product-detail">
-                </div>
-            </div>
-
-            <!-- Product Details and Review Section -->
-            <div class="col-lg-7 mt-5">
-                <div class="card">
-                    <div class="card-body">
-                        <!-- Tiêu đề và giá sản phẩm -->
-                        <h1 class="h2">{{ product.productName }}</h1>
-                        <p class="h3 py-2">{{ product.sellPrice | currency }}</p>
-
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <h6>Brand:</h6>
-                            </li>
-                            <li class="list-inline-item">
-                                <p class="text-muted"><strong>{{ product.title}}</strong></p>
-                            </li>
-                        </ul>
-
-                        <h6>Description:</h6>
-                        <p>{{ product.description }}</p>
-
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <h6>Available Color:</h6>
-                            </li>
-                            <li class="list-inline-item">
-                                <p class="text-muted"><strong>{{ product.color }}</strong></p>
-                            </li>
-                        </ul>
-
-                        <!-- Size and Quantity -->
-                        <form action="" method="GET">
-                            <input type="hidden" name="product-title" value="{{ product.productName }}">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <ul class="list-inline pb-3">
-                                        <li class="list-inline-item">
-                                            <button class="btn btn-success" (click)="decreaseQuantity()">-</button>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <input type="number" class="form-control text-center" [(ngModel)]="quantity"
-                                                [ngModelOptions]="{standalone: true}">
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <button class="btn btn-success" (click)="increaseQuantity()">+</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="row pb-3">
-                                <div class="col d-grid">
-                                    <button type="submit" class="btn btn-success btn-lg" name="submit"
-                                        value="buy">Buy</button>
-                                </div>
-                                <div class="col d-grid">
-                                    <button type="submit" class="btn btn-success btn-lg" name="submit"
-                                        value="addtocart">Add To Cart</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Review Section -->
-            <div class="reviews mt-4">
-                <h5>Customer Reviews</h5>
-                <div *ngIf="reviews && reviews.length > 0">
-                    <div class="review" *ngFor="let review of reviews">
-                        <div class="review-header">
-                            <!-- Hiển thị tên người dùng và ngày đánh giá -->
-                            <p>User: <strong>{{ review.userName }}</strong>
-                                <span class="text-muted"> - {{ review.reviewDate | date:'short' }}</span>
-                            </p>
-                            <!-- Hiển thị sao đánh giá -->
-                            <p>
-                                <i class="fa fa-star text-warning" *ngFor="let star of [].constructor(5); let i = index"
-                                    [ngClass]="{'text-warning': i < review.rating}"></i>
-                            </p>
-                        </div>
-                        <div class="review-body">
-                            <!-- Hiển thị bình luận -->
-                            <p>{{ review.comment }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div *ngIf="!reviews || reviews.length === 0">
-                    <p>No reviews available for this product.</p>
-                </div>
-            </div>
+  <div class="container pb-5" *ngIf="product">
+    <div class="row">
+      <div class="reviews">
+        <button class="btn btn-primary back-to-home" (click)="goBack()">
+          Back to Home
+        </button>
+      </div>
+      <!-- Product Image and Gallery -->
+      <div class="col-lg-5 mt-5">
+        <div class="card mb-3">
+          <!-- Hiển thị hình ảnh sản phẩm -->
+          <img
+            class="card-img img-fluid"
+            [src]="product.imageUrl"
+            alt="Product image"
+            id="product-detail"
+          />
         </div>
+      </div>
+
+      <!-- Product Details and Review Section -->
+      <div class="col-lg-7 mt-5">
+        <div class="card">
+          <div class="card-body">
+            <!-- Tiêu đề và giá sản phẩm -->
+            <h1 class="h2">{{ product.productName }}</h1>
+            <p class="h3 py-2">{{ product.sellPrice | currency }}</p>
+
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <h6>Brand:</h6>
+              </li>
+              <li class="list-inline-item">
+                <p class="text-muted">
+                  <strong>{{ product.title }}</strong>
+                </p>
+              </li>
+            </ul>
+
+            <h6>Description:</h6>
+            <p>{{ product.description }}</p>
+
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <h6>Available Color:</h6>
+              </li>
+              <li class="list-inline-item">
+                <p class="text-muted">
+                  <strong>{{ product.color }}</strong>
+                </p>
+              </li>
+            </ul>
+
+            <!-- Size and Quantity -->
+            <form action="" method="GET">
+              <input
+                type="hidden"
+                name="product-title"
+                value="{{ product.productName }}"
+              />
+              <div class="row">
+                <div class="col-auto">
+                  <ul class="list-inline pb-3">
+                    <li class="list-inline-item">
+                      <button
+                        class="btn btn-success"
+                        (click)="decreaseQuantity()"
+                      >
+                        -
+                      </button>
+                    </li>
+                    <li class="list-inline-item">
+                      <input
+                        type="number"
+                        class="form-control text-center"
+                        [(ngModel)]="quantity"
+                        [ngModelOptions]="{ standalone: true }"
+                      />
+                    </li>
+                    <li class="list-inline-item">
+                      <button
+                        class="btn btn-success"
+                        (click)="increaseQuantity()"
+                      >
+                        +
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="row pb-3">
+                <div class="col d-grid">
+                  <button
+                    type="submit"
+                    class="btn btn-success btn-lg"
+                    name="submit"
+                    value="buy"
+                  >
+                    Buy
+                  </button>
+                </div>
+                <div class="col d-grid">
+                  <button
+                    type="submit"
+                    class="btn btn-success btn-lg"
+                    name="submit"
+                    value="addtocart"
+                    *ngIf="userInfo?.email"
+                    (click)="
+                      addToCart(userInfo!.email, product.productId, quantity)
+                    "
+                  >
+                    Add To Cart
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review Section -->
+      <div class="reviews mt-4">
+        <h5>Customer Reviews</h5>
+        <div *ngIf="reviews && reviews.length > 0">
+          <div class="review" *ngFor="let review of reviews">
+            <div class="review-header">
+              <!-- Hiển thị tên người dùng và ngày đánh giá -->
+              <p>
+                User: <strong>{{ review.userName }}</strong>
+                <span class="text-muted">
+                  - {{ review.reviewDate | date : "short" }}</span
+                >
+              </p>
+              <!-- Hiển thị sao đánh giá -->
+              <p>
+                <i
+                  class="fa fa-star text-warning"
+                  *ngFor="let star of [].constructor(5); let i = index"
+                  [ngClass]="{ 'text-warning': i < review.rating }"
+                ></i>
+              </p>
+            </div>
+            <div class="review-body">
+              <!-- Hiển thị bình luận -->
+              <p>{{ review.comment }}</p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!reviews || reviews.length === 0">
+          <p>No reviews available for this product.</p>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
