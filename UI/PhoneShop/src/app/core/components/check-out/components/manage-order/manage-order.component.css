@@ -1,0 +1,15 @@
+.status-item {
+  margin-right: 0 rem;
+}
+.status-button {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.status-button:hover {
+  text-decoration: underline;
+  color: black;
+  background-color: orange;
+}

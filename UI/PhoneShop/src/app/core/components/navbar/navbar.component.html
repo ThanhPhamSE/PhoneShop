@@ -46,6 +46,13 @@
         <li class="nav-item">
           <a class="nav-link" href="">Home</a>
         </li>
+        <ng-container
+          *ngIf="user !== undefined && user?.roles?.includes('User')"
+        >
+          <li class="nav-item">
+            <a class="nav-link" href="/order">My Order</a>
+          </li>
+        </ng-container>
 
         <ng-container
           *ngIf="user !== undefined && user?.roles?.includes('Admin')"
@@ -68,6 +75,7 @@
               <a class="dropdown-item" href="manager/category"
                 >Manager Category</a
               >
+              <a class="dropdown-item" href="manager/order">Manager Order</a>
             </div>
           </li>
         </ng-container>
