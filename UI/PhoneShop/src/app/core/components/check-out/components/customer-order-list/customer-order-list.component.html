@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div
+    class="row p-2 bg-info d-flex justify-content-between align-items-center"
+    style="font-size: 1.5rem"
+  >
+    <div class="col status-item">
+      <button class="status-button" (click)="getOrderByStatus('Pending')">
+        Pending
+      </button>
+    </div>
+    <div class="col status-item">
+      <button class="status-button" (click)="getOrderByStatus('Completed')">
+        Completed
+      </button>
+    </div>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Stt</th>
+        <th>Product</th>
+        <th>Date</th>
+        <th>Total Price</th>
+        <th>Status</th>
+        <th class="text-center">View</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of filterOrders; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ getUserName(order.userId) }}</td>
+        <td>{{ order.orderDate | date : "dd/MM/yyyy" }}</td>
+        <td>{{ order.totalAmount }}</td>
+        <td>{{ order.status }}</td>
+        <td class="text-center"><i class="fas fa-eye"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
