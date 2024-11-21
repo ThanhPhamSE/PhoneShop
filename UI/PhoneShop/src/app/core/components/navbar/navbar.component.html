@@ -15,11 +15,7 @@
   <div class="navbar-icons">
     <div class="cart">
       <i class="fa fa-shopping-bag cart-icon"></i>
-      <span
-        ><a href="cart" style="color: black; text-decoration: none"
-          >My Cart</a
-        ></span
-      >
+      <span><a href="cart" style="color: black; text-decoration: none">My Cart</a></span>
     </div>
   </div>
 </nav>
@@ -42,12 +38,8 @@
               aria-expanded="false">Manager</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">Manager User</a>
-              <a class="dropdown-item" href="admin/manage/product"
-                >Manager Product</a
-              >
-              <a class="dropdown-item" href="manager/category"
-                >Manager Category</a
-              >
+              <a class="dropdown-item" href="admin/manage/product">Manager Product</a>
+              <a class="dropdown-item" href="manager/category">Manager Category</a>
             </div>
           </li>
         </ng-container>
@@ -62,7 +54,7 @@
           </li>
           <li class="nav-item mx-3">|</li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center" href="#">
+            <a class="nav-link d-flex align-items-center">
               <i class="fa fa-user me-2"></i> My Account
             </a>
           </li>
@@ -75,7 +67,7 @@
           </li>
           <li class="nav-item mx-3">|</li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center" href="#">
+            <a class="nav-link d-flex align-items-center" [routerLink]="['/user-detail', user?.email]">
               <i class="fa fa-user me-2"></i> {{ user?.email }}
             </a>
           </li>

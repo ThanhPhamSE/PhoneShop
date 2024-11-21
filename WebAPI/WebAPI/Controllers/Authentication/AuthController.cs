@@ -69,7 +69,6 @@ namespace WebAPI.Controllers.Authentication
 
             var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
             var confirmationLink = $"{Request.Scheme}://{Request.Host}/api/Auth/ConfirmEmail?token={Uri.EscapeDataString(token)}&email={Uri.EscapeDataString(user.Email)}";
-
             if (string.IsNullOrEmpty(confirmationLink))
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"{token}, {user.Email},{Request.Scheme},{Request.Host},{confirmationLink} Failed to generate confirmation link.");
@@ -135,14 +134,14 @@ namespace WebAPI.Controllers.Authentication
             ModelState.AddModelError("", "Email or Password Incorrect");
             return ValidationProblem(ModelState);
         }
-        
+
         [HttpPost]
         [AllowAnonymous]
         [Route("forgot-password")]
         public async Task<IActionResult> ForgotPassword([Required] string email)
         {
             var user = await userManager.FindByEmailAsync(email);
-            if(user != null)
+            if (user != null)
             {
                 var token = await userManager.GeneratePasswordResetTokenAsync(user);
                 //var forgotPasswordLink = $"{Request.Scheme}://{Request.Host}/api/Auth/reset-password?token={Uri.EscapeDataString(token)}&email={Uri.EscapeDataString(user.Email)}";
@@ -173,7 +172,7 @@ namespace WebAPI.Controllers.Authentication
                 var resetPassResult = await userManager.ResetPasswordAsync(user, resetPassword.Token, resetPassword.Password);
                 if (!resetPassResult.Succeeded)
                 {
-                    foreach(var error in resetPassResult.Errors)
+                    foreach (var error in resetPassResult.Errors)
                     {
                         ModelState.AddModelError(error.Code, error.Description);
                     }

@@ -1,0 +1,97 @@
+<div class="container">
+    <h2 class="text-center mt-4">User Details Management</h2>
+
+    <!-- User Form -->
+    <div class="card mt-4">
+        <div class="card-header bg-primary text-white">
+            <h5>Update User and Address</h5>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="userForm" (ngSubmit)="updateUserDetails()">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" formControlName="email"
+                        placeholder="Enter your email" (ngModelChange)="getUserDetails(userForm.get('email')?.value)" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="userName">User Name</label>
+                    <input type="text" id="userName" class="form-control" formControlName="userName"
+                        placeholder="Enter user name" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="text" id="phoneNumber" class="form-control" formControlName="phoneNumber"
+                        placeholder="Enter phone number" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="city">City</label>
+                    <input type="text" id="city" class="form-control" formControlName="city" placeholder="Enter city" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="district">District</label>
+                    <input type="text" id="district" class="form-control" formControlName="district"
+                        placeholder="Enter district" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="village">Village</label>
+                    <input type="text" id="village" class="form-control" formControlName="village"
+                        placeholder="Enter village" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="description">Description</label>
+                    <textarea id="description" class="form-control" formControlName="description" rows="3"
+                        placeholder="Enter description"></textarea>
+                </div>
+
+                <div class="form-group mt-4 text-right">
+                    <button type="submit" class="btn btn-primary">Update Details</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Password Form -->
+    <div class="card mt-4">
+        <div class="card-header bg-secondary text-white">
+            <h5>Change Password</h5>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+                <div class="form-group">
+                    <label for="passwordEmail">Email</label>
+                    <input type="email" id="passwordEmail" class="form-control" formControlName="email"
+                        placeholder="Enter your email" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="oldPassword">Old Password</label>
+                    <input type="password" id="oldPassword" class="form-control" formControlName="oldPassword"
+                        placeholder="Enter old password" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" class="form-control" formControlName="newPassword"
+                        placeholder="Enter new password" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="confirmNewPassword">Confirm New Password</label>
+                    <input type="password" id="confirmNewPassword" class="form-control"
+                        formControlName="confirmNewPassword" placeholder="Confirm new password" />
+                </div>
+
+                <div class="form-group mt-4 text-right">
+                    <button type="submit" class="btn btn-secondary">Change Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
