@@ -34,7 +34,8 @@ namespace WebAPI
             builder.Services.AddScoped<ITokenRepository, TokenRepository>();
             builder.Services.AddScoped<IHomeRepository, HomeRepository>();
             builder.Services.AddScoped<IProductDetailRepository, ProductDetailRepository>();
-            builder.Services.AddScoped<IReviewRepository,ReviewRepository>();   
+            builder.Services.AddScoped<IReviewRepository,ReviewRepository>();  
+            builder.Services.AddScoped<IUserRepository ,UserRepository>();
 
             builder.Services.AddIdentityCore<User>()
             .AddRoles<Role>()

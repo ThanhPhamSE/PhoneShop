@@ -1,110 +1,154 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using WebAPI.Data;
 using WebAPI.Models;
 using WebAPI.Repository.IRepository;
+using WebAPI.ViewModel.UserInformation;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebAPI.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly AppDBContext dbContext;
-        private readonly UserManager<User> userManager;
-        private readonly RoleManager<Role> roleManager;
 
-        public UserRepository(AppDBContext dbContext, UserManager<User> userManager, RoleManager<Role> roleManager)
+        private readonly AppDBContext _context;
+
+        public UserRepository(AppDBContext context)
         {
-            this.dbContext = dbContext;
-            this.userManager = userManager;
-            this.roleManager = roleManager;
+            _context = context;
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync(string? query = null, int? inactivityDays = null, int? pageNumber = 1, int? pageSize = 20)
+        public async Task<AddressViewModel> GetAddressByUserId(Guid id)
         {
-            //Query
-            var users = dbContext.Users.AsQueryable();
-
-            if (!string.IsNullOrWhiteSpace(query))
+            //Tìm thông tin địa chỉ theo UserId
+            var addressId = await _context.Addresses.Where(a => a.UserId == id)
+                                                    .Select(a => new AddressViewModel
             {
-                users = users.Where(x => x.PhoneNumber.Contains(query) || x.Email.Contains(query));
-            }
-            //Filtering
-            if (inactivityDays.HasValue)
+                AddressId = a.AddressId,
+                City = a.City,
+                District = a.District,
+                Village = a.Village,
+                Description = a.Description,
+            }).FirstOrDefaultAsync();
+
+            // Nếu không có địa chỉ, trả về một AddressViewModel rỗng
+            if (addressId == null)
             {
-                var allUsers = await users.ToListAsync();
-
-                allUsers = allUsers.Where(x => !x.LastLogin.HasValue ||
-                                               (DateTime.UtcNow - x.LastLogin.Value).Days >= inactivityDays.Value)
-                                   .ToList();
-                return allUsers;
+                return new AddressViewModel
+                {
+                    AddressId = Guid.Empty,
+                    City = string.Empty,
+                    District = string.Empty,
+                    Village = string.Empty,
+                    Description = string.Empty,
+                };
             }
-
-            //Pagination
-            var skipResults = (pageNumber-1) * pageSize;
-            users = users.Skip(skipResults ?? 0).Take(pageSize ?? 20);
-
-
-            return await users.ToListAsync();
+            return addressId;
         }
 
-        public async Task<IActionResult> UpdateAsync(User user)
+
+
+        public async Task<UserViewModel> GetUserByEmail(string email)
         {
-            var existingUser = await dbContext.Users.FindAsync(user.Id);
-            if (existingUser == null)
+            // Tìm user trong cơ sở dữ liệu dựa trên email
+            var user = await _context.Users
+                .Where(u => u.Email == email)
+                .Select(u => new UserViewModel
+                {
+                    UserId = u.Id,
+                    UserName = u.UserName,
+                    Email = u.Email,
+                    PasswordHash = u.PasswordHash,
+                    PhoneNumber = u.PhoneNumber
+                })
+                .FirstOrDefaultAsync();
+
+            // Trả về UserViewModel hoặc null nếu không tìm thấy
+            return user ?? new UserViewModel
             {
-                return new NotFoundObjectResult(new { message = "User not found" });
+                UserId = Guid.Empty,
+                UserName = string.Empty,
+                Email = string.Empty,
+                PasswordHash = string.Empty,
+                PhoneNumber = string.Empty
+            };
+        }
+
+
+        public async Task UpdateAddress(Guid userId, AddressViewModel updatedAddress)
+        {
+            var address = await _context.Addresses.FirstOrDefaultAsync(a => a.UserId == userId);
+
+            if (address == null)
+            {
+                // Nếu chưa có, thêm mới address 
+                address = new Address
+                {
+           //         AddressId = Guid.NewGuid(),
+                    UserId = userId,
+                    City = updatedAddress.City,
+                    District = updatedAddress.District,
+                    Village = updatedAddress.Village,
+                    Description = updatedAddress.Description
+                };
+                _context.Addresses.Add(address);
+            }
+            else
+            {
+                // Nếu đã có, cập nhật
+                address.City = updatedAddress.City;
+                address.District = updatedAddress.District;
+                address.Village = updatedAddress.Village;
+                address.Description = updatedAddress.Description;
             }
 
-            existingUser.IsActive = user.IsActive;
-            existingUser.Email = user.Email;
-            existingUser.UserName = user.UserName;
-            existingUser.PhoneNumber = user.PhoneNumber;
-            existingUser.LastLogin = user.LastLogin;
-
-            await dbContext.SaveChangesAsync();
-
-            return new OkObjectResult("User status updated successfully");
+            await _context.SaveChangesAsync();
         }
-
-        public async Task<User> GetUserByIdAsync(Guid id)
+        public async Task UpdateUser(Guid userId, UserViewModel updatedUser)
         {
-            return await dbContext.Users.FindAsync(id);
-        }
+            // Tìm user trong cơ sở dữ liệu dựa trên userId
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
 
-        public async Task<IActionResult> UpdateUserRoleAsync(Guid userId, string roleId)
-        {
-            var user = await userManager.FindByIdAsync(userId.ToString());
             if (user == null)
             {
-                return new NotFoundObjectResult(new { status = "error", message = "User not found" });
+                throw new KeyNotFoundException("User not found");
             }
 
-            var role = await roleManager.FindByIdAsync(roleId);
-            if (role == null)
-            {
-                return new NotFoundObjectResult(new { status = "error", message = "Role not found" });
-            }
+            // Cập nhật các thông tin của user (trừ Email)
+            user.UserName = updatedUser.UserName;
+            user.PhoneNumber = updatedUser.PhoneNumber;
 
-            var currentRoles = await userManager.GetRolesAsync(user);
-            var resultRemove = await userManager.RemoveFromRolesAsync(user, currentRoles);
-            if (!resultRemove.Succeeded)
-            {
-                return new BadRequestObjectResult(new { status = "error", message = "Failed to remove current roles" });
-            }
-
-            var resultAdd = await userManager.AddToRoleAsync(user, role.Name);
-            if (!resultAdd.Succeeded)
-            {
-                return new BadRequestObjectResult(new { status = "error", message = "Failed to add new role" });
-            }
-
-            return new OkObjectResult(new { status = "success", message = "User role updated successfully" });
+            // Lưu thay đổi
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
         }
-
-        public async Task<int> GetCount()
+        public async Task<bool> ChangePassword(string email, string oldPassword, string newPassword)
         {
-            return await dbContext.Users.CountAsync();
+            // Lấy user từ database dựa trên email
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null)
+                throw new ArgumentException("Người dùng không tồn tại.");
+
+            // Tạo instance của PasswordHasher
+            var passwordHasher = new PasswordHasher<User>();
+
+            // Xác thực mật khẩu cũ
+            var result = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, oldPassword);
+            if (result == PasswordVerificationResult.Failed)
+                throw new ArgumentException("Old password is incorrect.");
+
+            // Hash mật khẩu mới
+            user.PasswordHash = passwordHasher.HashPassword(user, newPassword);
+
+            // Cập nhật vào database
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
+
+
+
+
     }
 }

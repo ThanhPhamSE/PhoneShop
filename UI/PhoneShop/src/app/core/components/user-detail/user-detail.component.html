@@ -1,0 +1,141 @@
+<div class="container">
+    <h2 class="text-center mt-4">Information of User</h2>
+
+    <!-- User Form -->
+    <div class="card mt-4">
+        <div class="card-header bg-primary text-white text-center">
+            <h5>Update User and Address</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Avatar Section -->
+                <div class="col-lg-4 text-center">
+                    <div class="user-avatar mb-3">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User Avatar"
+                            class="rounded-circle img-fluid" style="max-width: 150px;">
+                    </div>
+                    <h5 class="user-name">User</h5>
+                    <h6 class="user-email text-muted">{{ email }}</h6>
+                    <div class="about mt-3">
+                        <h5>About</h5>
+                        <p>Member VIP
+                        </p>
+                    </div>
+                </div>
+
+                <!-- User Info Form -->
+                <div class="col-lg-8">
+                    <form [formGroup]="userForm" (ngSubmit)="updateUserDetails()">
+                        <div class="row">
+                            <!-- Left Column -->
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" class="form-control" formControlName="email" readonly
+                                        placeholder="Enter your email">
+                                    <small class="text-muted"
+                                        style="color: rgb(144, 46, 46); background-color: aquamarine;">
+                                        Email is used for user identification and cannot be edited.
+                                    </small>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label for="userName">User Name</label>
+                                    <input type="text" id="userName" class="form-control" formControlName="userName"
+                                        placeholder="Enter user name">
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label for="phoneNumber">Phone Number</label>
+                                    <input type="text" id="phoneNumber" class="form-control"
+                                        formControlName="phoneNumber" placeholder="Enter phone number">
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label for="description">Description</label>
+                                    <textarea id="description" class="form-control" formControlName="description"
+                                        rows="3" placeholder="Enter description"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Right Column -->
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input type="text" id="city" class="form-control" formControlName="city"
+                                        placeholder="Enter city">
+                                </div>
+
+                                <div class="form-group mt-3" style="padding-top: 25px;">
+                                    <label for="district">District</label>
+                                    <input type="text" id="district" class="form-control" formControlName="district"
+                                        placeholder="Enter district">
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label for="village">Village</label>
+                                    <input type="text" id="village" class="form-control" formControlName="village"
+                                        placeholder="Enter village">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="form-group mt-4 text-right">
+                            <button type="button" class="btn btn-primary" (click)="updateUserDetails()">Update
+                                User</button>
+                            <button type="button" class="btn btn-secondary" style="margin-left: 15px;" class="primary"
+                                onclick="window.dialog.showModal();">Change
+                                Password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Password Form -->
+<dialog id="dialog">
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5>Change Password</h5>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+                <div class="form-group">
+                    <label for="passwordEmail">Email</label>
+                    <input type="email" id="passwordEmail" class="form-control" formControlName="email" readonly
+                        placeholder="Enter your email" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="oldPassword">Old Password</label>
+                    <input type="password" id="oldPassword" class="form-control" formControlName="oldPassword"
+                        placeholder="Enter old password" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" class="form-control" formControlName="newPassword"
+                        placeholder="Enter new password" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="confirmNewPassword">Confirm New Password</label>
+                    <input type="password" id="confirmNewPassword" class="form-control"
+                        formControlName="confirmNewPassword" placeholder="Confirm new password" />
+                    <div *ngIf="passwordForm.hasError('mismatch') && passwordForm.get('confirmNewPassword')?.touched"
+                        class="text-danger">
+                        Passwords do not match.
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 text-right">
+                    <button type="submit" class="btn btn-secondary">Change</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <button onclick="window.dialog.close();" aria-label="close" class="x">❌</button>
+</dialog>

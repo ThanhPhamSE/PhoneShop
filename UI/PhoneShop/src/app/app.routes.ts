@@ -8,6 +8,7 @@ import { CategoryComponent } from './features/category/category.component';
 import { HomePageComponent } from './core/components/home-page/home-page.component';
 import { ProductDetailComponent } from './core/components/product-detail/product-detail.component';
 import { CartComponent } from './core/components/Cart/component/cart/cart.component';
+import { UserDetailComponent } from './core/components/user-detail/user-detail.component';
 import { CustomerOrderListComponent } from './core/components/check-out/components/customer-order-list/customer-order-list.component';
 import { ManageOrderComponent } from './core/components/check-out/components/manage-order/manage-order.component';
 import { ConfirmOrderComponent } from './core/components/check-out/components/confirm-order/confirm-order.component';
@@ -25,7 +26,7 @@ export const routes: Routes = [
   {
     path: 'admin/manage/product',
     component: ProductManageComponent,
-    
+
   },
   {
     path: 'manager/category',
@@ -44,6 +45,11 @@ export const routes: Routes = [
     component: CartComponent,
   },
   {
+    path: 'user-detail/:email',
+    component: UserDetailComponent,
+  },
+
+  {
     path: 'order',
     component: CustomerOrderListComponent,
   },
@@ -54,7 +60,7 @@ export const routes: Routes = [
   {
     path: 'confirm-order',
     component: ConfirmOrderComponent,
-  },{
+  }, {
     path: 'user',
     component: UserComponent,
   },
@@ -62,4 +68,5 @@ export const routes: Routes = [
     path: 'user',
     component: UserComponent,
   },
+
 ];
