@@ -2,13 +2,22 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=angular,csharp
 
 
-.vs/
-bin/
-obj/
-*.dll
-*.exe
-*.pdb
-
+WebAPI/.vs/WebAPI/DesignTimeBuild/.dtbcache.v2
+WebAPI/.vs/WebAPI/v17/.futdcache.v2
+WebAPI/.vs/WebAPI/v17/.suo
+WebAPI/.vs/WebAPI/v17/DocumentLayout.json
+WebAPI/WebAPI/bin/Debug/net8.0/WebAPI.dll
+WebAPI/WebAPI/bin/Debug/net8.0/WebAPI.exe
+WebAPI/WebAPI/bin/Debug/net8.0/WebAPI.pdb
+WebAPI/WebAPI/obj/Debug/net8.0/WebAPI.AssemblyInfo.cs
+WebAPI/WebAPI/obj/Debug/net8.0/WebAPI.AssemblyInfoInputs.cache
+WebAPI/WebAPI/obj/Debug/net8.0/WebAPI.csproj.CoreCompileInputs.cache
+WebAPI/WebAPI/obj/Debug/net8.0/WebAPI.dll
+WebAPI/WebAPI/obj/Debug/net8.0/WebAPI.pdb
+WebAPI/WebAPI/obj/Debug/net8.0/WebAPI.sourcelink.json
+WebAPI/WebAPI/obj/Debug/net8.0/apphost.exe
+WebAPI/WebAPI/obj/Debug/net8.0/ref/WebAPI.dll
+WebAPI/WebAPI/obj/Debug/net8.0/refint/WebAPI.dll
 ### Angular ###
 ## Angular ##
 # compiled output
