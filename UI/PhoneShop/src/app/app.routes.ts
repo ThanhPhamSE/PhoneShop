@@ -11,6 +11,7 @@ import { CartComponent } from './core/components/Cart/component/cart/cart.compon
 import { CustomerOrderListComponent } from './core/components/check-out/components/customer-order-list/customer-order-list.component';
 import { ManageOrderComponent } from './core/components/check-out/components/manage-order/manage-order.component';
 import { ConfirmOrderComponent } from './core/components/check-out/components/confirm-order/confirm-order.component';
+import { UserComponent } from './core/components/user/user.component';
 export const routes: Routes = [
   {
     path: 'login',
@@ -52,5 +53,9 @@ export const routes: Routes = [
   {
     path: 'confirm-order',
     component: ConfirmOrderComponent,
+  },
+  {
+    path: 'user',
+    component: UserComponent,
   },
 ];
