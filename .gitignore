@@ -1,6 +1,14 @@
 # Created by https://www.toptal.com/developers/gitignore/api/angular,csharp
 # Edit at https://www.toptal.com/developers/gitignore?templates=angular,csharp
 
+
+.vs/
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
 ### Angular ###
 ## Angular ##
 # compiled output
