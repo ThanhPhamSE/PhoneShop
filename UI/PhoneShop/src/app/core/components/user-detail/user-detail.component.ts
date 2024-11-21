@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'; // Để lấy tham số từ URL
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { UserDetailService } from '../user-detail/services/user-detail.service';
 import { UpdateUserAndAddress } from '../user-detail/models/updateUserAndAddress';
 import { ChangePassword } from '../user-detail/models/changePassword';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-detail',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.css'], // Sửa tên thành "styleUrls"
 })
@@ -17,6 +18,7 @@ export class UserDetailComponent implements OnInit {
   passwordForm: FormGroup;
   userDetail: { User: any; Address: any } | null = null; // Rõ ràng hơn về kiểu dữ liệu
   email: string | null = null; // Biến để lưu email từ URL
+  userEmail: string | null = localStorage.getItem('user-email');
 
   constructor(
     private fb: FormBuilder,
@@ -24,7 +26,7 @@ export class UserDetailComponent implements OnInit {
     private route: ActivatedRoute // Inject ActivatedRoute để lấy tham số từ URL
   ) {
     this.userForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: [{ value: '', disabled: true }, [Validators.required, Validators.email]], // Không cho phép chỉnh sửa email
       userName: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       city: ['', Validators.required],
@@ -33,12 +35,23 @@ export class UserDetailComponent implements OnInit {
       description: ['', Validators.required],
     });
 
-    this.passwordForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      oldPassword: ['', Validators.required],
-      newPassword: ['', [Validators.required, Validators.minLength(6)]],
-      confirmNewPassword: ['', Validators.required],
-    });
+    this.passwordForm = this.fb.group(
+      {
+        email: [this.userEmail, [Validators.required, Validators.email]],
+        oldPassword: ['', Validators.required],
+        newPassword: ['', [Validators.required, Validators.minLength(6)]],
+        confirmNewPassword: ['', Validators.required],
+      },
+      {
+        validators: this.passwordMatchValidator // Custom validator cho form group
+      }
+    );
+
+  }
+  passwordMatchValidator(formGroup: FormGroup): ValidationErrors | null {
+    const newPassword = formGroup.get('newPassword')?.value;
+    const confirmNewPassword = formGroup.get('confirmNewPassword')?.value;
+    return newPassword === confirmNewPassword ? null : { mismatch: true };
   }
 
   ngOnInit(): void {
@@ -94,7 +107,8 @@ export class UserDetailComponent implements OnInit {
     }
 
     const email = this.userForm.get('email')?.value;
-    const updateModel = this.userForm.value; // Lấy dữ liệu từ form
+    const updateModel = { ...this.userForm.getRawValue() }; // Lấy cả giá trị `disabled` fields
+    delete updateModel.email; // Loại bỏ email khỏi dữ liệu gửi đi
 
     this.userService.updateUserByEmail(email, updateModel).subscribe(
       (response) => {
@@ -111,23 +125,33 @@ export class UserDetailComponent implements OnInit {
     );
   }
 
-  changePassword() {
-    const model = this.passwordForm.value;
+  changePassword(): void {
+    if (this.passwordForm.invalid) {
+      this.passwordForm.markAllAsTouched();
+      alert('Please fix the errors in the form before submitting.');
+      return;
+    }
 
+    const model = this.passwordForm.value;
     this.userService.changePassword(model).subscribe(
       (response) => {
-        alert(response); // Ví dụ: "Đổi mật khẩu thành công."
+        alert('Password changed successfully.');
       },
       (error) => {
-        console.error(error);
-        if (error.status === 400) {
-          alert(error.error || 'Thông tin không hợp lệ.');
-        } else if (error.status === 500) {
-          alert('Lỗi hệ thống: ' + error.error);
-        } else {
-          alert('Đổi mật khẩu thành công!');
-        }
+        this.handleError(error);
       }
     );
   }
+
+  private handleError(error: any): void {
+    console.error(error);
+    if (error.status === 400) {
+      alert(error.error || 'Invalid input. Please check your data and try again.');
+    } else if (error.status === 500) {
+      alert('System error. Please try again later.');
+    } else {
+      alert('An unexpected error occurred. Please try again.');
+    }
+  }
+
 }

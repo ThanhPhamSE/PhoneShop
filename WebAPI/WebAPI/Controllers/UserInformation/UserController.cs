@@ -79,11 +79,11 @@ namespace WebAPI.Controllers.UserInformation
                 };
                 await _userRepository.UpdateAddress(user.UserId, updatedAddress);
 
-                return Ok("User and address information updated successfully.");
+                return Ok(new { message = "User and address updated successfully!" });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, new { message = "An error occurred", details = ex.Message });
             }
         }
 
@@ -94,17 +94,17 @@ namespace WebAPI.Controllers.UserInformation
             {
                 if (model.NewPassword != model.ConfirmNewPassword)
                 {
-                    return BadRequest("Mật khẩu mới và xác nhận mật khẩu không khớp.");
+                    return BadRequest(new { message = "New password and confirm password do not match." });
                 }
 
                 var result = await _userRepository.ChangePassword(model.email, model.OldPassword, model.NewPassword);
 
                 if (!result)
                 {
-                    return BadRequest("Đổi mật khẩu thất bại. Vui lòng kiểm tra lại thông tin.");
+                    return BadRequest(new { message = "Password change failed. Please check the information again." });
                 }
 
-                return Ok("Sucessfully "); // Phản hồi đơn giản và rõ ràng
+                return Ok(new { message = "ChangePasswords updated successfully!" });
             }
             catch (ArgumentException ex)
             {
@@ -112,7 +112,7 @@ namespace WebAPI.Controllers.UserInformation
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Lỗi hệ thống: {ex.Message}");
+                return StatusCode(500, new { message = "An error occurred", details = ex.Message });
             }
         }
 

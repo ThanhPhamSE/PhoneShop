@@ -135,7 +135,7 @@ namespace WebAPI.Repository
             // Xác thực mật khẩu cũ
             var result = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, oldPassword);
             if (result == PasswordVerificationResult.Failed)
-                throw new ArgumentException("Mật khẩu cũ không chính xác.");
+                throw new ArgumentException("Old password is incorrect.");
 
             // Hash mật khẩu mới
             user.PasswordHash = passwordHasher.HashPassword(user, newPassword);
