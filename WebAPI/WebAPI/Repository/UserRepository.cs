@@ -6,11 +6,11 @@ using WebAPI.ViewModel.UserInformation;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
-
 namespace WebAPI.Repository
 {
     public class UserRepository : IUserRepository
     {
+
         private readonly AppDBContext _context;
 
         public UserRepository(AppDBContext context)
@@ -146,6 +146,7 @@ namespace WebAPI.Repository
 
             return true;
         }
+
 
 
 

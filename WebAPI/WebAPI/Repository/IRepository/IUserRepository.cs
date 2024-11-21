@@ -1,4 +1,6 @@
 ﻿using WebAPI.ViewModel.UserInformation;
+﻿using Microsoft.AspNetCore.Mvc;
+using WebAPI.Models;
 
 namespace WebAPI.Repository.IRepository
 {
@@ -10,7 +12,5 @@ namespace WebAPI.Repository.IRepository
         Task UpdateAddress(Guid userId, AddressViewModel updatedAddress);
         Task UpdateUser(Guid userId, UserViewModel updatedUser);
         Task<bool> ChangePassword(string email, string oldPassword, string newPassword);
-
-
     }
 }

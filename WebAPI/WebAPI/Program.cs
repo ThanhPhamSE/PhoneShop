@@ -84,6 +84,9 @@ namespace WebAPI
             builder.Services.AddScoped<IBrandRepository, BrandRepository>();
             builder.Services.AddScoped<ICartRepository, CartRepository>();
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
