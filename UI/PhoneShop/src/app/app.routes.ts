@@ -7,6 +7,7 @@ import { ProductManageComponent } from './core/components/product-manage/compone
 import { CategoryComponent } from './features/category/category.component';
 import { HomePageComponent } from './core/components/home-page/home-page.component';
 import { CartComponent } from './core/components/Cart/component/cart/cart.component';
+import { UserComponent } from './core/components/user/user.component';
 export const routes: Routes = [
   {
     path: 'login',
@@ -20,6 +21,7 @@ export const routes: Routes = [
   {
     path: 'admin/manage/product',
     component: ProductManageComponent,
+    
   },
   {
     path: 'manager/category',
@@ -32,5 +34,9 @@ export const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+  },
+  {
+    path: 'user',
+    component: UserComponent,
   },
 ];
