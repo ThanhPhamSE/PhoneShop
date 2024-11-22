@@ -2,9 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Models;
-using WebAPI.Repository;
 using WebAPI.Repository.IRepository;
-using WebAPI.ViewModel;
 using WebAPI.ViewModel.Users;
 
 namespace WebAPI.Controllers.Users

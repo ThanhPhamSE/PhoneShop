@@ -1,4 +1,3 @@
-﻿using WebAPI.ViewModel.UserInformation;
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebAPI.Models;
 
@@ -6,11 +5,10 @@ namespace WebAPI.Repository.IRepository
 {
     public interface IUserRepository
     {
-        Task<UserViewModel> GetUserByEmail(string email);
-
-        Task<AddressViewModel> GetAddressByUserId(Guid id);
-        Task UpdateAddress(Guid userId, AddressViewModel updatedAddress);
-        Task UpdateUser(Guid userId, UserViewModel updatedUser);
-        Task<bool> ChangePassword(string email, string oldPassword, string newPassword);
+        Task<IEnumerable<User>> GetAllAsync(string? query = null, int? inactivityDays = null, int? pageNumber = 1, int? pageSize = 20);
+        Task<IActionResult> UpdateAsync(User user);
+        Task<User> GetUserByIdAsync(Guid id);
+        Task<IActionResult> UpdateUserRoleAsync(Guid userId, string roleId);
+        Task<int> GetCount();
     }
 }
