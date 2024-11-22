@@ -35,7 +35,8 @@ namespace WebAPI
             builder.Services.AddScoped<IHomeRepository, HomeRepository>();
             builder.Services.AddScoped<IProductDetailRepository, ProductDetailRepository>();
             builder.Services.AddScoped<IReviewRepository,ReviewRepository>();  
-            builder.Services.AddScoped<IUserRepository ,UserRepository>();
+            builder.Services.AddScoped<IUserDetailRepository ,UserDetailRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             builder.Services.AddIdentityCore<User>()
             .AddRoles<Role>()
@@ -84,7 +85,6 @@ namespace WebAPI
             builder.Services.AddScoped<IBrandRepository, BrandRepository>();
             builder.Services.AddScoped<ICartRepository, CartRepository>();
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
             var app = builder.Build();

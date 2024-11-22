@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
@@ -22,7 +22,7 @@ export class RegisterComponent {
 
   passwordMismatch = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   onRegisterSubmit() {
     // Kiểm tra mật khẩu khớp
@@ -49,7 +49,7 @@ export class RegisterComponent {
         alert('Registration failed. Please try again or contact support.');
       }
     });
-}
+  }
 
 
   resetForm() {
