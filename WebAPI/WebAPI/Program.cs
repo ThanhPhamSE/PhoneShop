@@ -85,7 +85,7 @@ namespace WebAPI
             builder.Services.AddScoped<IBrandRepository, BrandRepository>();
             builder.Services.AddScoped<ICartRepository, CartRepository>();
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-
+            builder.Services.AddScoped<IConfirmOrderRepository, ConfirmOrderRepository>();
 
             var app = builder.Build();
 

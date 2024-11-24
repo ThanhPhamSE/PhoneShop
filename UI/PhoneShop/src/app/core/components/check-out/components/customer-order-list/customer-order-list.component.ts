@@ -5,10 +5,11 @@ import { AuthService } from '../../../../../features/auth/services/auth.service'
 import { Order } from '../../models/order';
 import { ManageOrderService } from '../../services/manager-order/manage-order.service';
 import { UserCheckout } from '../../models/user-checkout';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-customer-order-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './customer-order-list.component.html',
   styleUrl: './customer-order-list.component.css',
 })

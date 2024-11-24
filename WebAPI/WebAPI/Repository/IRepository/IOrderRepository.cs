@@ -10,5 +10,10 @@ namespace WebAPI.Repository
         Task<bool> ChangeStatusOrder(Guid orderId, string status);
         Task<UserVm> GetUserById(Guid userId);
         Task<IEnumerable<OrderVm>> GetUserByEmail(string email);
+        Task<IEnumerable<OrderItemViewModel>> GetOrderItemsByOrderId(Guid orderId);
+        Task<OrderVm> GetOrderById(Guid Id);
+        Task<ProductPMViewModel> GetProductById(Guid productId);
+        Task<AddressViewModel> GetAddressByUserId(Guid userId);
+
     }
 }

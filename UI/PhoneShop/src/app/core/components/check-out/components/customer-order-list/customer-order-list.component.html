@@ -32,7 +32,15 @@
         <td>{{ order.orderDate | date : "dd/MM/yyyy" }}</td>
         <td>{{ order.totalAmount }}</td>
         <td>{{ order.status }}</td>
-        <td class="text-center"><i class="fas fa-eye"></i></td>
+        <td class="text-center">
+          <a
+            [routerLink]="['/view-order-item']"
+            [queryParams]="{ orderId: order.orderId }"
+            style="color: black"
+          >
+            <i class="fas fa-eye"></i>
+          </a>
+        </td>
       </tr>
     </tbody>
   </table>

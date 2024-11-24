@@ -56,5 +56,45 @@ namespace WebAPI.Controllers.CheckOut
             var orders = await _orderRepository.GetUserByEmail(userEmail);
             return Ok(orders);
         }
+
+        [HttpGet("get-order-items-by-orderId")]
+        public async Task<IActionResult> GetOrderItemsByOrderId(Guid orderId)
+        {
+            var orderItems = await _orderRepository.GetOrderItemsByOrderId(orderId);
+            return Ok(orderItems);
+        }
+
+        [HttpGet("get-order-by-id")]
+        public async Task<IActionResult> GetOrderById(Guid orderId)
+        {
+            var order = await _orderRepository.GetOrderById(orderId);
+            if (order != null)
+            {
+                return Ok(order);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("get-product-by-id")]
+        public async Task<IActionResult> GetProductById(Guid productId)
+        {
+            var product = await _orderRepository.GetProductById(productId);
+            if (product != null)
+            {
+                return Ok(product);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("get-address-by-userId")]
+        public async Task<IActionResult> GetAddressByUserId(Guid userId)
+        {
+            var address = await _orderRepository.GetAddressByUserId(userId);
+            if (address != null)
+            {
+                return Ok(address);
+            }
+            return NotFound();
+        }
     }
 }
