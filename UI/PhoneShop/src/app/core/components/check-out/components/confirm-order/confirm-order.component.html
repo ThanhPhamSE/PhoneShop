@@ -69,7 +69,9 @@
             </div>
 
             <div class="d-flex justify-content-between pt-2">
-              <p class="text-muted mb-0">Customer Name :</p>
+              <p class="text-muted mb-0">
+                Customer Name : {{ userCheckout.userName }}
+              </p>
               <p class="text-muted mb-0"></p>
             </div>
 
@@ -87,9 +89,8 @@
 
             <div class="d-flex justify-content-between mb-3">
               <p class="text-muted mb-0">
-                Customer Address : {{ addresss.description }},{{
-                  addresss.village
-                }},{{ addresss.district }},{{ addresss.city }}
+                Customer Address :
+                {{ addresss.description }}
               </p>
               <p class="text-muted mb-0">
                 <button
@@ -102,7 +103,7 @@
                   "
                   (click)="openModal()"
                 >
-                  Change Address
+                  {{ addresss ? "Change Address" : "Add Address" }}
                 </button>
               </p>
             </div>
@@ -118,7 +119,8 @@
             <h5
               class="d-flex align-items-center text-white text-uppercase mb-0"
             >
-              Total paid: <span class="h2 mb-0 ms-2">$1040</span>
+              Total paid:
+              <span class="h2 mb-0 ms-2">${{ getTotalPrice() }}</span>
             </h5>
             <button
               style="
@@ -143,7 +145,9 @@
     <div class="modal-content">
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Add Address</h4>
+        <h4 class="modal-title">
+          {{ addresss ? "Change Address" : "Add Address" }}
+        </h4>
         <button
           type="button"
           class="btn-close"
@@ -152,7 +156,7 @@
         ></button>
       </div>
 
-      <form action="">
+      <form [formGroup]="addresstForm" (ngSubmit)="onSubmit()">
         <!-- Modal body -->
         <div class="modal-body">
           <div class="row mb-3 align-items-center">
@@ -171,8 +175,8 @@
             <label class="form-label col-sm-2">District</label>
             <div class="col-sm-10">
               <select
-                name="city"
-                formControlName="city"
+                name="district"
+                formControlName="district"
                 class="form-control"
                 id="district"
               >
@@ -182,11 +186,11 @@
           </div>
           <br />
           <div class="row mb-3 align-items-center">
-            <label class="form-label col-sm-2">City</label>
+            <label class="form-label col-sm-2">Ward</label>
             <div class="col-sm-10">
               <select
-                name="city"
-                formControlName="city"
+                name="village"
+                formControlName="village"
                 class="form-control"
                 id="ward"
               >
@@ -209,19 +213,22 @@
             </div>
           </div>
         </div>
-      </form>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-danger"
-          data-bs-dismiss="modal"
-          (click)="closeModal()"
-        >
-          Close
-        </button>
-      </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+            Submit
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-dismiss="modal"
+            (click)="closeModal()"
+          >
+            Close
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

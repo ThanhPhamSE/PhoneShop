@@ -16,4 +16,14 @@ export class ConfirmOrderService {
       `${this.apiUrl}/get-address-by-email?email=${email}`
     );
   }
+
+  getUserByEmail(email: string) {
+    return this.http.get<UserCheckout>(
+      `${this.apiUrl}/get-user-by-email?email=${email}`
+    );
+  }
+
+  addAddress(data: Address) {
+    return this.http.post(`${this.apiUrl}/add-address`, data);
+  }
 }

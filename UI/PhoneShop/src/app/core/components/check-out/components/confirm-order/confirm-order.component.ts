@@ -5,6 +5,12 @@ import {
   OnInit,
   inject,
 } from '@angular/core';
+import {
+  FormGroup,
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ApiService } from './call-address-api.service';
 import { forkJoin, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -16,10 +22,13 @@ import { User } from '../../../../../features/auth/login/models/user.model';
 import { AuthService } from '../../../../../features/auth/services/auth.service';
 import { Address } from '../../models/address';
 import { ConfirmOrderService } from '../../services/confirm-order/confirm-order.service';
+import { UserCheckout } from '../../models/user-checkout';
+import { v4 as uuidv4 } from 'uuid';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-confirm-order',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './confirm-order.component.html',
   styleUrl: './confirm-order.component.css',
 })
@@ -29,13 +38,22 @@ export class ConfirmOrderComponent implements OnInit {
   carts: Cart[] = [];
   userInfo: User | undefined;
   addresss!: Address;
+  userCheckout!: UserCheckout;
 
   auth = inject(AuthService);
   cartservice = inject(CartService);
   productService = inject(ProductManageService);
   confirmOrderService = inject(ConfirmOrderService);
   date!: string;
-  constructor(private apiService: ApiService) {}
+
+  formValues: Address = {} as Address;
+
+  addresstForm: FormGroup = new FormGroup({});
+  constructor(
+    private apiService: ApiService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.apiService
@@ -56,8 +74,42 @@ export class ConfirmOrderComponent implements OnInit {
         this.getProductsInCart();
       });
     this.getAdressByEmail(this.userInfo?.email ?? '');
+    this.getUserByEmail(this.userInfo?.email ?? '');
     const today = new Date();
     this.date = today.toLocaleDateString();
+    this.setFormState();
+  }
+
+  onSubmit() {
+    // Generate a new GUID for addressId
+    const newAddressId = uuidv4();
+    this.getUserByEmail(this.userInfo?.email ?? '');
+    // Ensure userId and addressId are included in the form values
+    this.addresstForm.patchValue({
+      addressId: newAddressId,
+      userId: this.userCheckout.userId,
+    });
+
+    console.log('Form Values:', this.addresstForm.value);
+
+    if (this.addresstForm.invalid) {
+      alert('Vui lòng điền đầy đủ thông tin');
+      return;
+    }
+
+    this.formValues = this.addresstForm.value;
+    this.confirmOrderService.addAddress(this.formValues).subscribe((data) => {
+      alert('Đã thêm địa chỉ');
+      this.getAdressByEmail(this.userInfo?.email ?? '');
+      this.addresstForm.reset();
+      this.closeModal();
+    });
+  }
+
+  getUserByEmail(email: string) {
+    this.confirmOrderService
+      .getUserByEmail(email)
+      .subscribe((data) => (this.userCheckout = data));
   }
 
   getAdressByEmail(email: string) {
@@ -97,7 +149,16 @@ export class ConfirmOrderComponent implements OnInit {
     }
   }
 
-  setFormState() {}
+  setFormState() {
+    this.addresstForm = this.fb.group({
+      addressId: [''], // Initialize with an empty string
+      userId: [''],
+      city: ['', [Validators.required]],
+      district: ['', [Validators.required]],
+      village: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+    });
+  }
 
   addEventListeners() {
     const provinceSelect = document.querySelector('#province');
