@@ -83,30 +83,89 @@ export class ConfirmOrderComponent implements OnInit {
     this.setFormState();
   }
 
-  onSubmit() {
-    // Generate a new GUID for addressId
-    const newAddressId = uuidv4();
-    this.getUserByEmail(this.userInfo?.email ?? '');
-    // Ensure userId and addressId are included in the form values
-    this.addresstForm.patchValue({
-      addressId: newAddressId,
-      userId: this.userCheckout.userId,
-    });
+  // onSubmit() {
+  //   // Generate a new GUID for addressId
+  //   const newAddressId = uuidv4();
+  //   this.getUserByEmail(this.userInfo?.email ?? '');
+  //   // Ensure userId and addressId are included in the form values
+  //   this.addresstForm.patchValue({
+  //     addressId: newAddressId,
+  //     userId: this.userCheckout.userId,
+  //   });
 
-    console.log('Form Values:', this.addresstForm.value);
+  //   console.log('Form Values:', this.addresstForm.value);
 
-    if (this.addresstForm.invalid) {
-      alert('Vui lòng điền đầy đủ thông tin');
-      return;
+  //   if (this.addresstForm.invalid) {
+  //     alert('Vui lòng điền đầy đủ thông tin');
+  //     return;
+  //   }
+
+  //   this.formValues = this.addresstForm.value;
+  //   this.confirmOrderService.addAddress(this.formValues).subscribe((data) => {
+  //     alert('Đã thêm địa chỉ');
+  //     this.getAdressByEmail(this.userInfo?.email ?? '');
+  //     this.addresstForm.reset();
+  //     this.closeModal();
+  //   });
+  // }
+  onSubmit(action: string) {
+    if (action === 'save') {
+      // Generate a new GUID for addressId
+      const newAddressId = uuidv4();
+      this.getUserByEmail(this.userInfo?.email ?? '');
+      // Ensure userId and addressId are included in the form values
+      this.addresstForm.patchValue({
+        addressId: newAddressId,
+        userId: this.userCheckout.userId,
+      });
+
+      console.log('Form Values for Save:', this.addresstForm.value);
+
+      if (this.addresstForm.invalid) {
+        alert('Vui lòng điền đầy đủ thông tin');
+        return;
+      }
+
+      this.formValues = this.addresstForm.value;
+      this.confirmOrderService.addAddress(this.formValues).subscribe(
+        (data) => {
+          alert('Đã thêm địa chỉ');
+          this.getAdressByEmail(this.userInfo?.email ?? '');
+          this.addresstForm.reset();
+          this.closeModal();
+        },
+        (error) => {
+          console.error('Error adding address:', error);
+          alert('Có lỗi xảy ra khi thêm địa chỉ');
+        }
+      );
+    } else if (action === 'update') {
+      // Ensure userId is included in the form values
+      this.addresstForm.patchValue({
+        userId: this.userCheckout.userId,
+        addressId: this.addresss.addressId,
+      });
+
+      console.log('Form Values for Update:', this.addresstForm.value);
+
+      if (this.addresstForm.invalid) {
+        alert('Vui lòng điền đầy đủ thông tin');
+        return;
+      }
+
+      this.confirmOrderService.updateAddress(this.addresstForm.value).subscribe(
+        (data) => {
+          alert('Đã cập nhật địa chỉ');
+          this.getAdressByEmail(this.userInfo?.email ?? '');
+          this.addresstForm.reset();
+          this.closeModal();
+        },
+        (error) => {
+          console.error('Error updating address:', error);
+          alert('Có lỗi xảy ra khi cập nhật địa chỉ');
+        }
+      );
     }
-
-    this.formValues = this.addresstForm.value;
-    this.confirmOrderService.addAddress(this.formValues).subscribe((data) => {
-      alert('Đã thêm địa chỉ');
-      this.getAdressByEmail(this.userInfo?.email ?? '');
-      this.addresstForm.reset();
-      this.closeModal();
-    });
   }
 
   getUserByEmail(email: string) {
