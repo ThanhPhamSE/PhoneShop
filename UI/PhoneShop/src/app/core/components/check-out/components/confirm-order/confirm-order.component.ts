@@ -45,6 +45,9 @@ export class ConfirmOrderComponent implements OnInit {
   productService = inject(ProductManageService);
   confirmOrderService = inject(ConfirmOrderService);
   date!: string;
+  city!: string;
+  district!: string;
+  village!: string;
 
   formValues: Address = {} as Address;
 
@@ -115,7 +118,14 @@ export class ConfirmOrderComponent implements OnInit {
   getAdressByEmail(email: string) {
     this.confirmOrderService
       .getAddressByEmail(email)
-      .subscribe((data) => (this.addresss = data));
+      .subscribe(
+        (data) => (
+          (this.addresss = data),
+          (this.city = data.city.split('.')[1]),
+          (this.district = data.district.split('.')[1]),
+          (this.village = data.village.split('.')[1])
+        )
+      );
   }
 
   getTotalPrice(): number {
@@ -167,13 +177,21 @@ export class ConfirmOrderComponent implements OnInit {
     if (provinceSelect) {
       provinceSelect.addEventListener('change', (event: Event) => {
         const target = event.target as HTMLSelectElement;
-        const provinceCode = target.value;
+        const [provinceCode, provinceName] = target.value.split('.'); // Tách mã và tên tỉnh
+        console.log('Selected Province:', { provinceCode, provinceName });
+
         this.apiService
           .callAPI(
             `https://provinces.open-api.vn/api/p/${provinceCode}?depth=2`
           )
           .then((response: any) => {
-            this.renderData(response.data.districts, 'district');
+            this.renderData(
+              response.data.districts.map((district: any) => ({
+                code: district.code,
+                name: district.name,
+              })),
+              'district'
+            );
           })
           .catch((error) => {
             console.error('Error fetching districts:', error);
@@ -184,13 +202,21 @@ export class ConfirmOrderComponent implements OnInit {
     if (districtSelect) {
       districtSelect.addEventListener('change', (event: Event) => {
         const target = event.target as HTMLSelectElement;
-        const districtCode = target.value;
+        const [districtCode, districtName] = target.value.split('.'); // Tách mã và tên quận/huyện
+        console.log('Selected District:', { districtCode, districtName });
+
         this.apiService
           .callAPI(
             `https://provinces.open-api.vn/api/d/${districtCode}?depth=2`
           )
           .then((response: any) => {
-            this.renderData(response.data.wards, 'ward');
+            this.renderData(
+              response.data.wards.map((ward: any) => ({
+                code: ward.code,
+                name: ward.name,
+              })),
+              'ward'
+            );
           })
           .catch((error) => {
             console.error('Error fetching wards:', error);
@@ -202,11 +228,13 @@ export class ConfirmOrderComponent implements OnInit {
   renderData(array: any[], select: string) {
     let row = '<option disabled value="">chọn</option>';
     array.forEach((element) => {
-      row += `<option value="${element.code}">${element.name}</option>`;
+      row += `<option value="${element.code}.${element.name}">${element.name}</option>`;
     });
     const selectElement = document.querySelector('#' + select);
     if (selectElement) {
       selectElement.innerHTML = row;
     }
   }
+
+  placeOrder() {}
 }
