@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 using WebAPI.Data;
 using WebAPI.Models;
 using WebAPI.Repository.IRepository;
@@ -13,6 +14,36 @@ namespace WebAPI.Repository
         public ConfirmOrderRepository(AppDBContext context)
         {
             _context = context;
+        }
+
+        public async Task<bool> AddOrder(OrderVm orderVm)
+        {
+            var order = new Order()
+            {
+                OrderId = orderVm.OrderId,
+                UserId = orderVm.UserId,
+                OrderDate = orderVm.OrderDate,
+                TotalAmount = orderVm.TotalAmount,
+                Status = orderVm.Status
+            };
+            await _context.Orders.AddAsync(order);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+
+        public async Task<bool> AddOrderItem(OrderItemViewModel orderItemViewModel)
+        {
+           var item = new OrderItem() 
+           {
+               OrderItemId = orderItemViewModel.OrderItemId,
+               OrderId = orderItemViewModel.OrderId,
+               ProductId = orderItemViewModel.ProductId,
+               Quantity = orderItemViewModel.Quantity,
+               Price = orderItemViewModel.Price,
+               Consignee = orderItemViewModel.Consignee
+           };
+            await _context.OrderItems.AddAsync(item);
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public async Task<bool> AddressUser(AddressViewModel address)
@@ -69,6 +100,23 @@ namespace WebAPI.Repository
             addressObj.District = address.District;
             addressObj.Village = address.Village;
             addressObj.Description = address.Description;
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> UpdateQuantityAfterPlaceOrder(Guid productId, int quantity)
+        {
+            var product = await _context.Products.Where(x => x.ProductId == productId).FirstOrDefaultAsync();
+            if (product == null) return false;
+            if (product.Stock < quantity) return false;
+            product.Stock -= quantity;
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> UpdateQuantityAfterPlaceOrder(ProductPMViewModel product)
+        {
+            var productObj = await _context.Products.Where(x => x.ProductId == product.ProductId).FirstOrDefaultAsync();
+            if (productObj == null) return false;
+            productObj.Stock = product.Stock;
             return await _context.SaveChangesAsync() > 0;
         }
     }

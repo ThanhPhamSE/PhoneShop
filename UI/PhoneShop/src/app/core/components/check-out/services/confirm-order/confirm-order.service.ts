@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { UserCheckout } from '../../models/user-checkout';
 import { ProductManage } from '../../../product-manage/model/product-manage';
 import { Address } from '../../models/address';
+import { Order } from '../../models/order';
+import { OrderItem } from '../../models/orderItem';
 @Injectable({
   providedIn: 'root',
 })
@@ -29,5 +31,20 @@ export class ConfirmOrderService {
 
   updateAddress(data: Address) {
     return this.http.put(`${this.apiUrl}/update-address`, data);
+  }
+
+  addOrder(data: Order) {
+    return this.http.post(`${this.apiUrl}/add-order`, data);
+  }
+
+  addOrderItem(data: OrderItem) {
+    return this.http.post(`${this.apiUrl}/add-order-item`, data);
+  }
+
+  updateProductQuantity(data: ProductManage) {
+    return this.http.put(
+      `${this.apiUrl}/update-quantity-after-place-order`,
+      data
+    );
   }
 }

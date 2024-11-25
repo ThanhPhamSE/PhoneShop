@@ -295,5 +295,70 @@ export class ConfirmOrderComponent implements OnInit {
     }
   }
 
-  placeOrder() {}
+  placeOrder() {
+    const totalAmount = this.getTotalPrice();
+    const orderDate = new Date().toISOString(); // Use ISO string format for date
+    const orderId = uuidv4();
+    const userId = this.userCheckout.userId;
+    const status = 'Pending';
+    const order = { orderId, userId, orderDate, totalAmount, status };
+
+    console.log('Order Data:', order);
+
+    this.confirmOrderService.addOrder(order).subscribe(
+      (data) => {
+        console.log('Order added:', data);
+        this.carts.forEach((cart, index) => {
+          const product = this.products[index];
+          const orderItemId = uuidv4();
+          const orderItem = {
+            orderItemId,
+            orderId,
+            productId: cart.productId,
+            quantity: cart.quantity,
+            price: product.sellPrice,
+            consignee: 'None',
+          };
+
+          console.log('Order Item Data:', orderItem);
+
+          this.confirmOrderService.addOrderItem(orderItem).subscribe(
+            (data) => {
+              console.log('Order item added:', data);
+              // Update product quantity
+              const newQuantity = product.stock - cart.quantity;
+              const updatedProduct = { ...product, stock: newQuantity };
+              this.confirmOrderService
+                .updateProductQuantity(updatedProduct)
+                .subscribe(
+                  (data) => {
+                    console.log('Product quantity updated:', data);
+                  },
+                  (error) => {
+                    console.error('Error updating product quantity:', error);
+                  }
+                );
+            },
+            (error) => {
+              console.error('Error adding order item:', error);
+            }
+          );
+        });
+
+        alert('Đã đặt hàng thành công');
+        this.cartservice.deleteAllCarts(this.userInfo?.email ?? '').subscribe(
+          () => {
+            console.log('All carts deleted');
+          },
+          (error) => {
+            console.error('Error deleting carts:', error);
+          }
+        );
+      },
+      (error) => {
+        console.error('Error adding order:', error);
+        alert('Có lỗi xảy ra khi đặt hàng');
+      }
+    );
+  }
 }

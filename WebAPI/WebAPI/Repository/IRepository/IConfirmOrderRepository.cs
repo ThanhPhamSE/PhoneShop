@@ -12,5 +12,11 @@ namespace WebAPI.Repository.IRepository
         Task<bool> AddressUser(AddressViewModel address);
 
         Task<bool> UpdateAddress(AddressViewModel address);
+
+        Task<bool> AddOrder(OrderVm orderVm);
+
+        Task<bool> AddOrderItem(OrderItemViewModel orderItemViewModel);
+
+        Task<bool> UpdateQuantityAfterPlaceOrder(ProductPMViewModel product);
     }
 }

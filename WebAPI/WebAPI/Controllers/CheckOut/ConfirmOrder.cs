@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Repository.IRepository;
+using WebAPI.ViewModel;
 using WebAPI.ViewModel.CheckOut;
 
 namespace WebAPI.Controllers.CheckOut
@@ -44,6 +45,36 @@ namespace WebAPI.Controllers.CheckOut
         public async Task<IActionResult> UpdateAddress([FromBody] AddressViewModel address)
         {
             if (await _confirmOrderRepository.UpdateAddress(address))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpPost("add-order")]
+        public async Task<IActionResult> AddOrder([FromBody] OrderVm orderVm)
+        {
+            if (await _confirmOrderRepository.AddOrder(orderVm))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpPost("add-order-item")]
+        public async Task<IActionResult> AddOrderItem([FromBody] OrderItemViewModel orderItemViewModel)
+        {
+            if (await _confirmOrderRepository.AddOrderItem(orderItemViewModel))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpPut("update-quantity-after-place-order")]
+        public async Task<IActionResult> UpdateQuantityAfterPlaceOrder(ProductPMViewModel product)
+        {
+            if (await _confirmOrderRepository.UpdateQuantityAfterPlaceOrder(product))
             {
                 return Ok();
             }
