@@ -60,5 +60,16 @@ namespace WebAPI.Repository
             };
             return userVm;
         }
+
+        public async Task<bool> UpdateAddress(AddressViewModel address)
+        {
+            var addressObj = await _context.Addresses.Where(x => x.UserId == address.UserId).FirstOrDefaultAsync();
+            if (addressObj == null) return false;
+            addressObj.City = address.City;
+            addressObj.District = address.District;
+            addressObj.Village = address.Village;
+            addressObj.Description = address.Description;
+            return await _context.SaveChangesAsync() > 0;
+        }
     }
 }

@@ -26,4 +26,8 @@ export class ConfirmOrderService {
   addAddress(data: Address) {
     return this.http.post(`${this.apiUrl}/add-address`, data);
   }
+
+  updateAddress(data: Address) {
+    return this.http.put(`${this.apiUrl}/update-address`, data);
+  }
 }

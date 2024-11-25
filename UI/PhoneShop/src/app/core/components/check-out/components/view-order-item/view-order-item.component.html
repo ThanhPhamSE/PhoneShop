@@ -25,7 +25,7 @@
                   <div class="col-md-2">
                     <img
                       style="background-color: antiquewhite; padding: 3px"
-                      [src]="productMap[orderItem.productId]?.imageUrl"
+                      [src]="productMap[orderItem.productId].imageUrl"
                       class="img-fluid"
                       alt="Phone"
                     />
@@ -34,21 +34,21 @@
                     class="col-md-2 text-center d-flex justify-content-center align-items-center"
                   >
                     <p class="text-muted mb-0">
-                      {{ productMap[orderItem.productId]?.name }}
+                      {{ productMap[orderItem.productId].name }}
                     </p>
                   </div>
                   <div
                     class="col-md-2 text-center d-flex justify-content-center align-items-center"
                   >
                     <p class="text-muted mb-0 small">
-                      {{ productMap[orderItem.productId]?.color }}
+                      {{ productMap[orderItem.productId].color }}
                     </p>
                   </div>
                   <div
                     class="col-md-2 text-center d-flex justify-content-center align-items-center"
                   >
                     <p class="text-muted mb-0 small">
-                      {{ productMap[orderItem.productId]?.title }}
+                      {{ productMap[orderItem.productId].title }}
                     </p>
                   </div>
                   <div
@@ -94,10 +94,10 @@
 
             <div class="d-flex justify-content-between mb-3">
               <p class="text-muted mb-0">
-                Customer Address : {{ address[order.userId]?.description }},
-                {{ address[order.userId]?.village }},
-                {{ address[order.userId]?.district }},
-                {{ address[order.userId]?.city }}
+                Customer Address : {{ address[order.userId].description }},
+                {{ address[order.userId].village }},
+                {{ address[order.userId].district }},
+                {{ address[order.userId].city }}
               </p>
               <p class="text-muted mb-0">
                 Total paid:

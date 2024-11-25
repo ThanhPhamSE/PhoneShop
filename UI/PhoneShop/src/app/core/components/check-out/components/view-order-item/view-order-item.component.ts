@@ -104,9 +104,9 @@ export class ViewOrderItemComponent implements OnInit {
       this.manageOrderService.getAddressByUserId(userId).subscribe(
         (data) => {
           this.address[userId] = {
-            city: data.city,
-            district: data.district,
-            village: data.village,
+            city: data.city.split('.')[1],
+            district: data.district.split('.')[1],
+            village: data.village.split('.')[1],
             description: data.description,
           };
         },

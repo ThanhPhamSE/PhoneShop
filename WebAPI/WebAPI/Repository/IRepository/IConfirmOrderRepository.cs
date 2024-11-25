@@ -10,5 +10,7 @@ namespace WebAPI.Repository.IRepository
         Task<UserVm> GetUserByEmail(string email);
 
         Task<bool> AddressUser(AddressViewModel address);
+
+        Task<bool> UpdateAddress(AddressViewModel address);
     }
 }

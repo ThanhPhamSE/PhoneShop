@@ -39,5 +39,15 @@ namespace WebAPI.Controllers.CheckOut
             }
             return BadRequest();
         }
+
+        [HttpPut("update-address")]
+        public async Task<IActionResult> UpdateAddress([FromBody] AddressViewModel address)
+        {
+            if (await _confirmOrderRepository.UpdateAddress(address))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
     }
 }
