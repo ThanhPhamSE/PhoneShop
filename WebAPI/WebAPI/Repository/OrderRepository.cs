@@ -135,7 +135,7 @@ namespace WebAPI.Repository
             var orderVms = new List<OrderVm>();
             var user = await _context.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
             if (user == null) return null;
-            var orders = await _context.Orders.Where(x => x.UserId == user.Id && (x.Status == "Pending" || x.Status == "Completed")).ToListAsync();
+            var orders = await _context.Orders.Where(x => x.UserId == user.Id && (x.Status == "Pending" || x.Status == "Completed" || x.Status == "Shipping")).ToListAsync();
             foreach (var order in orders)
             {
                 var orderVm = new OrderVm()

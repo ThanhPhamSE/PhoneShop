@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrderItem } from '../../models/orderItem';
 import { ManageOrderService } from '../../services/manager-order/manage-order.service';
 import { CommonModule } from '@angular/common';
@@ -40,6 +40,7 @@ export class ViewOrderItemComponent implements OnInit {
   userName: { [key: string]: string } = {};
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private manageOrderService: ManageOrderService
   ) {}
 
@@ -143,16 +144,43 @@ export class ViewOrderItemComponent implements OnInit {
     );
   }
 
-  isAdminWithCancelationRequest(): boolean {
+  isUserWithShippingOrder(): boolean {
     return !!(
-      this.userInfo?.roles?.includes('Admin') &&
-      this.order?.status === 'Cancelation Request'
+      this.userInfo?.roles?.includes('User') &&
+      this.order?.status === 'Shipping'
     );
   }
 
-  isAdminWithDeniedOrder(): boolean {
+  isAdminWithShippingOrder(): boolean {
     return !!(
-      this.userInfo?.roles?.includes('Admin') && this.order?.status === 'Denied'
+      this.userInfo?.roles?.includes('Admin') &&
+      this.order?.status === 'Shipping'
+    );
+  }
+
+  isUserWithCompletedOrder(): boolean {
+    return !!(
+      this.userInfo?.roles?.includes('User') &&
+      this.order?.status === 'Completed'
+    );
+  }
+
+  isAdminWithCompletedOrder(): boolean {
+    return !!(
+      this.userInfo?.roles?.includes('Admin') &&
+      this.order?.status === 'Completed'
+    );
+  }
+
+  changeStatusOrder(order: Order, status: string) {
+    this.manageOrderService.changeStatus(order.orderId, status).subscribe(
+      (data) => {
+        this.order.status = status;
+        alert('Change status successfully');
+      },
+      (error) => {
+        console.error('Error changing status:', error);
+      }
     );
   }
 }

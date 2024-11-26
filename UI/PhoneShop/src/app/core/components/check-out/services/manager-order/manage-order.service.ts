@@ -56,4 +56,11 @@ export class ManageOrderService {
       `${this.apiUrl}/get-address-by-userId?userId=${userId}`
     );
   }
+
+  changeStatus(orderId: string, status: string) {
+    return this.http.put(
+      `${this.apiUrl}/change-status-order?orderId=${orderId}&status=${status}`,
+      null
+    );
+  }
 }

@@ -118,17 +118,28 @@
             </h5>
             <ng-container *ngIf="userInfo !== undefined">
               <div *ngIf="isUserWithPendingOrder()">
-                <button class="btn btn-danger me-2">Cancelled Order</button>
+                <button
+                  class="btn btn-danger me-2"
+                  (click)="changeStatusOrder(order, 'Cancelled')"
+                >
+                  Cancelled Order
+                </button>
               </div>
               <div *ngIf="isAdminWithPendingOrder()">
-                <button class="btn btn-danger me-2">Completed Order</button>
+                <button
+                  class="btn btn-danger me-2"
+                  (click)="changeStatusOrder(order, 'Shipping')"
+                >
+                  Shipping Order
+                </button>
               </div>
-              <div *ngIf="isAdminWithCancelationRequest()">
-                <button class="btn btn-danger me-2">Denied Request</button>
-                <button class="btn btn-danger me-2">Allow Request</button>
-              </div>
-              <div *ngIf="isAdminWithDeniedOrder()">
-                <button class="btn btn-danger me-2">Completed Order</button>
+              <div *ngIf="isUserWithShippingOrder()">
+                <button
+                  class="btn btn-danger me-2"
+                  (click)="changeStatusOrder(order, 'Completed')"
+                >
+                  Completed Order
+                </button>
               </div>
             </ng-container>
           </div>
