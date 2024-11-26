@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Models;
 using WebAPI.Repository;
@@ -12,7 +13,7 @@ namespace WebAPI.Controllers.CheckOut
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IEmailService _emailService;
-
+        
         public OrderController(IOrderRepository orderRepository, IEmailService emailService)
         {
             _orderRepository = orderRepository;

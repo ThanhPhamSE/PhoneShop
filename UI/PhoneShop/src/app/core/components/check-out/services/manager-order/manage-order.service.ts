@@ -67,5 +67,4 @@ export class ManageOrderService {
   sendEmail(email: string) {
     return this.http.get(`${this.apiUrl}/send-email?email=${email}`);
   }
-
 }

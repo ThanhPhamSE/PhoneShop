@@ -17,6 +17,18 @@ namespace WebAPI.Repository
              var order = await _context.Orders.FindAsync(orderId);
             if (order == null) return false;
             order.Status = status;
+            if (status == "Cancelled")
+            {
+                var orderItems = await _context.OrderItems.Where(x => x.OrderId == orderId).ToListAsync();
+                foreach (var orderItem in orderItems)
+                {
+                    var product = await _context.Products.FindAsync(orderItem.ProductId);
+                    if (product != null)
+                    {
+                        product.Stock += orderItem.Quantity;
+                    }
+                }
+            }
             var result = await _context.SaveChangesAsync() > 0;
             return result;
         }

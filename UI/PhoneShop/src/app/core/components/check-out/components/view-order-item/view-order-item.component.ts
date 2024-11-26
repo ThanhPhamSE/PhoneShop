@@ -7,6 +7,8 @@ import { Order } from '../../models/order';
 import { ProductManage } from '../../../product-manage/model/product-manage';
 import { User } from '../../../../../features/auth/login/models/user.model';
 import { AuthService } from '../../../../../features/auth/services/auth.service';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 @Component({
   selector: 'app-view-order-item',
   standalone: true,
@@ -223,8 +225,10 @@ export class ViewOrderItemComponent implements OnInit {
             (emailData) => {
               console.log('Send email successfully:', emailData);
 
+
               // Reload the page after sending email
               window.location.reload();
+
             },
             (emailError) => {
               console.error('Error sending email:', emailError);
@@ -249,5 +253,6 @@ export class ViewOrderItemComponent implements OnInit {
   goToReviewPage(productId: string): void {
     // Chuyển hướng đến trang review với productId hiện tại
     this.router.navigate(['/add-review', productId]);
+
   }
 }
