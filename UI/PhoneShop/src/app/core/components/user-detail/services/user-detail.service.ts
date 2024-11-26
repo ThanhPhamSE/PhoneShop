@@ -31,4 +31,33 @@ export class UserDetailService {
     // return this.http.put(`${environment.apiUrl}/api/User/change-password`, model, { responseType: 'text' });
 
   }
+
+  getUser(): User | undefined {
+    const userId = localStorage.getItem('user-id');
+    const userName = localStorage.getItem('user-name');
+    const email = localStorage.getItem('user-email');
+    const passwordHash = localStorage.getItem('user-password-hash');
+    const phoneNumber = localStorage.getItem('user-phone-number');
+
+    if (userId && userName && email && passwordHash && phoneNumber) {
+      const user: User = {
+        userId: userId,
+        userName: userName,
+        email: email,
+        passwordHash: passwordHash,
+        phoneNumber: phoneNumber
+      };
+      return user;
+    }
+    return undefined;
+  }
+  // // Sau khi đăng nhập thành công, lưu thông tin người dùng vào localStorage
+  // loginSuccess(user: User): void {
+  //   localStorage.setItem('user-id', user.userId);
+  //   localStorage.setItem('user-name', user.userName);
+  //   localStorage.setItem('user-email', user.email);
+  //   localStorage.setItem('user-password-hash', user.passwordHash);
+  //   localStorage.setItem('user-phone-number', user.phoneNumber);
+  // }
+
 }

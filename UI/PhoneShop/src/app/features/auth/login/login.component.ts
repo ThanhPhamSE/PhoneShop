@@ -17,51 +17,51 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginComponent {
   model: LoginRequest;
-  
-constructor(private authService: AuthService,
-  private cookieService: CookieService,
-  private router: Router
-){
-  this.model = {
-    email: '',
-    password: ''
+
+  constructor(private authService: AuthService,
+    private cookieService: CookieService,
+    private router: Router
+  ) {
+    this.model = {
+      email: '',
+      password: ''
+    }
   }
-}
 
-  onFormSubmit(): void{
+  onFormSubmit(): void {
     this.authService.login(this.model)
-    .subscribe({
-      next: (response) => {
-        //Set AuthCookie
-        this.cookieService.set('Authorization', `Bearer ${response.token}`,
-          undefined,'/',undefined,true,'Strict'
-        );
+      .subscribe({
+        next: (response) => {
+          //Set AuthCookie
+          this.cookieService.set('Authorization', `Bearer ${response.token}`,
+            undefined, '/', undefined, true, 'Strict'
+          );
 
-        //Set User
-        this.authService.setUser({
-          email: response.email,
-          roles: response.roles
-        })
+          //Set User
+          this.authService.setUser({
+            email: response.email,
+            roles: response.roles
+          })
 
-        //Redirect home page
-        this.router.navigateByUrl('/');
-      },
-      error: (err) => {
-        // Xử lý lỗi và hiển thị thông báo lỗi
-        if (err.status === 403) {
-          alert(err.error || 'Email not confirmed. Please check your email.');
-        } else {
-          alert('Login failed. Please check your credentials and try again.');
+          //Redirect home page
+          this.router.navigateByUrl('/');
+        },
+        error: (err) => {
+          // Xử lý lỗi và hiển thị thông báo lỗi
+          if (err.status === 403) {
+            alert(err.error || 'Email not confirmed. Please check your email.');
+          } else {
+            alert('Login failed. Please check your credentials and try again.');
+          }
+          console.error('Login error:', err);
         }
-        console.error('Login error:', err);
-      }     
-    })
+      })
   }
 
 
   forgotPasswordModel = { email: '' };
   //forgot password
-  onForgotPasswordSubmit(){
+  onForgotPasswordSubmit() {
     this.authService.forgotPassword(this.forgotPasswordModel.email).subscribe(
       (response) => {
         alert(response.message); // Display success message
@@ -72,4 +72,6 @@ constructor(private authService: AuthService,
       }
     );
   }
+
+
 }
