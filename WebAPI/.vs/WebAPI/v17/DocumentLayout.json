@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\repository\\homerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\repository\\homerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\controllers\\authentication\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\authentication\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|d:\\fsof-csharp\\cpl_project_phoneshop_official\\phoneshop\\webapi\\webapi\\controllers\\checkout\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DAE3129B-C547-42DA-958D-5D30068AEE5E}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\checkout\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -30,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,7 +46,33 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomeRepository.cs",
+              "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Repository\\HomeRepository.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Repository\\HomeRepository.cs",
+              "ToolTip": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Repository\\HomeRepository.cs",
+              "RelativeToolTip": "WebAPI\\Repository\\HomeRepository.cs",
+              "ViewState": "AQIAAEwAAAAAAAAAAAAkwAwAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T08:03:53.22Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\Authentication\\AuthController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\Authentication\\AuthController.cs",
+              "ToolTip": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\Authentication\\AuthController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\Authentication\\AuthController.cs",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAAAHIAAABjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T07:50:54.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\Home\\HomeController.cs",
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\Home\\HomeController.cs",
@@ -46,25 +80,24 @@
               "RelativeToolTip": "WebAPI\\Controllers\\Home\\HomeController.cs",
               "ViewState": "AQIAABgAAAAAAAAAAAAuwCcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-26T07:13:07.119Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-26T07:13:07.119Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "OrderController.cs",
               "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\CheckOut\\OrderController.cs",
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\CheckOut\\OrderController.cs",
               "ToolTip": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\CheckOut\\OrderController.cs",
               "RelativeToolTip": "WebAPI\\Controllers\\CheckOut\\OrderController.cs",
-              "ViewState": "AQIAAFAAAAAAAAAAAAAgwCgAAAAXAAAA",
+              "ViewState": "AQIAADAAAAAAAAAAAAAAACgAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-26T07:03:49.783Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\appsettings.json",
               "RelativeDocumentMoniker": "WebAPI\\appsettings.json",
@@ -72,12 +105,11 @@
               "RelativeToolTip": "WebAPI\\appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-26T06:28:50.201Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-26T06:28:50.201Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "UserDetailRepository.cs",
               "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Repository\\UserDetailRepository.cs",
               "RelativeDocumentMoniker": "WebAPI\\Repository\\UserDetailRepository.cs",
@@ -89,7 +121,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "UserController.cs",
               "DocumentMoniker": "D:\\FSOF-CSharp\\CPL_Project_PhoneShop_Official\\PhoneShop\\WebAPI\\WebAPI\\Controllers\\UserInformation\\UserController.cs",
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\UserInformation\\UserController.cs",

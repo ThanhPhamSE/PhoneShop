@@ -28,34 +28,65 @@ export class LoginComponent {
     }
   }
 
+  // onFormSubmit(): void {
+  //   this.authService.login(this.model)
+  //     .subscribe({
+  //       next: (response) => {
+  //         //Set AuthCookie
+  //         this.cookieService.set('Authorization', `Bearer ${response.token}`,
+  //           undefined, '/', undefined, true, 'Strict'
+  //         );
+
+  //         //Set User
+  //         this.authService.setUser({
+  //           email: response.email,
+  //           roles: response.roles
+  //         })
+
+  //         //Redirect home page
+  //         this.router.navigateByUrl('/');
+  //       },
+  //       error: (err) => {
+  //         // Xử lý lỗi và hiển thị thông báo lỗi
+  //         if (err.status === 403) {
+  //           alert(err.error || 'Email not confirmed. Please check your email.');
+  //         } else {
+  //           alert('Login failed. Please check your credentials and try again.');
+  //         }
+  //         console.error('Login error:', err);
+  //       }
+  //     })
+  // }
+
   onFormSubmit(): void {
     this.authService.login(this.model)
       .subscribe({
         next: (response) => {
-          //Set AuthCookie
+          // Set AuthCookie
           this.cookieService.set('Authorization', `Bearer ${response.token}`,
             undefined, '/', undefined, true, 'Strict'
           );
 
-          //Set User
+          // Set User
           this.authService.setUser({
             email: response.email,
             roles: response.roles
-          })
+          });
 
-          //Redirect home page
+          // Redirect home page
           this.router.navigateByUrl('/');
         },
         error: (err) => {
-          // Xử lý lỗi và hiển thị thông báo lỗi
+          // Handle errors and display messages
           if (err.status === 403) {
-            alert(err.error || 'Email not confirmed. Please check your email.');
+            const errorMessage = err.error?.message || 'Email not confirmed. Please check your email.';
+            alert(errorMessage);
           } else {
             alert('Login failed. Please check your credentials and try again.');
           }
           console.error('Login error:', err);
         }
-      })
+      });
   }
 
 

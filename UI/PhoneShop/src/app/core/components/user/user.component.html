@@ -1,92 +1,87 @@
 <div class="container">
-    <h1 class="mt-3">User List</h1>
+  <h1 class="mt-3">User List</h1>
 
-    
 
-    <ng-container *ngIf="user$ | async as users">
-      <div class="d-flex justify-content-between mt-3">
-        <div class="d-flex">
-          <input type="text" class="form-control" #queryText>
-          <button type="button" class="btn btn-warning ms-3" (click)="onSearch(queryText.value)">Search</button>
-        </div>
 
-        <div class="d-flex">
-          <!-- Dropdown chọn inactivityDays -->
-          <select class="form-control ms-3" [(ngModel)]="selectedInactivityDays" (change)="onInactivityDaysChange()">
-            <option [ngValue]="7">Last 7 Days</option>
-            <option [ngValue]="30">Last 30 Days</option>
-            <option [ngValue]="120">Last 120 Days</option>
-            <option [ngValue]="365">Last 365 Days</option>
-          </select>
-        </div>
-
-        <div *ngIf="selectedUserIds.size > 0">
-          <button class="btn btn-primary" (click)="updateSelectedUsers()">Update Role of all Users</button>
-        </div>
+  <ng-container *ngIf="user$ | async as users">
+    <div class="d-flex justify-content-between mt-3">
+      <div class="d-flex">
+        <input type="text" class="form-control" #queryText>
+        <button type="button" class="btn btn-warning ms-3" (click)="onSearch(queryText.value)">Search</button>
       </div>
-      <!-- Master checkbox for select/deselect all -->
-      <div class="mb-3">
-        <input type="checkbox" [(ngModel)]="selectAll" (change)="toggleSelectAll(selectAll)" /> Select All
+
+      <div class="d-flex">
+        <!-- Dropdown chọn inactivityDays -->
+        <select class="form-control ms-3" [(ngModel)]="selectedInactivityDays" (change)="onInactivityDaysChange()">
+          <option [ngValue]="7">Last 7 Days</option>
+          <option [ngValue]="30">Last 30 Days</option>
+          <option [ngValue]="120">Last 120 Days</option>
+          <option [ngValue]="365">Last 365 Days</option>
+        </select>
       </div>
-  
-      <!-- User List Table -->
-      <table class="table table-bordered mt-3">
-        <thead>
-          <tr>
-            <th></th> <!-- Checkbox column -->
-            <th>Id</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Last Login</th>
-            <th>Status</th>
-            <th>Role</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users">
-            <td>
-              <input 
-                type="checkbox" 
-                [checked]="isSelected(user.id)" 
-                (change)="toggleSelect(user.id, $event)" /> <!-- Pass event object -->
-            </td>
-            <td>{{ user.id }}</td>
-            <td>{{ user.userName }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.phoneNumber }}</td>
-            <td>{{ user.lastLogin | date:'dd/MM/yyyy' }}</td>
-            <td>
-              <button 
-                class="btn" 
-                [ngClass]="{
+
+      <div *ngIf="selectedUserIds.size > 0">
+        <button class="btn btn-primary" (click)="updateSelectedUsers()">Update Status of Users</button>
+      </div>
+    </div>
+    <!-- Master checkbox for select/deselect all -->
+    <div class="mb-3">
+      <input type="checkbox" [(ngModel)]="selectAll" (change)="toggleSelectAll(selectAll)" /> Select All
+    </div>
+
+    <!-- User List Table -->
+    <table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th></th> <!-- Checkbox column -->
+          <th>Id</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Last Login</th>
+          <th>Status</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>
+            <input type="checkbox" [checked]="isSelected(user.id)" (change)="toggleSelect(user.id, $event)" />
+            <!-- Pass event object -->
+          </td>
+          <td>{{ user.id }}</td>
+          <td>{{ user.userName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phoneNumber }}</td>
+          <td>{{ user.lastLogin | date:'dd/MM/yyyy' }}</td>
+          <td>
+            <button class="btn" [ngClass]="{
                   'btn-primary': user.isActive, 
                   'btn-danger': !user.isActive
-                }"
-                (click)="toggleStatus(user)">
-                {{ user.isActive ? 'Active' : 'Inactive' }}
-              </button>
-            </td>
-            <td>
-                <span *ngFor="let role of user.roles">
-                  <span class="badge bg-secondary"
-                  (click)="openRolePopup(user)">
-                    {{role.roleName}}
-                  </span>
-                </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- Button to Export Users to Excel -->
+                }" (click)="toggleStatus(user)">
+              {{ user.isActive ? 'Active' : 'Inactive' }}
+            </button>
+          </td>
+          <td>
+            <span *ngFor="let role of user.roles">
+              <span class="badge bg-secondary" (click)="openRolePopup(user)">
+                {{role.roleName}}
+              </span>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Button to Export Users to Excel -->
     <div class="mt-3">
-      <button class="btn btn-primary d-flex justify-content-end" (click)="exportToExcel(getVisibleUsers(users))">Expoert Excel</button>
+      <button class="btn btn-primary d-flex justify-content-end" (click)="exportToExcel(getVisibleUsers(users))">Expoert
+        Excel</button>
     </div>
 
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item"><a class="page-link" (click)="getPrePage()">Previous</a></li>
-        
+
         <li *ngFor="let item of list;let index = index" class="page-item">
           <a class="page-link" (click)="getPage(index +1)">{{index + 1}}</a>
         </li>
@@ -95,12 +90,12 @@
       </ul>
     </nav>
 
-    </ng-container>
-  </div>
+  </ng-container>
+</div>
 
 
 
-  <!-- Modal Popup for Role Selection -->
+<!-- Modal Popup for Role Selection -->
 <ng-container *ngIf="role$ | async as roless">
   <div *ngIf="selectedUser" class="modal fade show" tabindex="-1" style="display: block;">
     <div class="modal-dialog">
