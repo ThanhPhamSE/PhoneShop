@@ -10,7 +10,7 @@ import { Address } from '../../models/address';
 })
 export class ManageOrderService {
   private apiUrl = 'https://localhost:7026/api/Order';
-  constructor() {}
+  constructor() { }
   http = inject(HttpClient);
 
   getAllOrders() {

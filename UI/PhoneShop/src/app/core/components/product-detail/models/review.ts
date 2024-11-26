@@ -5,6 +5,6 @@ export interface Review {
     productId: string;
     productName: string;// Thông tin sản phẩm (ví dụ: tên sản phẩm)
     rating: number;
-    comment: string
+    comment: string;
     reviewDate: string;
 }

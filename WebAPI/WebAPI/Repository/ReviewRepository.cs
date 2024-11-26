@@ -13,6 +13,55 @@ namespace WebAPI.Repository
         {
             _context = context;
         }
+
+        public async Task<IEnumerable<ReviewViewModel>> AddReviewProductByIdAsync(Guid productId, Guid userId, int rating, string comment)
+        {
+            // Create the review object
+            var review = new Review()
+            {
+                ReviewId = Guid.NewGuid(),  // Generate new ReviewId
+                ProductId = productId,
+                UserId = userId,
+                Rating = rating,
+                Comment = comment,
+                ReviewDate = DateTime.UtcNow
+            };
+
+            // Add the review to the context
+            await _context.Reviews.AddAsync(review);
+
+            // Save changes to the database
+            bool isCreated = await _context.SaveChangesAsync() > 0;
+
+            if (!isCreated)
+            {
+                // Handle failure to save if necessary
+                return Enumerable.Empty<ReviewViewModel>();
+            }
+
+            // Fetch the reviews again after adding the new one
+            var reviews = await _context.Reviews
+                .Where(r => r.ProductId == productId)
+                .Include(r => r.User)
+                .Include(r => r.Product)
+                .ToListAsync();
+
+            // Map reviews to ReviewViewModel
+            var reviewViewModels = reviews.Select(r => new ReviewViewModel
+            {
+                ReviewId = r.ReviewId,
+                UserId = r.UserId,
+                UserName = r.User.UserName,  // Assuming User has a Name property
+                ProductId = r.ProductId,
+                ProductName = r.Product.ProductName,  // Assuming Product has a Name property
+                Rating = r.Rating,
+                Comment = r.Comment,
+                ReviewDate = r.ReviewDate
+            });
+
+            return reviewViewModels;
+        }
+
         public async Task<IEnumerable<ReviewViewModel>> GetReviewsByProductIdAsync(Guid productId)
         {
             // Lấy tất cả đánh giá của sản phẩm theo productId, bao gồm thông tin User và Product

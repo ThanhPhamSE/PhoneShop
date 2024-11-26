@@ -107,8 +107,14 @@ namespace WebAPI.Controllers.Authentication
             {
                 if (!identityUser.EmailConfirmed)
                 {
-                    return StatusCode(StatusCodes.Status403Forbidden, "Email not confirmed. Please check your email to confirm your account.");
+                    return StatusCode(StatusCodes.Status403Forbidden, new { message = "Email not confirmed. Please check your email to confirm your account." });
                 }
+
+                if (!identityUser.IsActive)
+                {
+                    return StatusCode(StatusCodes.Status403Forbidden, new { message = "Unauthorized" });
+                }
+
 
                 var checkPasswordResult = await userManager.CheckPasswordAsync(identityUser, request.Password);
 

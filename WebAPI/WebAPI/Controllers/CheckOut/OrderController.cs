@@ -12,8 +12,8 @@ namespace WebAPI.Controllers.CheckOut
     public class OrderController : ControllerBase
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly IEmailService _emailService;   
-
+        private readonly IEmailService _emailService;
+        
         public OrderController(IOrderRepository orderRepository, IEmailService emailService)
         {
             _orderRepository = orderRepository;
@@ -39,10 +39,11 @@ namespace WebAPI.Controllers.CheckOut
             var result = await _orderRepository.ChangeStatusOrder(orderId, status);
             if (result)
             {
-                return Ok("Change status order successfully");
+                return Ok(new { message = "Change status order successfully" });
             }
-            return BadRequest("Change status order failed");
+            return BadRequest(new { message = "Change status order failed" });
         }
+
 
         [HttpGet("get-user-by-id")]
         public async Task<IActionResult> GetUserById(Guid userId)

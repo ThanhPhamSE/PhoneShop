@@ -3,16 +3,49 @@
   background: #cd9cf2;
 
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(
-    to top left,
-    rgba(205, 156, 242, 1),
-    rgba(246, 243, 255, 1)
-  );
+  background: -webkit-linear-gradient(to top left,
+      rgba(205, 156, 242, 1),
+      rgba(246, 243, 255, 1));
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(
-    to top left,
-    rgba(205, 156, 242, 1),
-    rgba(246, 243, 255, 1)
-  );
+  background: linear-gradient(to top left,
+      rgba(205, 156, 242, 1),
+      rgba(246, 243, 255, 1));
+}
+
+/*Phan hoi*/
+.feedback-button {
+  background-color: #007bff;
+  /* Màu nền xanh */
+  color: white;
+  /* Màu chữ trắng */
+  border: none;
+  /* Không viền */
+  padding: 10px 20px;
+  /* Khoảng cách xung quanh chữ */
+  font-size: 14px;
+  /* Kích thước chữ */
+  border-radius: 25px;
+  /* Góc bo tròn */
+  cursor: pointer;
+  /* Hiển thị con trỏ chuột khi hover */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  /* Hiệu ứng chuyển màu nền và phóng to khi hover */
+}
+
+.feedback-button:hover {
+  background-color: #0056b3;
+  /* Màu nền khi hover */
+  transform: scale(1.1);
+  /* Phóng to nút một chút khi hover */
+}
+
+.feedback-button:focus {
+  outline: none;
+  /* Loại bỏ viền khi nút được chọn */
+}
+
+.feedback-button:active {
+  background-color: #004085;
+  /* Màu nền khi nhấn nút */
 }

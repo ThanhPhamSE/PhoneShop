@@ -10,12 +10,7 @@
       <div class="col-lg-5 mt-5">
         <div class="card mb-3">
           <!-- Hiển thị hình ảnh sản phẩm -->
-          <img
-            class="card-img img-fluid"
-            [src]="product.imageUrl"
-            alt="Product image"
-            id="product-detail"
-          />
+          <img class="card-img img-fluid" [src]="product.imageUrl" alt="Product image" id="product-detail" />
         </div>
       </div>
 
@@ -54,35 +49,21 @@
 
             <!-- Size and Quantity -->
             <form action="" method="GET">
-              <input
-                type="hidden"
-                name="product-title"
-                value="{{ product.productName }}"
-              />
+              <input type="hidden" name="product-title" value="{{ product.productName }}" />
               <div class="row">
                 <div class="col-auto">
                   <ul class="list-inline pb-3">
                     <li class="list-inline-item">
-                      <button
-                        class="btn btn-success"
-                        (click)="decreaseQuantity()"
-                      >
+                      <button class="btn btn-success" (click)="decreaseQuantity()">
                         -
                       </button>
                     </li>
                     <li class="list-inline-item">
-                      <input
-                        type="number"
-                        class="form-control text-center"
-                        [(ngModel)]="quantity"
-                        [ngModelOptions]="{ standalone: true }"
-                      />
+                      <input type="number" class="form-control text-center" [(ngModel)]="quantity"
+                        [ngModelOptions]="{ standalone: true }" />
                     </li>
                     <li class="list-inline-item">
-                      <button
-                        class="btn btn-success"
-                        (click)="increaseQuantity()"
-                      >
+                      <button class="btn btn-success" (click)="increaseQuantity()">
                         +
                       </button>
                     </li>
@@ -91,26 +72,15 @@
               </div>
               <div class="row pb-3">
                 <div class="col d-grid">
-                  <button
-                    type="submit"
-                    class="btn btn-success btn-lg"
-                    name="submit"
-                    value="buy"
-                  >
+                  <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">
                     Buy
                   </button>
                 </div>
                 <div class="col d-grid">
-                  <button
-                    type="submit"
-                    class="btn btn-success btn-lg"
-                    name="submit"
-                    value="addtocart"
-                    *ngIf="userInfo?.email"
-                    (click)="
+                  <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocart"
+                    *ngIf="userInfo?.email" (click)="
                       addToCart(userInfo!.email, product.productId, quantity)
-                    "
-                  >
+                    ">
                     Add To Cart
                   </button>
                 </div>
@@ -130,16 +100,12 @@
               <p>
                 User: <strong>{{ review.userName }}</strong>
                 <span class="text-muted">
-                  - {{ review.reviewDate | date : "short" }}</span
-                >
+                  - {{ review.reviewDate | date : "short" }}</span>
               </p>
               <!-- Hiển thị sao đánh giá -->
               <p>
-                <i
-                  class="fa fa-star text-warning"
-                  *ngFor="let star of [].constructor(5); let i = index"
-                  [ngClass]="{ 'text-warning': i < review.rating }"
-                ></i>
+                <i class="fa fa-star text-warning" *ngFor="let star of [].constructor(5); let i = index"
+                  [ngClass]="{ 'text-warning': i < review.rating }"></i>
               </p>
             </div>
             <div class="review-body">
@@ -155,3 +121,8 @@
     </div>
   </div>
 </section>
+<!-- product-detail.component.html -->
+<!-- <div class="product-details">
+  <h1>Product Details</h1>
+  <button (click)="goToReviewPage()">Add Review</button>
+</div> -->

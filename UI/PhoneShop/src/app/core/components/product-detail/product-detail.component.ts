@@ -115,4 +115,10 @@ export class ProductDetailComponent implements OnInit {
       alert('User email is not available');
     }
   }
+
+
+  goToReviewPage(): void {
+    // Chuyển hướng đến trang review với productId hiện tại
+    this.router.navigate(['/add-review', this.productId]);
+  }
 }

@@ -1,0 +1,30 @@
+<div *ngIf="isLoggedIn">
+    <h2>Add Your Review</h2>
+    <form (ngSubmit)="submitReview()" class="review-form">
+
+        <!-- Rating -->
+        <div class="rating-container">
+            <label for="rating">Rating</label>
+            <div class="stars-container">
+                <span *ngFor="let star of stars; let i = index" [class.filled]="reviewData.rating >= (i + 1)"
+                    (click)="onStarClick(i + 1)">
+                    ★
+                </span>
+            </div>
+        </div>
+
+        <!-- Comment -->
+        <div class="comment-container">
+            <label for="comment">Comment</label>
+            <textarea id="comment" [(ngModel)]="reviewData.comment" name="comment" required
+                placeholder="Leave your thoughts here..."></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">Submit Review</button>
+    </form>
+</div>
+
+<div *ngIf="!isLoggedIn">
+    <p class="login-required">You must be logged in to add a review.</p>
+</div>

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Repository;
 using WebAPI.Repository.IRepository;
+using WebAPI.ViewModel.ProductDetail;
 
 namespace WebAPI.Controllers.ProductDetail
 {
@@ -40,6 +41,29 @@ namespace WebAPI.Controllers.ProductDetail
             return Ok(reviews);
         }
 
+        // Endpoint để thêm đánh giá cho sản phẩm theo productId
+        [HttpPost("add-review-by-product-id/{productId}")]
+        public async Task<IActionResult> AddReview(Guid productId, [FromBody] AddReviewRequest request)
+        {
+            if (!ModelState.IsValid)
+    {
+        return BadRequest(ModelState);
+    }
+            if (request == null)
+            {
+                return BadRequest("Invalid review data.");
+            }
+
+            // Thêm review cho sản phẩm
+            var result = await _reviewRepository.AddReviewProductByIdAsync(productId, request.UserId, request.Rating, request.Comment);
+
+            if (result == null)
+            {
+                return BadRequest("Failed to add review.");
+            }
+
+            return Ok(result);
+        }
 
     }
 }

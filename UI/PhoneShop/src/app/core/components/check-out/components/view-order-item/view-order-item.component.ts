@@ -44,7 +44,7 @@ export class ViewOrderItemComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private manageOrderService: ManageOrderService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userInfo = this.auth.getUser();
@@ -174,16 +174,49 @@ export class ViewOrderItemComponent implements OnInit {
     );
   }
 
+  // changeStatusOrder(order: Order, status: string) {
+  //   this.manageOrderService.changeStatus(order.orderId, status).subscribe(
+  //     (data) => {
+  //       this.order.status = status;
+  //       alert('Change status successfully');
+  //     },
+  //     (statusError) => {
+  //       console.error('Error changing status:', statusError);
+  //     }
+  //   );
+  //   if (status === 'Shipping') {
+  //     this.manageOrderService.getUserById(order.userId).subscribe(
+  //       (userData) => {
+  //         console.log('User Data:', userData);
+  //         this.manageOrderService.sendEmail(userData.email).subscribe(
+  //           (emailData) => {
+  //             console.log('Send email successfully:', emailData);
+  //           },
+  //           (emailError) => {
+  //             console.error('Error sending email:', emailError);
+  //           }
+  //         );
+  //       },
+  //       (userError) => {
+  //         console.error('Error fetching user:', userError);
+  //       }
+  //     );
+  //   }
+  // }
+
   changeStatusOrder(order: Order, status: string) {
     this.manageOrderService.changeStatus(order.orderId, status).subscribe(
       (data) => {
         this.order.status = status;
         alert('Change status successfully');
+
+        // Reload the page after status change
       },
       (statusError) => {
         console.error('Error changing status:', statusError);
       }
     );
+
     if (status === 'Shipping') {
       this.manageOrderService.getUserById(order.userId).subscribe(
         (userData) => {
@@ -191,6 +224,11 @@ export class ViewOrderItemComponent implements OnInit {
           this.manageOrderService.sendEmail(userData.email).subscribe(
             (emailData) => {
               console.log('Send email successfully:', emailData);
+
+
+              // Reload the page after sending email
+              window.location.reload();
+
             },
             (emailError) => {
               console.error('Error sending email:', emailError);
@@ -201,6 +239,20 @@ export class ViewOrderItemComponent implements OnInit {
           console.error('Error fetching user:', userError);
         }
       );
+
     }
+    if (this.userInfo?.roles?.includes('Admin')) {
+      this.router.navigate(['/view-order-item'], { queryParams: { orderId: order.orderId } });
+    } else {
+      this.router.navigate(['/view-order-item'], { queryParams: { orderId: order.orderId } });
+    }
+
+  }
+
+
+  goToReviewPage(productId: string): void {
+    // Chuyển hướng đến trang review với productId hiện tại
+    this.router.navigate(['/add-review', productId]);
+
   }
 }
