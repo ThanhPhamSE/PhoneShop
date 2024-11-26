@@ -42,7 +42,7 @@ export class ViewOrderItemComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private manageOrderService: ManageOrderService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userInfo = this.auth.getUser();
@@ -182,5 +182,10 @@ export class ViewOrderItemComponent implements OnInit {
         console.error('Error changing status:', error);
       }
     );
+  }
+
+  goToReviewPage(productId: string): void {
+    // Chuyển hướng đến trang review với productId hiện tại
+    this.router.navigate(['/add-review', productId]);
   }
 }
