@@ -10,7 +10,7 @@ import { Address } from '../../models/address';
 })
 export class ManageOrderService {
   private apiUrl = 'https://localhost:7026/api/Order';
-  constructor() {}
+  constructor() { }
   http = inject(HttpClient);
 
   getAllOrders() {
@@ -63,4 +63,9 @@ export class ManageOrderService {
       null
     );
   }
+
+  sendEmail(email: string) {
+    return this.http.get(`${this.apiUrl}/send-email?email=${email}`);
+  }
+
 }
