@@ -1,1 +1,267 @@
-<p>Con ce</p>
+<section class="h-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-10 col-xl-8">
+        <div class="card" style="border-radius: 10px">
+          <div class="card-header px-4 py-5">
+            <h5 class="text-muted mb-0">Confirm your's order!</h5>
+          </div>
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <p class="lead fw-normal mb-0" style="color: #a8729a">
+                Products Choice
+              </p>
+              <p class="small text-muted mb-0">Receipt Voucher : No Voucher</p>
+            </div>
+            <div
+              class="card shadow-0 border mb-4"
+              *ngFor="let cart of carts; let i = index"
+            >
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-2">
+                    <img
+                      [src]="products[i].imageUrl"
+                      class="img-fluid"
+                      alt="Phone"
+                    />
+                  </div>
+                  <div
+                    class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                  >
+                    <p class="text-muted mb-0">{{ products[i].productName }}</p>
+                  </div>
+                  <div
+                    class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                  >
+                    <p class="text-muted mb-0 small">{{ products[i].color }}</p>
+                  </div>
+                  <div
+                    class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                  >
+                    <p class="text-muted mb-0 small">
+                      Capacity: {{ products[i].title }}
+                    </p>
+                  </div>
+                  <div
+                    class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                  >
+                    <p class="text-muted mb-0 small">{{ cart.quantity }}</p>
+                  </div>
+                  <div
+                    class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                  >
+                    <p class="text-muted mb-0 small">
+                      ${{ products[i].sellPrice }}
+                    </p>
+                  </div>
+                </div>
+                <hr
+                  class="mb-4"
+                  style="background-color: #e0e0e0; opacity: 1"
+                />
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-2">
+              <p class="fw-bold mb-0">Customer Information</p>
+              <p class="text-muted mb-0"></p>
+            </div>
+
+            <div class="d-flex justify-content-between pt-2">
+              <p class="text-muted mb-0">
+                Customer Name : {{ userCheckout.userName }}
+              </p>
+              <p class="text-muted mb-0"></p>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <p class="text-muted mb-0">
+                Order Date : {{ date | date : "dd/MM/yyyy" }}
+              </p>
+              <p class="text-muted mb-0"></p>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <p class="text-muted mb-0">Customer Phone : 0323 456 789</p>
+              <p class="text-muted mb-0"></p>
+            </div>
+
+            <div class="d-flex justify-content-between mb-3">
+              <p class="text-muted mb-0">
+                Customer Address :
+                {{ addresss.description }}, {{ village }}, {{ district }},
+                {{ city }}
+              </p>
+              <p class="text-muted mb-0">
+                <button
+                  style="
+                    background-color: #6b8e23;
+                    color: white;
+                    border: none;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                  "
+                  (click)="openModal()"
+                >
+                  {{ city && city !== "" ? "Change Address" : "Add Address" }}
+                </button>
+              </p>
+            </div>
+          </div>
+          <div
+            class="card-footer border-0 px-4 py-5 d-flex justify-content-between align-items-center"
+            style="
+              background-color: #a8729a;
+              border-bottom-left-radius: 10px;
+              border-bottom-right-radius: 10px;
+            "
+          >
+            <h5
+              class="d-flex align-items-center text-white text-uppercase mb-0"
+            >
+              Total paid:
+              <span class="h2 mb-0 ms-2">${{ getTotalPrice() }}</span>
+            </h5>
+            <button
+              style="
+                background-color: #ffffff;
+                color: #a8729a;
+                border: 2px solid #a8729a;
+                padding: 10px 20px;
+              "
+              (click)="placeOrder()"
+            >
+              Place Order
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Modal -->
+<div class="modal" id="myModal" #myModal>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {{ addresss ? "Change Address" : "Add Address" }}
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          (click)="closeModal()"
+        ></button>
+      </div>
+
+      <form [formGroup]="addresstForm">
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row mb-3 align-items-center">
+            <label class="form-label col-sm-2">City</label>
+            <div class="col-sm-10">
+              <select
+                name="city"
+                formControlName="city"
+                class="form-control"
+                id="province"
+              ></select>
+            </div>
+          </div>
+          <br />
+          <div class="row mb-3 align-items-center">
+            <label class="form-label col-sm-2">District</label>
+            <div class="col-sm-10">
+              <select
+                name="district"
+                formControlName="district"
+                class="form-control"
+                id="district"
+              >
+                <option value="">Select District</option>
+              </select>
+            </div>
+          </div>
+          <br />
+          <div class="row mb-3 align-items-center">
+            <label class="form-label col-sm-2">Ward</label>
+            <div class="col-sm-10">
+              <select
+                name="village"
+                formControlName="village"
+                class="form-control"
+                id="ward"
+              >
+                <option value="">Select Ward</option>
+              </select>
+            </div>
+          </div>
+          <br />
+          <div class="row mb-3 align-items-center">
+            <label class="form-label col-sm-2">Street</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                name="description"
+                formControlName="description"
+                class="form-control"
+                id="description"
+                placeholder="Enter Street"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <!-- <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+            Submit
+          </button> -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            [style.display]="city && city !== '' ? 'none' : 'block'"
+            (click)="onSubmit('save')"
+            data-bs-dismiss="modal"
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            [style.display]="city && city !== '' ? 'block' : 'none'"
+            (click)="onSubmit('update')"
+            data-bs-dismiss="modal"
+          >
+            Update
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-dismiss="modal"
+            (click)="closeModal()"
+          >
+            Close
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+  integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
+  integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>

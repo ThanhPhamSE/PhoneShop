@@ -14,6 +14,8 @@ import { ManageOrderComponent } from './core/components/check-out/components/man
 import { ConfirmOrderComponent } from './core/components/check-out/components/confirm-order/confirm-order.component';
 import { UserComponent } from './core/components/user/user.component';
 import { AddReviewComponent } from './core/components/add-review/add-review.component';
+import { ViewOrderItemComponent } from './core/components/check-out/components/view-order-item/view-order-item.component';
+
 export const routes: Routes = [
   {
     path: 'login',
@@ -27,7 +29,6 @@ export const routes: Routes = [
   {
     path: 'admin/manage/product',
     component: ProductManageComponent,
-
   },
   {
     path: 'manager/category',
@@ -65,7 +66,8 @@ export const routes: Routes = [
   {
     path: 'confirm-order',
     component: ConfirmOrderComponent,
-  }, {
+  },
+  {
     path: 'user',
     component: UserComponent,
   },
@@ -73,5 +75,8 @@ export const routes: Routes = [
     path: 'user',
     component: UserComponent,
   },
-
+  {
+    path: 'view-order-item',
+    component: ViewOrderItemComponent,
+  },
 ];

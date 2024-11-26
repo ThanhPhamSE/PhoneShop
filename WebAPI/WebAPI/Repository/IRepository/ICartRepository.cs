@@ -9,5 +9,6 @@ namespace WebAPI.Repository
         Task<bool> AddCartItemAsync(string userEmail, Guid productd, int quantity);
         Task<bool> UpdateQuantityCartItemAsync(Guid cartId, int quantity);
         Task<bool> DeleteCartItemAsync(Guid cartItemId);
+        Task<bool> ClearCartAsync(string email);
     }
 }

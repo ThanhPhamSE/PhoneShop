@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Order } from '../../models/order';
 import { ManageOrderService } from '../../services/manager-order/manage-order.service';
 import { UserCheckout } from '../../models/user-checkout';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-manage-order',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './manage-order.component.html',
   styleUrl: './manage-order.component.css',
 })

@@ -1,0 +1,150 @@
+<section class="h-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-10 col-xl-8">
+        <div class="card" style="border-radius: 10px">
+          <div class="card-header px-4 py-5">
+            <h5 class="text-muted mb-0">
+              <span style="color: #a8729a"
+                >{{ userName[order.userId] }} Order</span
+              >!
+            </h5>
+          </div>
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <p class="lead fw-normal mb-0" style="color: #a8729a">Receipt</p>
+              <p class="small text-muted mb-0">Receipt Voucher : No Voucher</p>
+            </div>
+
+            <div
+              class="card shadow-0 border mb-4"
+              *ngFor="let orderItem of orderItems"
+            >
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-2">
+                    <img
+                      style="background-color: antiquewhite; padding: 3px"
+                      [src]="productMap[orderItem.productId].imageUrl"
+                      class="img-fluid"
+                      alt="Phone"
+                    />
+                  </div>
+                  <div
+                    class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                  >
+                    <p class="text-muted mb-0">
+                      {{ productMap[orderItem.productId].name }}
+                    </p>
+                  </div>
+                  <div
+                    class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                  >
+                    <p class="text-muted mb-0 small">
+                      {{ productMap[orderItem.productId].color }}
+                    </p>
+                  </div>
+                  <div
+                    class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                  >
+                    <p class="text-muted mb-0 small">
+                      {{ productMap[orderItem.productId].title }}
+                    </p>
+                  </div>
+                  <div
+                    class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                  >
+                    <p class="text-muted mb-0 small">
+                      {{ orderItem.quantity }}
+                    </p>
+                  </div>
+                  <div
+                    class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                  >
+                    <p class="text-muted mb-0 small">
+                      {{ orderItem.price }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-2">
+              <p class="fw-bold mb-0">Customer Information</p>
+              <p class="text-muted mb-0"></p>
+            </div>
+
+            <div class="d-flex justify-content-between pt-2">
+              <p class="text-muted mb-0">
+                Customer Name : {{ userName[order.userId] }}
+              </p>
+              <p class="text-muted mb-0">
+                Total paid:
+                <span class="h5 mb-1 ms-1">${{ order.totalAmount }}</span>
+              </p>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <p class="text-muted mb-0">
+                Order Date : {{ order.orderDate | date : "dd/MM/yyyy" }}
+              </p>
+              <p class="text-muted mb-0"></p>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p class="text-muted mb-0">Customer Phone : 0323 456 789</p>
+              <p class="text-muted mb-0"></p>
+            </div>
+
+            <div class="d-flex justify-content-between mb-3">
+              <p class="text-muted mb-0">
+                Customer Address : {{ address[order.userId].description }},
+                {{ address[order.userId].village }},
+                {{ address[order.userId].district }},
+                {{ address[order.userId].city }}
+              </p>
+              <p class="text-muted mb-0"></p>
+            </div>
+          </div>
+          <div
+            class="card-footer border-0 px-4 py-5 d-flex justify-content-between align-items-center"
+            style="
+              background-color: #a8729a;
+              border-bottom-left-radius: 10px;
+              border-bottom-right-radius: 10px;
+            "
+          >
+            <h5 class="text-white text-uppercase mb-0">
+              Status : {{ order.status }}
+            </h5>
+            <ng-container *ngIf="userInfo !== undefined">
+              <div *ngIf="isUserWithPendingOrder()">
+                <button
+                  class="btn btn-danger me-2"
+                  (click)="changeStatusOrder(order, 'Cancelled')"
+                >
+                  Cancelled Order
+                </button>
+              </div>
+              <div *ngIf="isAdminWithPendingOrder()">
+                <button
+                  class="btn btn-danger me-2"
+                  (click)="changeStatusOrder(order, 'Shipping')"
+                >
+                  Shipping Order
+                </button>
+              </div>
+              <div *ngIf="isUserWithShippingOrder()">
+                <button
+                  class="btn btn-danger me-2"
+                  (click)="changeStatusOrder(order, 'Completed')"
+                >
+                  Completed Order
+                </button>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

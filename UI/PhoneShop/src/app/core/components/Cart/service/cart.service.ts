@@ -34,4 +34,8 @@ export class CartService {
     )}&productd=${productId}&quantity=${quantity}`;
     return this.http.post<any>(url, {});
   }
+
+  deleteAllCarts(email: string) {
+    return this.http.delete(`${this.apiUrl}/delete-all-cart?email=${email}`);
+  }
 }

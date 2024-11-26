@@ -52,5 +52,16 @@ namespace WebAPI.Controllers.Cart
             }
             return Ok(result);
         }
+
+        [HttpDelete("delete-all-cart")]
+        public async Task<IActionResult> ClearCart(string email)
+        {
+            var result = await _cartRepository.ClearCartAsync(email);
+            if (!result)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Failed to clear cart");
+            }
+            return Ok(result);
+        }
     }
 }

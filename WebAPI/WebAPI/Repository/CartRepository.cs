@@ -34,6 +34,15 @@ namespace WebAPI.Repository
             return isCreated;
         }
 
+        public async Task<bool> ClearCartAsync(string email)
+        {
+            var userId = _context.Users.FirstOrDefault(u => u.Email == email).Id;
+            var cartItems = _context.CartItems.Where(ci => ci.UserId == userId);
+            _context.CartItems.RemoveRange(cartItems);
+            bool isDeleted = await _context.SaveChangesAsync() > 0;
+            return isDeleted;
+        }
+
         public async Task<bool> DeleteCartItemAsync(Guid cartItemId)
         {
             var cartItem = await _context.CartItems.FindAsync(cartItemId);
