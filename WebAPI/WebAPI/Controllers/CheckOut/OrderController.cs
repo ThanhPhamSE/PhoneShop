@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Models;
 using WebAPI.Repository;
+using WebAPI.Services;
 
 namespace WebAPI.Controllers.CheckOut
 {
@@ -9,10 +12,12 @@ namespace WebAPI.Controllers.CheckOut
     public class OrderController : ControllerBase
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly IEmailService _emailService;   
 
-        public OrderController(IOrderRepository orderRepository)
+        public OrderController(IOrderRepository orderRepository, IEmailService emailService)
         {
             _orderRepository = orderRepository;
+            _emailService = emailService;
         }
         [HttpGet("get-all-order")]
         public async Task<IActionResult> GetAllOrder()
@@ -95,6 +100,15 @@ namespace WebAPI.Controllers.CheckOut
                 return Ok(address);
             }
             return NotFound();
+        }
+
+        [HttpGet("send-email")]
+        public async Task<IActionResult> SendEmail(string email)
+        {
+            var message = new Message(new string[] { email }, "Đặt hàng", "Đơn hàng đã được đặt thành công");
+
+            _emailService.SendEmail(message);
+            return StatusCode(StatusCodes.Status200OK, "Email sent successfully!");
         }
     }
 }

@@ -63,4 +63,8 @@ export class ManageOrderService {
       null
     );
   }
+
+  sendEmail(email: string) {
+    return this.http.get(`${this.apiUrl}/send-email?email=${email}`);
+  }
 }

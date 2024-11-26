@@ -7,6 +7,8 @@ import { Order } from '../../models/order';
 import { ProductManage } from '../../../product-manage/model/product-manage';
 import { User } from '../../../../../features/auth/login/models/user.model';
 import { AuthService } from '../../../../../features/auth/services/auth.service';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 @Component({
   selector: 'app-view-order-item',
   standalone: true,
@@ -178,9 +180,27 @@ export class ViewOrderItemComponent implements OnInit {
         this.order.status = status;
         alert('Change status successfully');
       },
-      (error) => {
-        console.error('Error changing status:', error);
+      (statusError) => {
+        console.error('Error changing status:', statusError);
       }
     );
+    if (status === 'Shipping') {
+      this.manageOrderService.getUserById(order.userId).subscribe(
+        (userData) => {
+          console.log('User Data:', userData);
+          this.manageOrderService.sendEmail(userData.email).subscribe(
+            (emailData) => {
+              console.log('Send email successfully:', emailData);
+            },
+            (emailError) => {
+              console.error('Error sending email:', emailError);
+            }
+          );
+        },
+        (userError) => {
+          console.error('Error fetching user:', userError);
+        }
+      );
+    }
   }
 }
